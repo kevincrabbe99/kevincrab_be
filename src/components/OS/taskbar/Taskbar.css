@@ -1,0 +1,21 @@
+.taskBar_main {
+  background-color: #c0b9bf;
+  position: absolute;
+  bottom: 0em;
+  width: 100%;
+  height: 2em;
+}
+
+.taskBar_main table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.StartButton {
+}
+
+.Clock {
+  float: right;
+  position: relative;
+  left: -6.8em;
+}

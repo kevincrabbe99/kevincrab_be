@@ -1,0 +1,37 @@
+html {
+  --window-width: 70%;
+}
+
+.Main_Window p {
+  color: white;
+  font-family: "SansSerif";
+}
+
+/*
+    the max window size
+    a percentage of the screensize
+*/
+@media (min-width: 1024px) {
+  .Main_Window {
+    width: 50em;
+    height: 50em;
+    border: 1px solid white;
+  }
+}
+
+/*
+    base case for the window, 
+    a percentage of the screensize
+*/
+@media (max-width: 1024px) {
+  .Main_Window {
+    width: 100%;
+    border: 1px solid white;
+  }
+}
+
+.Main_Window:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
