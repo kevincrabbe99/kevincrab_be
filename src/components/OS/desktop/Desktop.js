@@ -9,10 +9,10 @@ import ICN_recycle from '../../../img/recycle_bin.png'
 import ICN_internet from '../../../img/internet.ico'
 import ICN_webDocument from '../../../img/Web-document.ico'
 import ICN_webShortcut from '../../../img/web_shortcut.ico'
-
 import ICN_myDocuments from '../../../img/my_documents.ico'
 import ICN_folder from '../../../img/Folder.ico'
 import ICN_document from '../../../img/WordPad_document.ico'
+import ICN_Mail from '../../../img/Mail.ico'
 
 import { render } from 'react-dom'
 
@@ -32,11 +32,19 @@ import { render } from 'react-dom'
                 {label: "My Documents", img: ICN_myDocuments, xPos: 10, yPos: 150, type: 1},
                 {label: "The Internet", img: ICN_internet, xPos: 10, yPos: 225, type: 1},
 
-                {label: "Kevin Crabbe Resume", img: ICN_document, xPos: 250, yPos: 250, type: 1},
+                {label: "Shortcut to LinkedIn", img: ICN_webShortcut, xPos: 10, yPos: 400, type: 1},
+                {label: "Shortcut to GitHub", img: ICN_webShortcut, xPos: 10, yPos: 470, type: 1},
+
+                {label: "Kevin Crabbe Resume", img: ICN_document, xPos: 220, yPos: 250, type: 1},
+                {label: "Email Me", img: ICN_Mail, xPos: 300, yPos: 250, type: 1},
+                
 
 
-                {label: "StatTimer (IOS) Github", img: ICN_webShortcut, xPos: 450, yPos: 370, type: 1},
-                {label: "StatTimer IOS App", img: ICN_webDocument, xPos: 450, yPos: 300, type: 1}
+                {label: "StatTimer IOS App Download", img: ICN_webDocument, xPos: 450, yPos: 300, type: 1},
+                {label: "Shortcut to StatTimer Github", img: ICN_webShortcut, xPos: 450, yPos: 380, type: 1},
+
+                {label: "Shortcut to this Github", img: ICN_webShortcut, xPos: 540, yPos: 380, type: 1}
+            
             ]
         }
 
