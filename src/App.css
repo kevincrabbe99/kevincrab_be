@@ -2,8 +2,8 @@
   .window_margin {
     position: relative;
     margin: 0px auto;
-    width: 50em;
-    height: 50em;
+    width: 800px;
+    height: 800px;
     top: 10%;
   }
 }

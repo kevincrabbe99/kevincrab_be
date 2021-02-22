@@ -8,7 +8,7 @@ const OS = () => {
     return (
         <div className = "OS_bg">
             
-            <Desktop />
+            
 
             <Taskbar />
 
