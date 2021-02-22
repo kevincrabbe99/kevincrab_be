@@ -1,5 +1,5 @@
-.taskBar_bg {
-  height: 1.6em;
+.startButton_bg {
+  height: 1.55em;
   border-bottom: 2px solid black;
   border-right: 2px solid black;
   border-top: 2px solid white;
@@ -8,17 +8,34 @@
   margin: 0.1em;
 }
 
-.taskBar_main {
+.startButton_bg_activated {
+  height: 1.55em;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+  width: 5em;
+  margin: 0.1em;
+}
+
+.startButton_main {
   position: absolute;
+  height: 1.9em;
+  cursor: default;
 }
 
-.taskBar_main table {
-  position: relative;
-  top: -0.6em;
+.startButton {
   left: -0.3em;
+  padding: 0px;
+  margin: 0px;
+  border-spacing: 0;
+  border: 0px;
+  border-collapse: collapse;
+  position: relative;
+  top: -0.5em;
 }
 
-.taskBar_main img {
+.startButton img {
   width: 1.5em;
   height: 1.5em;
   position: relative;

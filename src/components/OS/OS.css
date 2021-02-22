@@ -5,3 +5,9 @@
   position: absolute;
   border-radius: 4px;
 }
+
+.startMenu_container {
+  position: absolute;
+  bottom: 1.9em;
+  z-index: 90;
+}

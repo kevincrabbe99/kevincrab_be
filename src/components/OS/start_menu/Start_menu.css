@@ -1,0 +1,81 @@
+.left_side {
+  position: absolute;
+}
+
+.left_label {
+  position: relative;
+  left: -7.8em;
+  top: 6.45em;
+  background-color: #7c7c7c;
+  transform: rotate(-90deg);
+  height: 2em;
+  width: 17.5em;
+  text-align: left;
+}
+
+.left_side h2 {
+  color: #c0b9bf;
+  padding-left: 1em;
+}
+
+.right_side {
+  position: absolute;
+  width: 10em;
+  left: 2em;
+  top: 0.3em;
+  text-align: left;
+}
+
+.startMenu_main {
+  position: relative;
+  background-color: #c0b9bf;
+  width: 12em;
+  height: 17.5em;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+.right_side td:nth-child(1) {
+  width: 3em;
+  height: 2em;
+}
+
+.right_side td:nth-child(2) {
+  width: 8em;
+  height: 2em;
+  font-size: 0.8em;
+}
+
+.icn_programs img {
+  height: 28px;
+  width: auto;
+  padding-left: 9px;
+}
+.icn_documents img {
+  height: 38px;
+  width: auto;
+  padding-left: 4px;
+}
+.icn_settings img {
+  padding-left: 8px;
+}
+.icn_find img {
+  height: 24px;
+  width: auto;
+  padding-left: 11px;
+}
+.icn_help img {
+  height: 26px;
+  width: auto;
+  padding-left: 11px;
+}
+.icn_run img {
+  padding-left: 7px;
+}
+.icn_shutdown img {
+  height: 32px;
+  width: auto;
+  padding-left: 9px;
+}
