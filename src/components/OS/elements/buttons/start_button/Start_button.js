@@ -5,8 +5,8 @@ import { render } from 'react-dom'
 
 class Start_button extends Component {
     
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             startBtnActive: false
@@ -16,6 +16,7 @@ class Start_button extends Component {
     setStartBtnUnActive()  {
         console.log("un clicked")
         this.setState({startBtnActive: false})
+        this.props.startMenuHandler();
     }
     
     setStartBtnActive() {
@@ -52,5 +53,6 @@ class Start_button extends Component {
         )
     }
 }
+
 
 export default Start_button

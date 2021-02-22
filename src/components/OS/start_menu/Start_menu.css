@@ -37,6 +37,12 @@
   border-left: 2px solid white;
 }
 
+.divider {
+  z-index: 120;
+  position: relative;
+  bottom: 3.1em;
+}
+
 .right_side td:nth-child(1) {
   width: 3em;
   height: 2em;

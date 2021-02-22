@@ -7,13 +7,13 @@ import './Taskbar.css'
 
 
 
-const Taskbar = props => {
+function Taskbar({startMenuHandler}) {
 
 
     return (
         <div className = "taskBar_main">
 
-                <StartButton/>
+                <StartButton startMenuHandler = {startMenuHandler.bind(this)} />
 
             <div  className = "Clock">
                 <Clock />

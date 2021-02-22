@@ -81,6 +81,9 @@ const Start_menu = props => {
                         </tr>
                     </tbody>
                 </table>
+                <div className = "divider">
+                    <hr/>
+                </div>
             </div>
         </div>
     )
