@@ -118,7 +118,7 @@ import { render } from 'react-dom'
             icons: newIconData
         })
 
-        console.log("XPOS: ", this.state.icons[this.draggingIcon].xPos);
+//        console.log("XPOS: ", this.state.icons[this.draggingIcon].xPos);
         //console.log("set state X for: ", this.state.icons.key.offsetX)
         //console.log("set state Y for: ", this.state.icons.key.offsetY)
     }
@@ -165,7 +165,7 @@ import { render } from 'react-dom'
                     <Icon img = {icon.img} label = {icon.label} type = {icon.type}  />
                 </div>
             
-                )};    
+                )}    
                 
             </div>
        
