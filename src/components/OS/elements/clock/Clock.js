@@ -7,14 +7,16 @@ const Clock = props => {
         <div  className = "clock_main">
             <div className = "clock_bg">
                 <table>
-                    <tr>
-                        <td>
-                            <img src = {vol_ico} ></img>
-                        </td>
-                        <td>
-                            <p>4:20AM</p>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src = {vol_ico} ></img>
+                            </td>
+                            <td>
+                                <p>4:20AM</p>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

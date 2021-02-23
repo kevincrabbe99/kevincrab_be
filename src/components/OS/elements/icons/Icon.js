@@ -6,7 +6,7 @@ const Icon = props => {
     if (props.type == 0 || props.type == null) {
         return (
             <div className = "icon_main">
-                <img src = {props.img}></img>
+                <img src = {props.img} ></img>
                 <p>{props.label}</p>
             </div>
         )
@@ -14,7 +14,7 @@ const Icon = props => {
         return (
             <div className = "icon_main" >
                 <img src = {props.img} style = {{
-                    width: '55%',
+                    width: '50%',
                     height: 'auto'
             }}></img>
                 <p>{props.label}</p>
