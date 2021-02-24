@@ -13,7 +13,7 @@ const Clock = props => {
                                 <img src = {vol_ico} ></img>
                             </td>
                             <td>
-                                <p>4:20AM</p>
+                                <p>4:30AM</p>
                             </td>
                         </tr>
                     </tbody>
