@@ -1,6 +1,8 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Kevin Crabbe, Win95 Emulator. (Personal Portfolio Website)
+
+This website will eventually replace what is currently on http://kevincrab.be
+For the time being, the repo can be found at https://master.d2dp50x3jvpcn6.amplifyapp.com/
 
 ## Available Scripts
 
