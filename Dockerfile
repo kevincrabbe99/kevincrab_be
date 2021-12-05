@@ -2,7 +2,7 @@
 
 FROM node:14
 
-WORKDIR /usr/src
+WORKDIR /
 
 ENV PATH /node_modules/.bin:$PATH
 # ENV REACT_APP_ITIFN_API ${_REACT_APP_ITIFN_API}
