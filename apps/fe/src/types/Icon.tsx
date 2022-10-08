@@ -3,15 +3,29 @@ export enum Alignment {
     RIGHT = 1
 }
 
-export type Icon = {
-    name: String;
-    icon: String;
-    hoverText: String;
-    position: IconGridPosition;
+export enum IconActionIsExternal {
+    INTERNAL = 0,
+    EXTERNAL = 1
 }
+
+
+export type IconActionType = {
+    isExternal: IconActionIsExternal
+    destination: string    
+}
+
 
 export type IconGridPosition = {
     alignment: Alignment;
     x: number;
     y: number;
+}
+
+
+export type Icon = {
+    name: string;
+    icon: string;
+    hoverText: string;
+    action: IconActionType;
+    position: IconGridPosition;
 }

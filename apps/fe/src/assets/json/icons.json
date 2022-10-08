@@ -3,6 +3,10 @@
         "name": "LinkedIn",
         "icon": "web_shortcut.ico",
         "hoverText": "Goto Kevins LinkedIn",
+        "action": {
+            "isExternal": 1,
+            "destination": "https://www.linkedin.com/in/kevincrab-be/"
+        },
         "position": {
             "alignment": 1,
             "x": 0,
@@ -13,6 +17,10 @@
         "name": "Resume",
         "icon": "WordPad_document.ico",
         "hoverText": "View Kevins Resume",
+        "action": {
+            "isExternal": 1,
+            "destination": "https://linkedin.com/kevincrabbe"
+        },
         "position": {
             "alignment": 0,
             "x": 0,
@@ -21,8 +29,12 @@
     },
     {
         "name": "reach out!",
-        "icon": "New_letter.ico",
+        "icon": "Mail.ico",
         "hoverText": "Contact Kevins",
+        "action": {
+            "isExternal": 1,
+            "destination": "https://linkedin.com/kevincrabbe"
+        },
         "position": {
             "alignment": 0,
             "x": 0,

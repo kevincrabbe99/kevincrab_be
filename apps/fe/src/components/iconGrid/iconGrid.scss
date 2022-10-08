@@ -24,6 +24,16 @@
     height: 5em;
 }
 
+.icon-grid-wrapper a {
+    color: var(--text-default);
+    text-decoration: none;
+}
+
+.icon-grid-wrapper a:hover {
+    color: var(--text-default);
+    text-decoration: none;
+    cursor: pointer;
+}
 
 .icon-wrapper {
     width: 3.5em;  
@@ -31,6 +41,7 @@
     display: grid;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .icon-img-wrapper {
@@ -42,6 +53,8 @@
     width: 2.7em;
     height: 2.7em;
     margin: 0px auto;
+    align-items: center;
+    display: flex;
 }
 
 .icon-wrapper label {

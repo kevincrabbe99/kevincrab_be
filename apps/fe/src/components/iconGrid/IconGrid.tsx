@@ -48,17 +48,51 @@ function IconGridRow(props: any) {
     let alignment: Alignment = props.alignment;
     return  <tr> {
         [...Array(5)].map((elx, x) => (
-            <RenderIconAtPosition x={x} y={y} alignment={alignment} />
+            <RenderIconAtPosition_Proxy x={x} y={y} alignment={alignment} />
         )) }
     </tr>
 }
 
-function RenderIconAtPosition(props: any) { 
+function RenderIconAtPosition_Proxy(props: any) { 
     let x = props.x; let y = props.y;
     let alignment = props.alignment;     
     const icon: Icon | undefined = getIconAtPosition(x, y, alignment);
     if (icon) {
-        return (
+        if (icon.action.isExternal) {
+            return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
+        } else {
+            return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
+        }
+    } else {
+        return <td> </td>
+    }
+}   
+
+function RenderIconWithExternalAction(props: any) {
+    let x = props.x; let y = props.y;
+    let alignment = props.alignment;     
+    const icon: Icon = props.icon;
+
+    return (
+        <td>
+            <a href={icon.action.destination} target="_blank">
+                <div className="icon-wrapper">
+                    <div className="icon-img-wrapper">
+                        <img src={`./icons/${icon?.icon}`}></img>
+                    </div>
+                    <label>{icon?.name}</label>
+                </div>
+            </a>
+        </td>
+        )
+}
+
+function RenderIconWithInternalAction(props: any) {
+    let x = props.x; let y = props.y;
+    let alignment = props.alignment;      
+    const icon: Icon = props.icon;
+    
+    return (
         <td>
             <div className="icon-wrapper">
                 <div className="icon-img-wrapper">
@@ -68,10 +102,7 @@ function RenderIconAtPosition(props: any) {
             </div>
         </td>
         )
-    } else {
-        return <td> </td>
-    }
-}   
+}
 
 function getIconAtPosition(x: number, y: number, alignment: Alignment) : Icon | undefined {
     // align from right 
