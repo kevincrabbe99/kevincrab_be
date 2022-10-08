@@ -1,0 +1,32 @@
+[
+    {
+        "name": "LinkedIn",
+        "icon": "web_shortcut.ico",
+        "hoverText": "Goto Kevins LinkedIn",
+        "position": {
+            "alignment": 1,
+            "x": 0,
+            "y": 1
+        }
+    },
+    {
+        "name": "Resume",
+        "icon": "WordPad_document.ico",
+        "hoverText": "View Kevins Resume",
+        "position": {
+            "alignment": 0,
+            "x": 0,
+            "y": 2
+        }
+    },
+    {
+        "name": "reach out!",
+        "icon": "New_letter.ico",
+        "hoverText": "Contact Kevins",
+        "position": {
+            "alignment": 0,
+            "x": 0,
+            "y": 3
+        }
+    }
+]

@@ -1,0 +1,53 @@
+@import "../../assets/css-vars.scss";
+
+.icon-grid-wrapper {
+    position:relative;
+}
+
+
+.icon-grid-left {
+    position:absolute;
+    left: 0em;
+    top: 0em;
+    margin-left: 1em;
+}
+
+.icon-grid-right {
+    position:absolute;
+    right: 0em;
+    top: 0em;
+    margin-right: 1em;
+}
+
+.icon-grid-wrapper td {
+    width: 3.5em;
+    height: 5em;
+}
+
+
+.icon-wrapper {
+    width: 3.5em;  
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-img-wrapper {
+    width: 3.5em;
+    position:relative;
+}
+
+.icon-wrapper img {
+    width: 2.7em;
+    height: 2.7em;
+    margin: 0px auto;
+}
+
+.icon-wrapper label {
+    font-size: 0.7em;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+    padding-top: 0.3em;
+}

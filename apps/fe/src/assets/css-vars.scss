@@ -1,0 +1,29 @@
+
+:root {
+    --background-color: #000;
+
+    // Windows 95 Colors Scheme
+    --desktop-green: #2E8282;
+    --blue95: #180180;
+
+    // grays
+    --gray-main: #C0C0C0;
+    --gray-light: #fff;
+    --gray-highlight: #FDFDFD;
+    --gray-dark: #808080;
+    --gray-black: #000;
+}
+
+[data-theme="dark"] {
+    --background-color: #000;
+}
+
+
+[data-theme="light"] {
+    --background-color: rgb(255, 252, 227);
+}
+
+
+
+
+
