@@ -57,22 +57,19 @@ function RenderIconAtPosition_Proxy(props: any) {
     let x = props.x; let y = props.y;
     let alignment = props.alignment;     
     const icon: Icon | undefined = getIconAtPosition(x, y, alignment);
-    if (icon) {
+    if (icon && !icon.isHidden) {
         if (icon.action.isExternal) {
             return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
         } else {
-            return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
+            return <RenderIconWithInternalAction x={x} y={y} alignment={alignment} icon={icon} />
         }
     } else {
         return <td> </td>
     }
 }   
 
-function RenderIconWithExternalAction(props: any) {
-    let x = props.x; let y = props.y;
-    let alignment = props.alignment;     
+function RenderIconWithExternalAction(props: any) { 
     const icon: Icon = props.icon;
-
     return (
         <td>
             <a href={icon.action.destination} target="_blank">
@@ -87,11 +84,8 @@ function RenderIconWithExternalAction(props: any) {
         )
 }
 
-function RenderIconWithInternalAction(props: any) {
-    let x = props.x; let y = props.y;
-    let alignment = props.alignment;      
+function RenderIconWithInternalAction(props: any) {     
     const icon: Icon = props.icon;
-    
     return (
         <td>
             <div className="icon-wrapper">

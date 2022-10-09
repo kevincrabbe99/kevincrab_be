@@ -28,4 +28,5 @@ export type Icon = {
     hoverText: string;
     action: IconActionType;
     position: IconGridPosition;
+    isHidden?: boolean | undefined;
 }

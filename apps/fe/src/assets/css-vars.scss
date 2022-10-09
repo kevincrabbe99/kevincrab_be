@@ -15,6 +15,8 @@
 
     // text color
     --text-default: #000;
+    --text-white: #fff;
+    --text-black: #000;
 }
 
 [data-theme="dark"] {
@@ -26,7 +28,9 @@
     --background-color: rgb(255, 252, 227);
 }
 
-
-
-
-
+@font-face {
+    font-family: "Pixel";
+    src: url("../assets/fonts/windows/w-95-sans-serif.woff");
+    font-weight: normal;
+    font-style: normal;
+}

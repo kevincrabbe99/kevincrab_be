@@ -5,12 +5,18 @@
     bottom: 0;
     background-color: var(--gray-main);
     width: 100%;
-    height: 1.8em;
+    height: 1.9em;
     border-top: 2px solid var(--gray-highlight);
 }
 
+.taskbar-applications-wrapper {
+    margin-right: 5em;
+}
+
 .startButton {
-    height: 1.5em;
+    height: 1.6em;
+    position: relative;
+    bottom: 0.2em;
     width: 4.4em;
     line-height: 0.2em;
     display:inline-block;
@@ -18,6 +24,7 @@
     border-left: 2px solid var(--gray-highlight);
     border-right: 2px solid var(--gray-dark);
     border-bottom: 2px solid var(--gray-dark);
+    margin-left: 0.1em;
 }
 
 .startButton:hover {
@@ -32,10 +39,68 @@
     height: 1.3em;
     width: auto;
     padding-left: 0.1em;
+    padding-right: 0.2em;
 }
 
 .startButton label {
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.7em;
     padding-left: 0.3em;
+}
+
+
+.application_placeholder-wrapper {
+    height: 1.6em;
+    position: relative;
+    bottom: 0.1em;
+    width: 7.5em;
+    display:flex;
+    align-items: center;
+    border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    border-right: 2px solid var(--gray-dark);
+    border-bottom: 2px solid var(--gray-dark);
+}
+
+.application_placeholder-wrapper:hover {
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+    cursor: pointer;
+}
+
+.application_placeholder-wrapper img {
+    height: 1.1em;
+    width: auto;
+    padding-left: 0.3em;
+    
+}
+
+.application_placeholder-wrapper label {
+    font-weight: normal;
+    font-size: 0.6em;
+    padding-left: 0.3em;
+    position:relative;
+    top: 0.09em;
+}
+
+.taskbar-right-box {
+    position: absolute;
+    bottom: 0.1em;
+    right: 0;
+    height: 1.5em;
+    width: 5em;
+    line-height: 0.2em;
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+}
+
+.taskbar-right-box label {
+    position: relative;
+    top: 0.55em;
+    left: 0.3em;
+    font-size: 0.7em;
 }

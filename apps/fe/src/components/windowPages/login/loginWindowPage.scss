@@ -1,0 +1,96 @@
+
+
+.login-wpage-wrapper {
+    position:relative;
+}
+
+.login-wpage-top {
+    position:absolute;
+    top: 0em;
+    height: 4em;
+    display: flex;
+}
+
+.login-wpage-bottom {
+    position:absolute;
+    top: 4em;
+    height: 10em;
+}
+
+.login-wpage-top-wrapper {
+    padding: 1em;
+}
+
+.login-wpage-icon {
+    width: 3em;
+    position:absolute;
+}
+
+.login-wpage-prompts {
+    width: 14em;
+    position:absolute;
+    left: 3.5em;
+}
+
+.login-wpage-prompts p {
+    font-size: 0.55em;
+}
+
+.login-wpage-buttons {
+    display: grid;
+    position:absolute;
+    left: 18em;
+}
+
+.login-wpage-buttons button {
+    font-size: 0.5em;
+    border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    border-right: 2px solid var(--gray-dark);
+    border-bottom: 2px solid var(--gray-dark);
+    background-color: var(--gray-main);
+    margin-bottom: 0.3em;
+    width: 4.6rem;
+    height: 1.3rem;
+}
+
+.login-wpage-buttons button:hover {
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+    cursor: pointer;
+}
+
+.login-wpage-buttons button:focus {
+    outline: none;
+}
+
+.login-wpage-bottom-wrapper {
+    padding-top: 0.5em;
+    padding-left: 3.5rem;
+    font-size: 0.55em;
+    display:grid;
+}
+
+.login-wpage-form-row {
+    display:flex;
+    align-items: center;
+    margin-bottom: 0.4em;
+}
+
+.login-wpage-form-row label {
+    width: 4rem;
+}
+
+.login-wpage-form-row input {
+    background-color: #fff;
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+}
+
+.login-wpage-form-row input:focus {
+    outline: none;
+}
