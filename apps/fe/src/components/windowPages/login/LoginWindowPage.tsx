@@ -1,7 +1,19 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { login } from '../../../actions/frameActions';
+import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import "./loginWindowPage.scss"
 
 export default function LoginWindowPage() {
+
+    const dispatch = useDispatch();
+
+    const loginSubmit = (e: any) => {
+        console.log("loginSubmit")
+        dispatch({type: "SET_STATE", payload: FrameStatesEnum.DESKTOP});
+    }
+
+
   return (
     <div className="login-wpage-wrapper">
         <div className="login-wpage-top">
@@ -13,7 +25,7 @@ export default function LoginWindowPage() {
                     <p>Type a user name and password to log on to Windows.</p>
                 </div>
                 <div className="login-wpage-buttons">
-                    <button>OK</button>
+                    <button onClick={loginSubmit} >OK</button>
                     <button>Cancel</button>
                 </div>
             </div>

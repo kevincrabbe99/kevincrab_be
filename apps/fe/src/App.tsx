@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import './App.scss';
-import Desktop from './frames/desktop/Desktop';
-import Login from './frames/login/Login';
+import FrameRouter from './frames/frameRouter/FrameRouter';
+import { FrameState } from './reducers/frameReducer';
 
 function App() {
+
   return (
     <div className="App" data-theme="dark">
-      
-      <Login />
-      {/* <Desktop /> */}
-
+        <FrameRouter />
     </div>
   );
 }
