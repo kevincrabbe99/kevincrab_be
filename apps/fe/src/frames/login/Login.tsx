@@ -11,7 +11,8 @@ const loginWindow: WindowConfig = {
         "width": 400,
         "height": 150
     },
-    "title": "Welcome to my Website!"
+    "title": "Welcome to my Website!",
+    "showXButton": false
 };
 
 export default function Login() {

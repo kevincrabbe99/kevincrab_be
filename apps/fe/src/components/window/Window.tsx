@@ -18,6 +18,7 @@ export type WindowConfig = {
     size: WindowSize;
     title: String;
     icon?: String;
+    showXButton?: boolean;
 }
 
 
@@ -108,7 +109,9 @@ export default function Window(props: any) {
                 </label>
                 <div className="window-header-options">
                     <button>?</button>
-                    <button>X</button>
+                    {
+                        windowConfig.showXButton == false ? null : <button>X</button> 
+                    }
                 </div>
             </div>
             <div className="window-content">
