@@ -20,6 +20,7 @@ const setStateCookie = (state: number) => {
 };
 
 export enum FrameStatesEnum {
+    SHUTDOWN = 0,
     LOADING = 1,
     LOGIN = 2,
     DESKTOP = 3,

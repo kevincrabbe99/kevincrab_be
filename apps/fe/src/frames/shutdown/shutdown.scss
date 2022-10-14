@@ -1,0 +1,38 @@
+
+.shutdown-wrapper {
+    width: 80%;
+    margin: 0px auto;
+    height: 80%;
+    position:relative;
+    top: 10%;
+}
+
+.shutdown-cli-output  {
+
+    color: var(--gray-main);
+}
+
+.shutdown-cli-output ul li {
+    list-style-type: none;
+    font-size: 0.8em;
+}
+
+.shutdown-cli-output ul {
+    padding-left: 0;
+}
+
+.shutdown-exit-prompt {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: var(--gray-main);
+}
+
+.shutdown-exit-prompt ul li {
+    list-style-type: none;
+    font-size: 0.8em;
+}
+
+.shutdown-exit-prompt ul {
+    padding-left: 0;
+}

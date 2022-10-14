@@ -63,7 +63,7 @@
         "icon": "shut_down_computer.ico",
         "action": {
             "isExternal": 0,
-            "destination": null
+            "destination": "SHUTDOWN"
         }
     }
 ]

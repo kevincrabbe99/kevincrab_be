@@ -6,7 +6,7 @@ import "./desktop.scss"
 
 export default function Desktop() {
 
-  const [isStartMenuOpen, setIsStartMenuOpen] = useState<boolean>(true)
+  const [isStartMenuOpen, setIsStartMenuOpen] = useState<boolean>(false)
 
   const toggleStartMenu = () => {
       setIsStartMenuOpen(!isStartMenuOpen)

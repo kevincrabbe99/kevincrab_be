@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FrameState, FrameStatesEnum } from '../../reducers/frameReducer';
 import Desktop from '../desktop/Desktop'
 import Login from '../login/Login';
+import Shutdown from '../shutdown/Shutdown';
 
 export default function FrameRouter() {
 
@@ -12,7 +13,13 @@ export default function FrameRouter() {
     return (
         <>
         {
-            frame.state == 3 ? <Desktop /> : <Login />
+            frame.state == FrameStatesEnum.LOGIN ? <Login /> : null
+        }
+        {
+            frame.state == FrameStatesEnum.DESKTOP ? <Desktop /> : null
+        }
+        {
+            frame.state == FrameStatesEnum.SHUTDOWN ? <Shutdown /> : null
         }
         </>
     )
