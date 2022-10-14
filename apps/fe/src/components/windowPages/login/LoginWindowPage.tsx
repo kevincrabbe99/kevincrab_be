@@ -13,6 +13,10 @@ export default function LoginWindowPage() {
         dispatch({type: "SET_STATE", payload: FrameStatesEnum.DESKTOP});
     }
 
+    const loginCancel = (e: any) => {
+        dispatch({type: "SET_STATE", payload: FrameStatesEnum.SHUTDOWN});
+    }
+
 
   return (
     <div className="login-wpage-wrapper">
@@ -26,7 +30,7 @@ export default function LoginWindowPage() {
                 </div>
                 <div className="login-wpage-buttons">
                     <button onClick={loginSubmit} >OK</button>
-                    <button>Cancel</button>
+                    <button onClick={loginCancel}>Cancel</button>
                 </div>
             </div>
         </div>
