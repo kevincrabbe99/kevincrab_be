@@ -4,8 +4,6 @@ import { FrameState, FrameStatesEnum } from '../../reducers/frameReducer';
 import Desktop from '../desktop/Desktop'
 import Login from '../login/Login';
 
-
-
 export default function FrameRouter() {
 
     // get frame from redux store

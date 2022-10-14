@@ -30,6 +30,37 @@ export default function Window(props: any) {
 
     const [windowStyle, setWindowStyle] = useState<any | null>()
 
+    type MousePosition = {
+        x: number;
+        y: number;
+    }
+    var originalMousePosition: MousePosition | null = null; 
+    var isMouseMovingWindow: boolean = false;   
+    const mouseDownEvent = (e: any) => {
+        console.log("mouseDownEvent")
+
+        // 1. Get mouse position
+        originalMousePosition = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        isMouseMovingWindow = true;
+    }
+
+    // listen for mouse move event
+    const window_mouseMoveEvent = (e: any) => {
+        // 2. If mouse is moving window, update window position
+        if (isMouseMovingWindow) {
+            console.log("mouseMoveEvent")
+            const newStyle = {
+                ...windowStyle,
+                left: position.x + (e.clientX - originalMousePosition!.x),
+                top: position.y + (e.clientY - originalMousePosition!.y)
+            }
+            setWindowStyle(newStyle)
+        }
+    }
+
     useEffect(() => {
         const newStyle = {
             height:size.height,
@@ -42,7 +73,7 @@ export default function Window(props: any) {
     
     return (
         <div className="window-wrapper" style={windowStyle} >
-            <div className="window-header">
+            <div className="window-header" onMouseDown={mouseDownEvent}  >
                 <label className="window-header-title">
                     {windowConfig.title}
                 </label>
