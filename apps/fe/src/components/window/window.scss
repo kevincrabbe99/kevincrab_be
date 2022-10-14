@@ -2,12 +2,13 @@
 
 .window-wrapper {
     background-color: var(--gray-main);
-    border-top: 2px solid var(--gray-main);
-    border-left: 2px solid var(--gray-main);
+    border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
     border-bottom: 2px solid var(--gray-dark);
     border-right: 2px solid var(--gray-dark); 
-    position:relative;
+    position:fixed;
     overflow: hidden;
+    z-index: 30;
 }
 
 .window-header {
@@ -17,6 +18,20 @@
     color: var(--text-white);
     position:absolute;
     font-size: 0.7em;
+}
+
+.window-header-listener {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 5em);
+}
+
+.window-header img {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.1em;
 }
 
 .window-header-title {

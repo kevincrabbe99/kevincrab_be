@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { fromEvent, map } from 'rxjs';
+import { WindowConfig } from '../../reducers/windowReducer';
+import DocumentPage from '../windowPages/document/documentPage/DocumentPage';
+import DocumentWindow from '../windowPages/document/DocumentWindow';
 import LoginWindowPage from '../windowPages/login/LoginWindowPage';
 import "./window.scss"
 
-export type WindowPosition = {
-    x: number;
-    y: number;
-}
 
-export type WindowSize = {
-    width: number;
-    height: number;
-}
-
-export type WindowConfig = {
-    position: WindowPosition;
-    size: WindowSize;
-    title: String;
-    icon?: String;
-    showXButton?: boolean;
-}
 
 export default function Window(props: any) {
 
@@ -40,6 +28,13 @@ export default function Window(props: any) {
     const [x, setX] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
   
+    const dispatch = useDispatch()
+
+    const exitWindow = (e: any) => {
+        console.log("Exising Window")
+        dispatch({type: "REMOVE_WINDOW", payload: windowConfig.id})
+    }
+
     useEffect(() => {
       // Subscribe to the mousemove event
       const sub = fromEvent(document, 'mousemove')
@@ -56,7 +51,6 @@ export default function Window(props: any) {
   
 
     const mouseDownEvent = (e: any) => {
-
         // 1. Get mouse position
         originalMousePosition = {
             x: e.clientX,
@@ -91,22 +85,38 @@ export default function Window(props: any) {
         })
     }, [])
 
+    
     return (
         <div className="window-wrapper" style={windowStyle} >
-            <div className="window-header" onMouseDown={mouseDownEvent} onMouseUp={mouseUpEvent} >
+            <div className="window-header" >
+                <div className="window-header-listener" onMouseDown={mouseDownEvent} onMouseUp={mouseUpEvent}>
+
+                </div>
+                {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }
                 <label className="window-header-title">
                     {windowConfig.title}
                 </label>
                 <div className="window-header-options">
                     <button>?</button>
                     {
-                        windowConfig.showXButton == false ? null : <button>X</button> 
+                        windowConfig.showXButton == false ? null : <button onClick={exitWindow}>X</button> 
                     }
                 </div>
             </div>
             <div className="window-content">
-                <LoginWindowPage />
+                {renderWindowContent(windowConfig)}
             </div>
         </div>
     )
+}
+
+const renderWindowContent = (windowConfig: WindowConfig) => {
+    switch(windowConfig.type) {
+        case 0:
+            return <LoginWindowPage />
+        case 2:
+            return <DocumentPage />
+        default:
+            return <div>Window Content</div>
+    }
 }

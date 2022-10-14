@@ -4,6 +4,7 @@ import { FrameState, FrameStatesEnum } from '../../reducers/frameReducer';
 import Desktop from '../desktop/Desktop'
 import Login from '../login/Login';
 import Shutdown from '../shutdown/Shutdown';
+import WindowCordinator from '../windowCordinator/WindowCordinator';
 
 export default function FrameRouter() {
 
@@ -12,15 +13,25 @@ export default function FrameRouter() {
 
     return (
         <>
+
+        {/* Window View */}
         {
+            frame.state == FrameStatesEnum.DESKTOP ? <WindowCordinator /> : null
+        }
+
+        {/* LOGIN Page */}
+        { 
             frame.state == FrameStatesEnum.LOGIN ? <Login /> : null
         }
+        {/* Desktop View */}
         {
             frame.state == FrameStatesEnum.DESKTOP ? <Desktop /> : null
         }
+        {/* SHUTDOWN View */}
         {
             frame.state == FrameStatesEnum.SHUTDOWN ? <Shutdown /> : null
         }
+
         </>
     )
 }
