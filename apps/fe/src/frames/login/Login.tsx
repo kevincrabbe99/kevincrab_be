@@ -1,8 +1,10 @@
 import React from 'react'
-import Window, { WindowConfig } from '../../components/window/Window'
+import Window from '../../components/window/Window'
+import { WindowConfig } from '../../reducers/windowReducer';
 import "./login.scss"
 
 const loginWindow: WindowConfig = {
+    "type": 0,
     "position": {
         "x": ((document.documentElement.clientWidth / 2)-200),
         "y": ((document.documentElement.clientHeight / 2)-75),

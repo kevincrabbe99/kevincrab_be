@@ -18,15 +18,15 @@
         "icon": "WordPad_document.ico",
         "hoverText": "View Kevins Resume",
         "action": {
-            "isExternal": 1,
-            "destination": "https://linkedin.com/kevincrabbe"
+            "isExternal": 0,
+            "destination": "OPEN_DOCUMENT_RESUME"
         },
         "position": {
             "alignment": 0,
             "x": 0,
             "y": 2
         },
-        "isHidden": true
+        "isHidden": false
     },
     {
         "name": "reach out!",
