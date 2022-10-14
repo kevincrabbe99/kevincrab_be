@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Programs",
+        "icon": "Program_Folder.ico",
+        "action": {
+            "isExternal": 1,
+            "destination": null
+        }
+    },
+    {
+        "name": "Documents",
+        "icon": "my_documents.ico",
+        "action": {
+            "isExternal": 0,
+            "destination": null
+        }
+    },
+    {
+        "name": "Settings",
+        "icon": "Settings.ico",
+        "action": {
+            "isExternal": 0,
+            "destination": null
+        }
+    },
+    {
+        "name": "ShutDown",
+        "icon": "shut_down_computer.ico",
+        "action": {
+            "isExternal": 0,
+            "destination": null
+        }
+    }
+]

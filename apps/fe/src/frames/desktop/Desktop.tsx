@@ -1,5 +1,6 @@
 import React from 'react'
 import IconGrid from '../../components/iconGrid/IconGrid'
+import StartMenu from '../../components/startMenu/StartMenu'
 import Taskbar from '../../components/taskbar/Taskbar'
 import "./desktop.scss"
 
@@ -9,6 +10,7 @@ export default function Desktop() {
         <div className="desktop-content-wrapper">
             
             <IconGrid />
+            <StartMenu />
             <Taskbar />
 
         </div>
