@@ -5,7 +5,42 @@
         "action": {
             "isExternal": 1,
             "destination": null
-        }
+        },
+        "submenu":  
+        [
+            {
+                "name": "Accessories",
+                "icon": "Program_Folder.ico",
+                "action": {
+                    "isExternal": 1,
+                    "destination": "C:\\Windows\\System32\\notepad.exe"
+                }
+            },
+            {
+                "name": "Startup",
+                "icon": "Program_Folder.ico",
+                "action": {
+                    "isExternal": 1,
+                    "destination": "C:\\Windows\\System32\\notepad.exe"
+                }
+            },
+            {
+                "name": "Exchange",
+                "icon": "Mail.ico",
+                "action": {
+                    "isExternal": 1,
+                    "destination": "C:\\Windows\\System32\\notepad.exe"
+                }
+            },
+            {
+                "name": "Startup",
+                "icon": "run.ico",
+                "action": {
+                    "isExternal": 1,
+                    "destination": "C:\\Windows\\System32\\notepad.exe"
+                }
+            }
+        ]
     },
     {
         "name": "Documents",
