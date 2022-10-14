@@ -12,15 +12,25 @@ export default function Desktop() {
       setIsStartMenuOpen(!isStartMenuOpen)
   }
 
+  const exitStartMenuEvent = () => {
+    setIsStartMenuOpen(false)
+  }
+
   return (
     <div className="desktop-wrapper">
         <div className="desktop-content-wrapper">
             
-            <IconGrid />
-            {
-                isStartMenuOpen ? <StartMenu /> : null
-            }
-            <Taskbar toggleStartMenu={toggleStartMenu} />
+          <div className="exitStartMenu_listener" onClick={() => exitStartMenuEvent()}> </div>
+          <div className="iconGrid" onClick={() => exitStartMenuEvent()}>
+            <IconGrid  />
+          </div>
+          <div className="startMenu">
+          {
+              isStartMenuOpen ? <StartMenu /> : null
+          }
+          </div>
+          <Taskbar toggleStartMenu={toggleStartMenu} />
+            
 
         </div>
     </div>

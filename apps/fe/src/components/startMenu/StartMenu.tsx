@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StartMenuItem } from '../../types/StartMenuItem'
 import "./startMenu.scss"
 
@@ -6,6 +6,7 @@ import startMenuJson from '../../assets/json/start_menu.json'
 import { DestinationActionTriggers } from '../../types/DestinationActionTriggers'
 import { useDispatch } from 'react-redux'
 import { FrameStatesEnum } from '../../reducers/frameReducer'
+import { fromEvent, map } from 'rxjs'
 
 
 
@@ -27,7 +28,6 @@ export default function StartMenu() {
               break;
       }
   }
-
 
   return (
     <div className="startMenu-wrapper">

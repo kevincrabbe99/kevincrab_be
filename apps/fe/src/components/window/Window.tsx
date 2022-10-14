@@ -21,8 +21,6 @@ export type WindowConfig = {
     showXButton?: boolean;
 }
 
-
-
 export default function Window(props: any) {
 
     let windowConfig:WindowConfig = props.windowConfig;
@@ -45,23 +43,15 @@ export default function Window(props: any) {
     useEffect(() => {
       // Subscribe to the mousemove event
       const sub = fromEvent(document, 'mousemove')
-        // Extract out current mouse position from the event
         .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
-        // We have closure over the updater functions for our two state variables
-        // Use these updaters to bridge the gap between RxJS and React
         .subscribe(([newX, newY]) => {
-            // if (isMouseMovingWindow) {
                 setX(newX)
                 setY(newY)
-            // }
         })
   
-      // When the component unmounts, remove the event listener
       return () => {
         sub.unsubscribe()
       }
-      // We use [] here so that this effect fires exactly once.
-      // (After the first render)
     }, [])
   
 
