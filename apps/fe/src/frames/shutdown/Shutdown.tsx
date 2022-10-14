@@ -37,14 +37,14 @@ export default function Shutdown() {
         }, 900);
 
         if (logPosition > exitAfterLogTimeSec) {
-            // dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})
+            dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})
         }
 
         return () => clearInterval(interval);
     }, [logPosition]);
 
     return (
-        <div className="shutdown-wrapper">
+        <div className="shutdown-wrapper" onClick={() => dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})}>
             <div className="shutdown-cli-output">
                 <ul>
                 {
