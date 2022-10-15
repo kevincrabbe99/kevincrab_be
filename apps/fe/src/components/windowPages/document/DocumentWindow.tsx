@@ -8,11 +8,11 @@ export const documentWindowConfig: WindowConfig = {
     "type": 2,
     "position": {
         "x": 200,
-        "y": 50,
+        "y": 150,
     },
     "size": {
-        "width": 450,
-        "height": 600
+        "width": 425,
+        "height": 500
     },
     "title": "Resume - Kevin Crabbe.pdf",
     "showXButton": true,

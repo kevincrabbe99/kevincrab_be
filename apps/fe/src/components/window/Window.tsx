@@ -36,21 +36,31 @@ export default function Window(props: any) {
     }
 
     useEffect(() => {
-      // Subscribe to the mousemove event
-      const sub = fromEvent(document, 'mousemove')
-        .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
-        .subscribe(([newX, newY]) => {
-                setX(newX)
-                setY(newY)
-        })
+        // Subscribe to the mousemove event
+        const subMove = fromEvent(document, 'mousemove')
+            .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
+            .subscribe(([newX, newY]) => {
+                    setX(newX)
+                    setY(newY)
+            })
+        
+        // Subscribe to the mouseup event
+        const subUp = fromEvent(document, 'mouseup')
+            .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
+            .subscribe(() => {
+                console.log("ended moving window")
+                    setIsMouseMovingWindow(false)
+            })
   
       return () => {
-        sub.unsubscribe()
+        subMove.unsubscribe()
+        subUp.unsubscribe()
       }
     }, [])
   
 
     const mouseDownEvent = (e: any) => {
+        console.log("start moving window")
         // 1. Get mouse position
         originalMousePosition = {
             x: e.clientX,
@@ -89,7 +99,7 @@ export default function Window(props: any) {
     return (
         <div className="window-wrapper" style={windowStyle} >
             <div className="window-header" >
-                <div className="window-header-listener" onMouseDown={mouseDownEvent} onMouseUp={mouseUpEvent}>
+                <div className="window-header-listener" onMouseDown={mouseDownEvent} > 
 
                 </div>
                 {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }
