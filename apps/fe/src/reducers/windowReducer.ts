@@ -58,15 +58,17 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 zOrder: newZOrder
             };
         case "FOCUS_WINDOW":
-            const focusedWindow = state.windows.find((window) => window.id === action.payload) as WindowConfig;            
-            const newWindowsOrder = [focusedWindow, state.windows.filter((window) => window.id !== action.payload)].flat();
-            
-            // assign object
-            return {
-                windows: newWindowsOrder,
-                zOrder: state.zOrder,
-                rerender: !state.rerender
+            if (state.windows.length > 0) {
+                const focusedWindow = state.windows.find((window) => window.id === action.payload) as WindowConfig;            
+                const newWindowsOrder = [focusedWindow, state.windows.filter((window) => window.id !== action.payload)].flat();
+                
+                return {
+                    windows: newWindowsOrder,
+                    zOrder: state.zOrder,
+                    rerender: !state.rerender
+                }
             }
+            return state
         default:
             return state;
     }   
