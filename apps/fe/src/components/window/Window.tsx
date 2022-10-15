@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { fromEvent, map } from 'rxjs';
 import { WindowConfig } from '../../reducers/windowReducer';
@@ -12,6 +12,8 @@ import "./window.scss"
 export default function Window(props: any) {
 
     let windowConfig:WindowConfig = props.windowConfig;
+
+    const windowRef = useRef<HTMLDivElement>(null);
 
     const [size, setSize] = useState(windowConfig.size)
     const [position, setPosition] = useState(windowConfig.position)
@@ -95,9 +97,22 @@ export default function Window(props: any) {
         })
     }, [])
 
+
+    // add click event listener to windowRef
+    useEffect(() => {
+        const windowSelectEvent = (e: any) => {
+            console.log("Window Selected")
+            dispatch({type: "FOCUS_WINDOW", payload: windowConfig.id})
+        }
+
+        if (windowRef.current) {
+            windowRef.current.addEventListener("mousedown", windowSelectEvent)
+        }
+    }, [windowRef])
+
     
     return (
-        <div className="window-wrapper" style={windowStyle} >
+        <div className="window-wrapper" style={windowStyle} ref={windowRef}>
             <div className="window-header" >
                 <div className="window-header-listener" onMouseDown={mouseDownEvent} > 
 

@@ -46,3 +46,44 @@
     width: 100%;
     height: 100%;
 }
+
+.docPage-submenu {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid var(--gray-highlight);
+    z-index: 1;
+    position: absolute;
+    width: 12em;
+
+    // border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-dark);
+    background-color: var(--gray-main);
+    margin-left: -0.3em;
+}
+
+.docPage-submenu ul {
+    padding-left: 0;
+    display: grid;
+}
+
+.docPage-submenu ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    font-size: 0.85em;
+}
+
+.docPage-submenu ul li:hover {
+    background-color: var(--blue95);
+    color: #fff;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

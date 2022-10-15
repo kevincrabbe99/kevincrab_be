@@ -30,6 +30,7 @@ export type WindowConfig = {
 export interface WindowState {
     windows: WindowConfig[];
     zOrder: number[];
+    rerender?: boolean;
 }
 
 const initialState: WindowState = {windows: [], zOrder: []};
@@ -57,12 +58,14 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 zOrder: newZOrder
             };
         case "FOCUS_WINDOW":
-            console.log("Focusing window", action.payload);
-            const newWindowsOrder = state.windows.filter((window) => window.id !== action.payload);
-            newWindowsOrder.push(state.windows.find((window) => window.id === action.payload) as WindowConfig);
+            const focusedWindow = state.windows.find((window) => window.id === action.payload) as WindowConfig;            
+            const newWindowsOrder = [focusedWindow, state.windows.filter((window) => window.id !== action.payload)].flat();
+            
+            // assign object
             return {
                 windows: newWindowsOrder,
-                zOrder: state.zOrder
+                zOrder: state.zOrder,
+                rerender: !state.rerender
             }
         default:
             return state;
