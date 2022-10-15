@@ -71,7 +71,8 @@
 }
 
 .window-content {
-    position:absolute;
+    position:relative;
     top: 1.5em;
     width: 100%;
+    height: calc(100% - 1.8em);
 }

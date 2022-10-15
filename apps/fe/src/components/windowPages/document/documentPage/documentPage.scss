@@ -1,0 +1,48 @@
+
+
+.docPage-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.docPage-top {
+    height: 1.5em;
+    line-height: 1em;
+    position:relative;
+    top: -0.2em;
+}
+
+.docPage-top ul {
+    padding-left: 0.5em;
+    margin: 0;
+}
+
+.docPage-top ul li {
+    list-style-type:none;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 0.6em;
+}
+
+.docPage-content {
+    width: calc(100% - 0.4em);
+    height: calc(100% - 1.2em);
+    position: relative;
+    left: 0.2em;
+    top: -0.2em;
+    overflow: auto;
+    background-color: #fff;
+}
+
+.docPage-doc-wrapper {
+    height: 100%;
+}
+
+.docPage-doc-wrapper iframe {
+    width: 100%;
+    height: 100%;
+}
