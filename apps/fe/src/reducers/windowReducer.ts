@@ -26,6 +26,7 @@ export type WindowConfig = {
     icon?: String;
     showXButton?: boolean;
     minimized?: boolean;
+    minimizable?: boolean;
     exited?: boolean;
 }
 
@@ -39,7 +40,6 @@ const initialState: WindowState = {windows: []};
 export const windowReducer = produce((state: WindowState = initialState, action: WindowAction) => {
     switch(action.type) {
         case "ADD_WINDOW":
-            console.log("Adding window", action.payload?.title);
             // set id for new window instance
             var newWindowConfig: any = {
                 ...action.payload,
@@ -56,7 +56,6 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                     && window.position.y === editingWindowConfig.position!.y 
 
                 });
-                console.log("chedked")
                 if (windowInSamePosExists) {
                     
                     let justEditedWindowConfig = {
@@ -74,7 +73,6 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 }
             }
             newWindowConfig = setWindowInitPosition(newWindowConfig);
-            console.log("set position: ", newWindowConfig.position);
 
             const newWindow = {
                 windows: [...state.windows, newWindowConfig],
@@ -82,10 +80,7 @@ export const windowReducer = produce((state: WindowState = initialState, action:
             }
             return newWindow;
         case "REMOVE_WINDOW":
-
-
-            // set exited = true for window with id of action.payload
-            const newWindows = state.windows.map((window) => {
+            const newWindowsWithoutPayload = state.windows.map((window) => {
                 if (window.id === action.payload) {
                     return {
                         ...window,
@@ -97,28 +92,37 @@ export const windowReducer = produce((state: WindowState = initialState, action:
             })
             return {
                 ...state,
-                windows: newWindows
+                windows: newWindowsWithoutPayload
             }
-
-
-            // var exitedConfig: WindowConfig = state.windows.find((window) => window.id === action.payload) as WindowConfig;
-            // exitedConfig = {
-            //     ...exitedConfig,
-            //     exited: true
-            // }
-            // var newState = {
-            //     ...state,
-            //     windows: [exitedConfig, ...state.windows.filter((window) => window.id !== action.payload)],
-            // }
-
-            // return newState
-
+        case "MINIMIZE_WINDOW":
+            const newWindowsWithMinimized = state.windows.map((window) => {
+                if (window.id === action.payload) {
+                    return {
+                        ...window,
+                        minimized: true
+                    }
+                } else {
+                    return window
+                }
+            })
+            return {
+                ...state,
+                windows: newWindowsWithMinimized
+            }
         case "FOCUS_WINDOW":
             if (state.windows.length > 0) {
-                const focusedWindow = state.windows.find((window) => window.id === action.payload) as WindowConfig;            
-                const newWindowsOrder = [focusedWindow, state.windows.filter((window) => window.id !== action.payload)].flat();
+                const newWindowsWithNewFocus = state.windows.map((window) => {
+                    if (window.id === action.payload) {
+                        return {
+                            ...window,
+                            minimized: false
+                        }
+                    } else {
+                        return window
+                    }
+                })
                 return {
-                    windows: state.windows,
+                    windows: newWindowsWithNewFocus,
                     top: action.payload
                 }
             }

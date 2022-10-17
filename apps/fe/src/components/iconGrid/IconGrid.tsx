@@ -23,8 +23,7 @@ export default function IconGrid() {
                 dispatch({type: "ADD_WINDOW", payload: documentWindowConfig});
                 break;
             default:
-                console.log("default")
-                break;
+                 break;
         }
     }
 

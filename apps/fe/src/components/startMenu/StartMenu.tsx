@@ -24,8 +24,7 @@ export default function StartMenu() {
               dispatch({type: "SET_STATE", payload: FrameStatesEnum.SHUTDOWN});
               break;
           default:
-              console.log("default")
-              break;
+               break;
       }
   }
 

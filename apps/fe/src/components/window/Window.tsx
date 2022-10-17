@@ -13,6 +13,7 @@ export default function Window(props: any) {
 
     let windowConfig:WindowConfig = props.windowConfig;
     let exitWindowHandler = props.exitWindowHandler;
+    let minimizeWindowHandler = props.minimizeWindowHandler;
 
     const windowRef = useRef<HTMLDivElement>(null);
 
@@ -34,9 +35,11 @@ export default function Window(props: any) {
     const dispatch = useDispatch()
 
     const exitWindow = (e: any) => {
-        console.log("Exiting Window: " + windowConfig.id)
         exitWindowHandler(windowConfig.id!)
-        // dispatch({type: "REMOVE_WINDOW", payload: windowConfig.id})
+    }
+
+    const minimizeWindowEvent = (e: any) => {
+        minimizeWindowHandler(windowConfig.id!)
     }
 
     useEffect(() => {
@@ -52,7 +55,6 @@ export default function Window(props: any) {
         const subUp = fromEvent(document, 'mouseup')
             .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
             .subscribe(() => {
-                console.log("ended moving window")
                     setIsMouseMovingWindow(false)
             })
   
@@ -64,7 +66,6 @@ export default function Window(props: any) {
   
 
     const mouseDownEvent = (e: any) => {
-        console.log("start moving window")
         // 1. Get mouse position
         originalMousePosition = {
             x: e.clientX,
@@ -112,8 +113,7 @@ export default function Window(props: any) {
     // add click event listener to windowRef
     useEffect(() => {
         const windowSelectEvent = (e: any) => {
-            console.log("Window Selected")
-            dispatch({type: "FOCUS_WINDOW", payload: windowConfig.id})
+             dispatch({type: "FOCUS_WINDOW", payload: windowConfig.id})
         }
 
         if (windowRef.current) {
@@ -135,6 +135,13 @@ export default function Window(props: any) {
                 </label>
                 <div className="window-header-options">
                     <button>?</button>
+                    {
+                        windowConfig.minimizable != false ? <button onClick={minimizeWindowEvent}>
+                            <span className="minimize_button">
+                                _
+                            </span>
+                        </button> : null
+                    }
                     {
                         windowConfig.showXButton == false ? null : <button onClick={exitWindow}>X</button> 
                     }

@@ -53,13 +53,14 @@
     height: 1.6em;
     position: relative;
     bottom: 0.1em;
-    width: 7.5em;
+    width: 9.5em;
     display:flex;
     align-items: center;
     border-top: 2px solid var(--gray-highlight);
     border-left: 2px solid var(--gray-highlight);
     border-right: 2px solid var(--gray-dark);
     border-bottom: 2px solid var(--gray-dark);
+    cursor: pointer;
 }
 
 .application_placeholder-wrapper:hover {
@@ -67,7 +68,6 @@
     border-left: 2px solid var(--gray-dark);
     border-right: 2px solid var(--gray-highlight);
     border-bottom: 2px solid var(--gray-highlight);
-    cursor: pointer;
 }
 
 .application_placeholder-wrapper img {
@@ -81,8 +81,19 @@
     font-weight: normal;
     font-size: 0.6em;
     padding-left: 0.3em;
-    position:relative;
+    position: relative;
     top: 0.09em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tb-selected {
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+    background-color: var(--gray-dark);
 }
 
 .taskbar-right-box {

@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { WindowState } from '../../reducers/windowReducer';
 import "./taskbar.scss"
 
 var today = new Date(),
@@ -8,9 +10,17 @@ var today = new Date(),
 
 export default function Taskbar( props: any ) {
 
-  var toggleStartMenu = props.toggleStartMenu
+    var toggleStartMenu = props.toggleStartMenu
 
-  return (
+    const dispatch = useDispatch()
+    
+    const windowState: WindowState = useSelector((state: any) => state.windows);
+
+    const selectTaskbarPillEvent = (id: string): void => {
+        dispatch({type: "FOCUS_WINDOW", payload: id})
+    }
+
+    return (
     <div className="wrapper-taskbar">
         <div className="taskbar-applications-wrapper">
             <table>
@@ -21,24 +31,29 @@ export default function Taskbar( props: any ) {
                             <label>Start</label>
                         </div>
                     </td>
-                    <td>
-                        <div className="application_placeholder-wrapper">
-                            <img src="./icons/WordPad_Document.ico"></img>
-                            <label>Resume.doc</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="application_placeholder-wrapper">
-                            <img src="./icons/Settings.ico"></img>
-                            <label>Settings</label>
-                        </div>
-                    </td>
-                    <td>
+                    
+                    {
+                        windowState.windows.map((window: any) => {
+                            return (
+                                window.exited != true ?
+                                <td>
+                                    <div    className={`application_placeholder-wrapper ${windowState.top == window.id ? 'tb-selected' : ''}`}
+                                            onClick={() => selectTaskbarPillEvent(window.id)}>
+                                        <img src={`./icons/${window.icon}`}></img>
+                                        <label>{window.title}</label>
+                                    </div>
+                                </td>
+                                : null
+                            )
+                        })
+                    }
+
+                    {/* <td>
                         <div className="application_placeholder-wrapper">
                             <img src="./icons/internet.ico"></img>
                             <label>Internet</label>
                         </div>
-                    </td>
+                    </td> */}
                 </tr>
             </table>
         </div>
@@ -46,5 +61,5 @@ export default function Taskbar( props: any ) {
             <label>{ time }</label> 
         </div>
     </div>
-  )
+    )
 }

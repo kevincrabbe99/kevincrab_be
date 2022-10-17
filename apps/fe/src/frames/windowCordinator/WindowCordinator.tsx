@@ -16,21 +16,26 @@ export default function WindowCordinator() {
     const windowRefs = useMemo(() => Array(100).fill(0).map(i => createRef<HTMLDivElement>()), [])
 
     const [exitedWindowIds, setExitedWindowIds] = useState<string[]>([])
+    const [minimizedWindowIds, setMinimizedWindowIds] = useState<string[]>([])
     
     const exitWindowHadler = (id: string) => {
         setExitedWindowIds([...exitedWindowIds, id])
         dispatch({type: "REMOVE_WINDOW", payload: id})
     }
 
+    const minimizeWindowHandler = (id: string) => {
+        setMinimizedWindowIds([...minimizedWindowIds, id])
+        dispatch({type: "MINIMIZE_WINDOW", payload: id})
+    }   
+
     useEffect(() => {
         // debugger
         for (let i = 0; i < windowRefs.length; i++) {
             const currentWindowRef = windowRefs[i].current
             if (!currentWindowRef) { return; }
+
+            // position focused window on top
             if (currentWindowRef!.id === windowState.top) {
-                console.log("SELECTED WINDOW: ", currentWindowRef?.id)
-                console.log("FOUND: " + windowRefs[i].current?.id)
-                console.log("FOUND: " + windowRefs[i].current?.id)
                 currentWindowRef!.style.zIndex = "100"
             } else {
                 currentWindowRef!.style.zIndex = (parseInt(currentWindowRef!.style.zIndex) - 1).toString()
@@ -40,17 +45,25 @@ export default function WindowCordinator() {
     }, [windowState, windowRefs])
 
     useEffect(() => {
-        console.log("exitedWindowIds: ", exitedWindowIds)
         for (let i = 0; i < windowRefs.length; i++) {
             const currentWindowRef = windowRefs[i].current
             if (!currentWindowRef) { return; }
             if (exitedWindowIds.includes(currentWindowRef!.id)) {
-                console.log("FOUND: " + windowRefs[i].current?.id)
                 currentWindowRef!.style.zIndex = (parseInt(currentWindowRef!.style.zIndex) - 1).toString()
                 currentWindowRef!.style.display = "none"
             }
         }
     }, [exitedWindowIds])
+
+    useEffect(() => {
+        for (let i = 0; i < windowRefs.length; i++) {
+            const currentWindowRef = windowRefs[i].current
+            if (!currentWindowRef) { return; }
+            if (minimizedWindowIds.includes(currentWindowRef!.id)) {
+                currentWindowRef!.style.display = "none"
+            }
+        }
+    }, [minimizedWindowIds])
     
 
     return (
@@ -60,7 +73,10 @@ export default function WindowCordinator() {
                     if (windowConfig.type === 2) {
                         return (
                             <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
-                                <Window windowConfig={windowConfig} exitWindowHandler={exitWindowHadler} id={`window-id-${windowConfig.id!}`} /> 
+                                <Window windowConfig={windowConfig} 
+                                        exitWindowHandler={exitWindowHadler} 
+                                        minimizeWindowHandler={minimizeWindowHandler}
+                                        id={`window-id-${windowConfig.id!}`} /> 
                             </div>
                         )
                     }
