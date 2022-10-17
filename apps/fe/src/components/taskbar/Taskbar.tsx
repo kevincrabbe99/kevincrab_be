@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { WindowState } from '../../reducers/windowReducer';
+import { WindowConfig, WindowState } from '../../reducers/windowReducer';
 import "./taskbar.scss"
 
 var today = new Date(),
@@ -20,6 +20,12 @@ export default function Taskbar( props: any ) {
         dispatch({type: "FOCUS_WINDOW", payload: id})
     }
 
+    const isSelected = (window: WindowConfig) : boolean => {
+        if (window.exited) { return false }
+        if (window.minimized) { return false }
+        return false
+    }
+
     return (
     <div className="wrapper-taskbar">
         <div className="taskbar-applications-wrapper">
@@ -37,7 +43,7 @@ export default function Taskbar( props: any ) {
                             return (
                                 window.exited != true ?
                                 <td>
-                                    <div    className={`application_placeholder-wrapper ${windowState.top == window.id ? 'tb-selected' : ''}`}
+                                    <div    className={`application_placeholder-wrapper ${!window.exited && !window.minimized ? 'tb-selected' : ''}`}
                                             onClick={() => selectTaskbarPillEvent(window.id)}>
                                         <img src={`./icons/${window.icon}`}></img>
                                         <label>{window.title}</label>

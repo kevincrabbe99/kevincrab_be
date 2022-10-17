@@ -29,7 +29,8 @@ export default function WindowCordinator() {
     }   
 
     useEffect(() => {
-        // debugger
+
+        // used to focus on windows
         for (let i = 0; i < windowRefs.length; i++) {
             const currentWindowRef = windowRefs[i].current
             if (!currentWindowRef) { return; }
@@ -43,6 +44,18 @@ export default function WindowCordinator() {
         }
 
     }, [windowState, windowRefs])
+
+    useEffect(() => {
+        // unsed as listener from unminimize from taskbar.tsx
+        for (let i = 0; i < windowState.windows.length; i++) {
+            const currentWindow = windowState.windows[i]
+            if (currentWindow.minimized != true) {
+                if (minimizedWindowIds.includes(currentWindow.id!)) {
+                    setMinimizedWindowIds(minimizedWindowIds.filter(id => id != currentWindow.id))
+                }
+            }
+        }
+    }, [windowState])
 
     useEffect(() => {
         for (let i = 0; i < windowRefs.length; i++) {
@@ -61,6 +74,8 @@ export default function WindowCordinator() {
             if (!currentWindowRef) { return; }
             if (minimizedWindowIds.includes(currentWindowRef!.id)) {
                 currentWindowRef!.style.display = "none"
+            } else {
+                currentWindowRef!.style.display = "block"
             }
         }
     }, [minimizedWindowIds])
