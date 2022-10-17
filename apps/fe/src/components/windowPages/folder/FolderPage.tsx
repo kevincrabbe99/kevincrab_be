@@ -11,6 +11,8 @@ import MyComputerJson from "../../../assets/json/folderFillers/My_Computer.json"
 import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
 import { FileNodeAction } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
+import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
+import { documentWindowConfig } from '../document/DocumentWindow';
 
 export const folderWindowConfig: WindowConfig = {
     "type": 3,
@@ -27,16 +29,16 @@ export const folderWindowConfig: WindowConfig = {
     "icon": "Folder.ico"
 };
 
-const mapContentDataToFolderData = (contentData: string) => {
-  switch(contentData) {
-    case "MY_COMPUTER" :
-      return MyComputerJson;
-    case "C://":
-      return C_DRIVEJson;
-    default:
-      return null;
-  }
-}
+// const mapContentDataToFolderData = (contentData: string) => {
+//   switch(contentData) {
+//     case "MY_COMPUTER" :
+//       return MyComputerJson;
+//     case "C://":
+//       return C_DRIVEJson;
+//     default:
+//       return null;
+//   }
+// }
 
 export default function FolderPage(props: any) {
 
@@ -66,14 +68,23 @@ export default function FolderPage(props: any) {
 
   const handleFileNodeAction = (action: FileNodeAction) => {
     if (!action.isExternal) {
-
-      dispatch({
-        type: "ADD_WINDOW",
-        payload: {
-          ...folderWindowConfig,
-          contentData: action.param
-        }
-      })
+      if (action.destination === "OPEN_FOLDER") {
+        dispatch({
+          type: "ADD_WINDOW",
+          payload: {
+            ...folderWindowConfig,
+            contentData: action.param
+          }
+        })
+      } else {
+        dispatch({
+          type: "ADD_WINDOW",
+          payload: {
+            ...documentWindowConfig,
+            contentData: action.param
+          }
+        })
+      }
 
     }
   }

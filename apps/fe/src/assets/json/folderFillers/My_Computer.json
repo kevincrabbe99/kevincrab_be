@@ -4,7 +4,7 @@
         "icon": "Deskette_Drive.ico",
         "hoverText": "3.5 Floppy (A:)",
         "action": {
-            "isExternal": 0,
+            "isExternal": false,
             "destination": "OPEN_FOLDER",
             "param": "A://"
         }
@@ -14,7 +14,7 @@
         "icon": "Deskette_Drive.ico",
         "hoverText": "5.5 Floppy (B:)",
         "action": {
-            "isExternal": 0,
+            "isExternal": false,
             "destination": "OPEN_FOLDER",
             "param": "C://"
         }
@@ -24,7 +24,7 @@
         "icon": "Deskette_Drive.ico",
         "hoverText": "5.5 Floppy (B:)",
         "action": {
-            "isExternal": 0,
+            "isExternal": false,
             "destination": "OPEN_FOLDER",
             "param": "D://"
         }
@@ -34,7 +34,7 @@
         "icon": "Controls_Folder.ico",
         "hoverText": "Open Control Panel",
         "action": {
-            "isExternal": 0,
+            "isExternal": false,
             "destination": "OPEN_FOLDER",
             "param": "C://Windows//System32//control.exe"
         }
@@ -44,7 +44,7 @@
         "icon": "Printers_Folder.ico",
         "hoverText": "Open Control Panel",
         "action": {
-            "isExternal": 0,
+            "isExternal": false,
             "destination": "OPEN_FOLDER",
             "param": "C://Windows//System32//printers.exe"
         }
@@ -54,7 +54,7 @@
         "icon": "Controls_Folder.ico",
         "hoverText": "Open Control Panel",
         "action": {
-            "isExternal": 0,
+            "isExternal": false,
             "destination": "OPEN_FOLDER",
             "param": "C://Windows//System32//control.exe"
         }
