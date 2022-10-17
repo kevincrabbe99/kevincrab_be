@@ -12,6 +12,7 @@ import "./window.scss"
 export default function Window(props: any) {
 
     let windowConfig:WindowConfig = props.windowConfig;
+    let exitWindowHandler = props.exitWindowHandler;
 
     const windowRef = useRef<HTMLDivElement>(null);
 
@@ -33,8 +34,9 @@ export default function Window(props: any) {
     const dispatch = useDispatch()
 
     const exitWindow = (e: any) => {
-        console.log("Exising Window")
-        dispatch({type: "REMOVE_WINDOW", payload: windowConfig.id})
+        console.log("Exiting Window: " + windowConfig.id)
+        exitWindowHandler(windowConfig.id!)
+        // dispatch({type: "REMOVE_WINDOW", payload: windowConfig.id})
     }
 
     useEffect(() => {
@@ -84,6 +86,15 @@ export default function Window(props: any) {
         }
         if (isMouseMovingWindow) {
             setWindowStyle(newStyle)
+            // update parent windowConfig object
+            var newWindowConfig = {
+                ...windowConfig,
+                position: {
+                    x: x - (size.width / 2),
+                    y: y - 10
+                }
+            }
+            windowConfig = newWindowConfig
         }
     }, [size, x, y, isMouseMovingWindow])
     
@@ -120,6 +131,7 @@ export default function Window(props: any) {
                 {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }
                 <label className="window-header-title">
                     {windowConfig.title}
+                    {" " + windowConfig.id}
                 </label>
                 <div className="window-header-options">
                     <button>?</button>

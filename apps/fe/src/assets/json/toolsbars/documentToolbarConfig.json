@@ -59,6 +59,31 @@
                 "label": "Undo",
                 "accelerator": "CmdOrCtrl+Z",
                 "isNotAvailable": true
+            },
+            {
+                "label": "Redo",
+                "accelerator": "CmdOrCtrl+Shift+Z",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Cut",
+                "accelerator": "CmdOrCtrl+X",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Copy",
+                "accelerator": "CmdOrCtrl+C",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Paste",
+                "accelerator": "CmdOrCtrl+V",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Select All",
+                "accelerator": "CmdOrCtrl+A",
+                "isNotAvailable": true
             }
         ]
     },
