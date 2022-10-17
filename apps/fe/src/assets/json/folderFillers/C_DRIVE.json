@@ -1,0 +1,33 @@
+[
+    {
+        "name": "kcrabbe",
+        "icon": "Folder.ico",
+        "hoverText": "Open kcrabbe",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://kcrabbe"
+        }
+    },
+    {
+        "name": "My Documents",
+        "icon": "Folder.ico",
+        "hoverText": "Open My Documents",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://My Documents"
+        }
+    },
+    {
+        "name": "My Music",
+        "icon": "Folder.ico",
+        "hoverText": "Open My Documents",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://My Documents"
+        }
+
+    }
+]

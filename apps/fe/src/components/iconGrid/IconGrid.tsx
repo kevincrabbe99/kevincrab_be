@@ -2,11 +2,13 @@ import React from 'react'
 import "./iconGrid.scss"
 
 import iconJson from '../../assets/json/icons.json'
-import { Alignment, Icon, IconGridPosition } from '../../types/Icon'
+import { Alignment, Icon, IconActionType, IconGridPosition } from '../../types/Icon'
 import { DestinationActionTriggers } from '../../types/DestinationActionTriggers';
 import { useDispatch } from 'react-redux';
 
 import {documentWindowConfig}  from "../windowPages/document/DocumentWindow"
+import { folderWindowConfig } from '../windowPages/folder/FolderPage';
+
 
 const MAX_ROWS = 5;
 const MAX_COLS = 3;
@@ -17,10 +19,14 @@ export default function IconGrid() {
 
     const dispatch = useDispatch();
 
-    const handleDestinationAction = (destination: DestinationActionTriggers) => {
-        switch(destination) {
+    const handleDestinationAction = (action: IconActionType) => {
+        switch(action.destination) {
             case DestinationActionTriggers.OPEN_DOCUMENT_RESUME:
                 dispatch({type: "ADD_WINDOW", payload: documentWindowConfig});
+                break;
+            case DestinationActionTriggers.OPEN_FOLDER:
+                folderWindowConfig.contentData = action.param;
+                dispatch({type: "ADD_WINDOW", payload: folderWindowConfig});
                 break;
             default:
                  break;
@@ -108,7 +114,7 @@ function RenderIconWithInternalAction(props: any) {
     const handleDestinationAction = props.handleDestinationAction;
     return (
         <td>
-            <div className="icon-wrapper" onClick={()=>handleDestinationAction(icon.action.destination)}>
+            <div className="icon-wrapper" onClick={()=>handleDestinationAction(icon.action)}>
                 <div className="icon-img-wrapper">
                     <img src={`./icons/${icon?.icon}`}></img>
                 </div>

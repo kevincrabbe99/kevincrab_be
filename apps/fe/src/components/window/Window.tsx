@@ -4,6 +4,7 @@ import { fromEvent, map } from 'rxjs';
 import { WindowConfig } from '../../reducers/windowReducer';
 import DocumentPage from '../windowPages/document/documentPage/DocumentPage';
 import DocumentWindow from '../windowPages/document/DocumentWindow';
+import FolderPage from '../windowPages/folder/FolderPage';
 import LoginWindowPage from '../windowPages/login/LoginWindowPage';
 import "./window.scss"
 
@@ -160,6 +161,8 @@ const renderWindowContent = (windowConfig: WindowConfig) => {
             return <LoginWindowPage />
         case 2:
             return <DocumentPage />
+        case 3:
+            return <FolderPage contentData={windowConfig.contentData}/>
         default:
             return <div>Window Content</div>
     }

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Window from '../../components/window/Window';
 import DocumentWindow from '../../components/windowPages/document/DocumentWindow'
-import { WindowConfig, WindowState } from '../../reducers/windowReducer';
+import { WindowConfig, WindowState, WindowTypesEnum } from '../../reducers/windowReducer';
 import "./windowCordinator.scss"
 
 export default function WindowCordinator() {
@@ -85,7 +85,7 @@ export default function WindowCordinator() {
         <div className="windowCordinator-wrapper">
             {
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
-                    if (windowConfig.type === 2) {
+                    // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
                             <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
                                 <Window windowConfig={windowConfig} 
@@ -94,7 +94,7 @@ export default function WindowCordinator() {
                                         id={`window-id-${windowConfig.id!}`} /> 
                             </div>
                         )
-                    }
+                    // }
                 })
             }
             

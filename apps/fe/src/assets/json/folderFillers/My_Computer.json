@@ -1,0 +1,62 @@
+[
+    {
+        "name": "3.5 Floppy (A:)",
+        "icon": "Deskette_Drive.ico",
+        "hoverText": "3.5 Floppy (A:)",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "A://"
+        }
+    },
+    {
+        "name": "(C:)",
+        "icon": "Deskette_Drive.ico",
+        "hoverText": "5.5 Floppy (B:)",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://"
+        }
+    },
+    {
+        "name": "New (D:)",
+        "icon": "Deskette_Drive.ico",
+        "hoverText": "5.5 Floppy (B:)",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "D://"
+        }
+    },
+    {
+        "name": "Control Panel",
+        "icon": "Controls_Folder.ico",
+        "hoverText": "Open Control Panel",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://Windows//System32//control.exe"
+        }
+    },
+    {
+        "name": "Printers",
+        "icon": "Printers_Folder.ico",
+        "hoverText": "Open Control Panel",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://Windows//System32//printers.exe"
+        }
+    },
+    {
+        "name": "Control Panel",
+        "icon": "Controls_Folder.ico",
+        "hoverText": "Open Control Panel",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_FOLDER",
+            "param": "C://Windows//System32//control.exe"
+        }
+    }
+]

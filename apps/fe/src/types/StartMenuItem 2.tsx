@@ -13,5 +13,4 @@ export enum StartMenuActionIsExternal {
 export type StartMenuActionType = {
     isExternal: StartMenuActionIsExternal
     destination: string | null
-    param?: string | null
 }
