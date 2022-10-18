@@ -2,23 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./documentPage.scss"
 
 import docToolbarJson from "../../../../assets/json/toolsbars/documentToolbarConfig.json"
+import { ToolbarConfig, ToolbarSubmenuConfig } from '../../../../types/ToolbarConfig';
 
-interface DocumentToolbarConfig {
-  label: string,
-  submenu?: DocumentToolbarSubmenuConfig[]
-}
-
-interface DocumentToolbarSubmenuConfig {
-  label: string,
-  accelerator?: string,
-  action?: DocumentToolbarAction
-  isNotAvailable?: boolean
-}
-
-type DocumentToolbarAction  = {
-  isExternal: boolean,
-  destination: string
-}
 
 export default function DocumentPage() {
 
@@ -54,7 +39,7 @@ export default function DocumentPage() {
       <div className="docPage-top">
         <ul>
           {
-            docToolbarJson.map((item: DocumentToolbarConfig, index: number) => {
+            docToolbarJson.map((item: ToolbarConfig, index: number) => {
               return (
                 <li key={`${item.label}-root`} 
                 onMouseOverCapture={(e) => hoverToolbarEvent(e, index)}
@@ -76,7 +61,7 @@ export default function DocumentPage() {
   )
 }
 
-const renderSubmenu = (item: DocumentToolbarConfig, index: number, selectedToolbarPosition: number | null) => {
+const renderSubmenu = (item: ToolbarConfig, index: number, selectedToolbarPosition: number | null) => {
 
   return (
     <>
@@ -85,7 +70,7 @@ const renderSubmenu = (item: DocumentToolbarConfig, index: number, selectedToolb
       <div className="docPage-submenu">
         <ul>
           {
-            item.submenu!.map((item: DocumentToolbarSubmenuConfig, index: number) => {
+            item.submenu!.map((item: ToolbarSubmenuConfig, index: number) => {
               return (
                 <li key={`${item.label}-${index}`}>{item.label}</li>
               )

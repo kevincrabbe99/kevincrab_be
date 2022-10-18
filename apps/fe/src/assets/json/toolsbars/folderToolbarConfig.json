@@ -1,0 +1,96 @@
+[
+    {
+        "label": "File",
+        "submenu": [
+            {
+                "label": "New",
+                "accelerator": "CmdOrCtrl+N",
+                "action" : {
+                    "isExternal": false,
+                    "destination": "OPEN_DOCUMENT_NEW"
+                }
+            },
+            {
+                "label": "Open",
+                "accelerator": "CmdOrCtrl+O",
+                "action" : {
+                    "isExternal": false,
+                    "destination": "OPEN_WINDOW_FILEEXPLORER"
+                }
+            },
+            {
+                "label": "Save",
+                "accelerator": "CmdOrCtrl+S",
+                "action" : {
+                    "isExternal": true,
+                    "destination": "./documents/Kevin_Crabbe_Resume.pdf"
+                }
+            },
+            {
+                "label": "Save As",
+                "accelerator": "CmdOrCtrl+Shift+S",
+                "action" : {
+                    "isExternal": true,
+                    "destination": "./documents/Kevin_Crabbe_Resume.pdf"
+                }
+            },
+            {
+                "label": "Print",
+                "accelerator": "CmdOrCtrl+W",
+                "action" : {
+                    "isExternal": true,
+                    "destination": "./documents/Kevin_Crabbe_Resume.pdf"
+                }
+            },
+            {
+                "label": "Exit",
+                "accelerator": "CmdOrCtrl+Q",
+                "action" : {
+                    "isExternal": false,
+                    "destination": "EXIT_TOP_WINDOW"
+                }
+            }
+        ]
+    },
+    {
+        "label": "Edit",
+        "submenu": [
+            {
+                "label": "Undo",
+                "accelerator": "CmdOrCtrl+Z",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Redo",
+                "accelerator": "CmdOrCtrl+Shift+Z",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Cut",
+                "accelerator": "CmdOrCtrl+X",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Copy",
+                "accelerator": "CmdOrCtrl+C",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Paste",
+                "accelerator": "CmdOrCtrl+V",
+                "isNotAvailable": true
+            },
+            {
+                "label": "Select All",
+                "accelerator": "CmdOrCtrl+A",
+                "isNotAvailable": true
+            }
+        ]
+    },
+    {
+        "label": "View"
+    },
+    {
+        "label": "Help"
+    }
+]

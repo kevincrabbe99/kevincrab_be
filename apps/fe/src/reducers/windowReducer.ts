@@ -4,7 +4,8 @@ import produce from "immer";
 export enum WindowTypesEnum {
     LOGIN = 0,
     WEB = 1,
-    DOCUMENT = 2
+    DOCUMENT = 2,
+    FOLDER = 3,
 }  
 
 export type WindowPosition = {
@@ -28,6 +29,7 @@ export type WindowConfig = {
     minimized?: boolean;
     minimizable?: boolean;
     exited?: boolean;
+    contentData?: any;
 }
 
 export interface WindowState {

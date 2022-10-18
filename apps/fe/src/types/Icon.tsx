@@ -11,7 +11,8 @@ export enum IconActionIsExternal {
 
 export type IconActionType = {
     isExternal: IconActionIsExternal
-    destination: string    
+    destination: string 
+    param?: string  
 }
 
 
