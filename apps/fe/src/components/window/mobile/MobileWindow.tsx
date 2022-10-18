@@ -17,6 +17,7 @@ export default function Window(props: any) {
     const windowState: WindowState = useSelector((state: any) => state.windows);
 
     let windowConfig:WindowConfig = props.windowConfig;
+    let windowPositions = props.windowPositions;
     let exitWindowHandler = props.exitWindowHandler;
     let minimizeWindowHandler = props.minimizeWindowHandler;
 
@@ -39,6 +40,9 @@ export default function Window(props: any) {
     var windowStackerBufferSpace = 20
     var windowStackerCapacity = windowStackerStartYPos / windowStackerBufferSpace
 
+
+    const [windowStack, setWindowStack] = useState<WindowConfig[]>([])
+
     const [x, setX] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
   
@@ -51,41 +55,6 @@ export default function Window(props: any) {
     const minimizeWindowEvent = (e: any) => {
         minimizeWindowHandler(windowConfig.id!)
     }
-
-    const getNewWindowPosition = () => {
-        let idealPosition = windowStackerStartYPos;
-        // let pos = 0;
-        // for (let i = 0; i < windowState.windows.length; i++) {
-        //     if (windowState.windows[i].id === windowConfig.id) {
-        //         pos = i;
-        //         break;
-        //     }
-        // }
-        // idealPosition -= (pos * windowStackerBufferSpace)
-        return idealPosition
-    }
-
-    useEffect(() => {
-        // // Subscribe to the mousemove event
-        // const subMove = fromEvent(document, 'mousemove')
-        //     .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
-        //     .subscribe(([newX, newY]) => {
-        //             setX(newX)
-        //             setY(newY)
-        //     })
-        
-        // Subscribe to the mouseup event
-        // const subUp = fromEvent(document, 'mouseup')
-        //     .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
-        //     .subscribe(() => {
-        //             setIsMouseMovingWindow(false)
-        //     })
-  
-      return () => {
-        // subMove.unsubscribe()
-        // subUp.unsubscribe()
-      }
-    }, [])
   
 
     const mouseDownEvent = (e: any) => {
@@ -111,81 +80,18 @@ export default function Window(props: any) {
         return windowConfigs
     }
 
-    const [windowCount, setWindowCount] = useState<number>(0)
-    const [oldTopWindowId, setOldTopWindowId] = useState<string | undefined>()
+    // runs when reorder changes
     useEffect(() => {
-
-        let windowConfigs = getTaskbarWindowConfigs()
-
-        const didAddWindow = windowConfigs.length > windowCount
-        const didRemoveWindow = windowConfigs.length < windowCount
-        const didChangeFocus = !didAddWindow && !didRemoveWindow
-// debugger
-        // set top window position
-
-        if (didChangeFocus) {
-            if (windowConfig.id === windowState.top) {
-                setY(windowStackerStartYPos);
-                // return;
-            }
-        }
         
+        // position of windowConfig.id in windowState.windows
+        let windowConfigIndex = windowState.windows.filter(window => !window.exited).findIndex((windowConfig: WindowConfig) => windowConfig.id === props.windowConfig.id)
 
-        // set position of windows from last to first
-        // for (let i = 0; i < windowConfigs.length; i++) {
-        //     const currentWindowConfig = windowConfigs[i];
+        // get index of windowPositions with value = windowConfigIndex
+        let windowPositionIndex = windowPositions.findIndex((windowPosition: number) => windowPosition === windowConfigIndex)
 
-        //     if (currentWindowConfig.id === windowConfig.id) {
-        //         setY(windowStackerStartYPos - (i * windowStackerBufferSpace))
-        //     }
-        // }
+        setY(windowStackerStartYPos - (windowPositionIndex * windowStackerBufferSpace))
 
-        if (didAddWindow) {
-            if (
-                windowConfig.id !== windowState.top) {
-                setY((old) => old - windowStackerBufferSpace)
-            }
-        }
-        setOldTopWindowId(windowState.top)
-        setWindowCount(windowConfigs.length)
-
-
-
-        // var windowCountChanged = true;
-        // var didAddWindow = false;
-        // var thisIterationWindowCount = 0;
-        // // count windowState.windows where exited = false
-        // for (let i = 0; i < windowState.windows.length; i++) {
-        //     if (!windowState.windows[i].exited) {
-        //         thisIterationWindowCount++;
-        //     }
-        // }
-        // if (thisIterationWindowCount > windowCount) {
-        //     didAddWindow = true;
-        // } else if (thisIterationWindowCount === windowCount) {
-        //     windowCountChanged = false;
-        // }
-
-        // if (windowState.top === windowConfig.id) {
-        //     setY(windowStackerStartYPos)
-        // } else {
-        //     for (let i = 0; i < windowState.windows.length; i++) {
-        //         if (windowState.windows[i].id === windowConfig.id) {
-        //             if (didAddWindow) {
-        //                 setY((old) => old - windowStackerBufferSpace)
-        //                 // break;
-        //             } else if (didAddWindow) {
-        //                 if (windowState.windows[i].id != windowState.top) {
-        //                 setY((old) => old - windowStackerBufferSpace)
-        //                 }
-        //                 // break;
-        //             }
-        //         }
-        //     }
-        // }
-    
-        // setWindowCount(thisIterationWindowCount)
-    }, [windowState.top])
+    }, [windowPositions])
 
     // runs when setX or setY is called after initial position is set
     useEffect(() => {
@@ -193,16 +99,16 @@ export default function Window(props: any) {
             height: size.height,
             width: document.documentElement.clientWidth - 10,
             top: y,
-            left: x
+            left: document.documentElement.clientWidth / 2 - (size.width / 2)
         })
     }, [x, y])
     
     // use effect that only runs onces on component mount
-    useEffect(() => {
-        // override window config positioning
-        setX(document.documentElement.clientWidth / 2 - (size.width / 2))
-        setY(getNewWindowPosition())
-    }, [])
+    // useEffect(() => {
+    //     // override window config positioning
+    //     setX(document.documentElement.clientWidth / 2 - (size.width / 2))
+    //     setY(windowStackerStartYPos)
+    // }, [])
 
 
     // add click event listener to windowRef

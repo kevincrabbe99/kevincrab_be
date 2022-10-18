@@ -1,15 +1,15 @@
 import React, { createRef, useEffect, useMemo, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import Window from '../../components/window/Window';
-import DocumentWindow from '../../components/windowPages/document/DocumentWindow'
-import { WindowConfig, WindowState, WindowTypesEnum } from '../../reducers/windowReducer';
-import "./windowCordinator.scss"
+import Window from '../../../components/window/Window';
+import DocumentWindow from '../../../components/windowPages/document/DocumentWindow'
+import { WindowConfig, WindowState, WindowTypesEnum } from '../../../reducers/windowReducer';
+import "./mobileWindowCordinator.scss"
 
 import {isMobile} from 'react-device-detect';
-import MobileWindow from '../../components/window/mobile/MobileWindow';
+import MobileWindow from '../../../components/window/mobile/MobileWindow';
 
-export default function WindowCordinator() {
+export default function MobileWindowCordinator() {
 
     const dispatch = useDispatch()
 
@@ -61,6 +61,34 @@ export default function WindowCordinator() {
     }, [windowState])
 
 
+    // used to set window position for mobile
+    const [windowPositions, setWindowPositions] = useState<number[]>([])
+    useEffect(() => {
+        // create empty array of window positions with size 100
+        let windowPositionsTemp = Array(100).fill(0)
+
+        // get index of windowState.top in windowState.windows
+        let topWindowIndex = windowState.windows.filter(window => !window.exited).findIndex(window => window.id === windowState.top)
+        
+        // set windowPositionsTemp[0] to topWindowIndex
+        windowPositionsTemp[0] = topWindowIndex
+
+
+        // loop through windowState.windows with !window.exited
+        windowState.windows.filter(window => !window.exited && !window.minimized).forEach((window, index) => {
+            // if index is not topWindowIndex
+            if (index != topWindowIndex) {
+                // set windowPositionsTemp[index] to index
+                windowPositionsTemp[index] = index
+            }
+        })
+
+
+        setWindowPositions(windowPositionsTemp)
+
+    }, [windowState])
+
+
     // hide minimized and exited windows
     useEffect(() => {
         for (let i = 0; i < windowRefs.length; i++) {
@@ -83,12 +111,13 @@ export default function WindowCordinator() {
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
-                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - (100 - index)).toString() }} ref={windowRefs[index]}>
-                            
-                                    <Window windowConfig={windowConfig} 
+                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
+                         
+                                    <MobileWindow windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
                                         minimizeWindowHandler={minimizeWindowHandler}
-                                        id={`window-id-${windowConfig.id!}`} /> 
+                                        id={`window-id-${windowConfig.id!}`} 
+                                        windowPositions={windowPositions}/> 
                                 
                             </div>
                         )

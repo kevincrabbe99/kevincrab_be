@@ -4,7 +4,10 @@ import { FrameState, FrameStatesEnum } from '../../reducers/frameReducer';
 import Desktop from '../desktop/Desktop'
 import Login from '../login/Login';
 import Shutdown from '../shutdown/Shutdown';
+import MobileWindowCordinator from '../windowCordinator/mobile/MobileWindowCordinator';
 import WindowCordinator from '../windowCordinator/WindowCordinator';
+
+import {isMobile} from 'react-device-detect';
 
 export default function FrameRouter() {
 
@@ -16,7 +19,9 @@ export default function FrameRouter() {
 
         {/* Window View */}
         {
-            frame.state == FrameStatesEnum.DESKTOP ? <WindowCordinator /> : null
+            frame.state == FrameStatesEnum.DESKTOP ? 
+              (isMobile ? <MobileWindowCordinator /> : <WindowCordinator /> )
+            : null
         }
 
         {/* LOGIN Page */}
