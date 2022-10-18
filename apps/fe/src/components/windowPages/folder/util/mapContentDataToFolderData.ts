@@ -4,7 +4,7 @@ import { FileNode } from "../../../../types/FileNode";
 import MyComputerJson from "../../../../assets/json/folderFillers/My_Computer.json"
 import MyDocumentsJson from "../../../../assets/json/folderFillers/My_Documents.json"
 import C_DRIVEJson from "../../../../assets/json/folderFillers/C_DRIVE.json"
-
+import DEF_USERJson from "../../../../assets/json/folderFillers/DEF_USER.json"
 
 export const mapContentDataToFolderData = (contentData: string): FileNode[] => {
 
@@ -16,11 +16,17 @@ export const mapContentDataToFolderData = (contentData: string): FileNode[] => {
           folderData = MyComputerJson
           break;
         case "C://":
-          folderData = C_DRIVEJson
+            folderData = C_DRIVEJson
+            break;
+        case "C://DEF_USER":
+          folderData = DEF_USERJson
           break;
         case "C://My Documents":
-            folderData = MyDocumentsJson
-            break;
+          folderData = MyDocumentsJson
+          break;
+        case "C://My Documents":
+          folderData = MyDocumentsJson
+          break;
         default:
           folderData = []
       }

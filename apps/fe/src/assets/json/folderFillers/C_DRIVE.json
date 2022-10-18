@@ -6,7 +6,7 @@
         "action": {
             "isExternal": false,
             "destination": "OPEN_FOLDER",
-            "param": "C://kcrabbe"
+            "param": "C://DEF_USER"
         }
     },
     {
@@ -28,6 +28,26 @@
             "destination": "OPEN_FOLDER",
             "param": "C://My Documents"
         }
-
+    },
+    {
+        "name": "Windows",
+        "icon": "Folder.ico",
+        "hoverText": "Open Windows",
+        "action": {
+            "isExternal": false,
+            "destination": "OPEN_FOLDER",
+            "param": "C://Windows"
+        }
+    }
+    ,
+    {
+        "name": "Temp",
+        "icon": "Folder.ico",
+        "hoverText": "Open Folder Temp",
+        "action": {
+            "isExternal": false,
+            "destination": "OPEN_FOLDER",
+            "param": "C://Temp"
+        }
     }
 ]
