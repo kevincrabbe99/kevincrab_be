@@ -45,10 +45,11 @@ export default function Taskbar( props: any ) {
         setTaskBarItemCount(count)
         setTaskBarItemsStartIndex(0)
         
-        console.log("viewport width: " + viewPortWindowWidth)
-        console.log("taskbar item count: " + taskBarItemCount)
-        console.log("taskbar start index: ", taskBarItemsStartIndex)
-        console.log("taskbar item capacity: " + taskBarItemCapacity)
+        // Used to calculate where the taskbar next page should show
+        // console.log("viewport width: " + viewPortWindowWidth)
+        // console.log("taskbar item count: " + taskBarItemCount)
+        // console.log("taskbar start index: ", taskBarItemsStartIndex)
+        // console.log("taskbar item capacity: " + taskBarItemCapacity)
     }, [windowState])
 
     return (
