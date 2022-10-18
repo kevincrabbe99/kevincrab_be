@@ -10,7 +10,14 @@
 }
 
 .taskbar-applications-wrapper {
-    margin-right: 5em;
+    position:relative;
+    margin-right: 7.2em;
+    overflow: hidden;
+}
+
+.taskbar-applications-wrapper table {
+    // width: 100%;
+    margin-right: 7.2em;
 }
 
 .startButton {
@@ -114,4 +121,38 @@
     top: 0.55em;
     left: 0.3em;
     font-size: 0.7em;
+}
+
+.tb-move-button {
+    height: 1.5em;
+    width: 2em;
+    border-bottom: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-dark);
+    border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    background-color: var(--gray-main);
+}
+
+.tb-move-button label {
+    padding: 0;
+    font-size: 0.75em;
+    position: relative;
+    top: -0.15em;
+    color: var(--gray-black);
+    opacity: 0.3;
+}
+
+.taskbar-moveRight {
+    position: absolute;
+    bottom: 0.1em;
+    right: 5.1em;
+}
+
+.taskbar-moveLeft {
+    position:relative;
+    bottom: 0.1em;
 }
