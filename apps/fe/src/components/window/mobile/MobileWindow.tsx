@@ -24,7 +24,6 @@ export default function Window(props: any) {
     const windowRef = useRef<HTMLDivElement>(null);
 
     const [size, setSize] = useState(windowConfig.size)
-    const [position, setPosition] = useState(windowConfig.position)
 
     const [windowStyle, setWindowStyle] = useState<any | null>()
 
@@ -32,16 +31,11 @@ export default function Window(props: any) {
         x: number;
         y: number;
     }
-    var originalMousePosition: MousePosition | null = null; 
-    const [isMouseMovingWindow, setIsMouseMovingWindow] = useState<boolean>(false)
 
     // window position vars
-    var windowStackerStartYPos = (document.documentElement.clientHeight / 4) 
+    var windowStackerStartYPos = (document.documentElement.clientHeight / 8) 
     var windowStackerBufferSpace = 20
     var windowStackerCapacity = windowStackerStartYPos / windowStackerBufferSpace
-
-
-    const [windowStack, setWindowStack] = useState<WindowConfig[]>([])
 
     const [x, setX] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
@@ -54,20 +48,6 @@ export default function Window(props: any) {
 
     const minimizeWindowEvent = (e: any) => {
         minimizeWindowHandler(windowConfig.id!)
-    }
-  
-
-    const mouseDownEvent = (e: any) => {
-        // 1. Get mouse position
-        originalMousePosition = {
-            x: e.clientX,
-            y: e.clientY
-        };
-        setIsMouseMovingWindow(true)
-    }
-
-    const mouseUpEvent = (e: any) => {
-        setIsMouseMovingWindow(false)    
     }
 
     const getTaskbarWindowConfigs = () : WindowConfig[] => {
@@ -97,19 +77,11 @@ export default function Window(props: any) {
     useEffect(() => {
         setWindowStyle({
             height: size.height,
-            width: document.documentElement.clientWidth - 10,
+            width: document.documentElement.clientWidth - 20,
             top: y,
-            left: document.documentElement.clientWidth / 2 - (size.width / 2)
+            left: 10
         })
     }, [x, y])
-    
-    // use effect that only runs onces on component mount
-    // useEffect(() => {
-    //     // override window config positioning
-    //     setX(document.documentElement.clientWidth / 2 - (size.width / 2))
-    //     setY(windowStackerStartYPos)
-    // }, [])
-
 
     // add click event listener to windowRef
     useEffect(() => {
@@ -126,7 +98,7 @@ export default function Window(props: any) {
     return (
         <div className="window-wrapper" style={windowStyle} ref={windowRef}>
             <div className="window-header" >
-                <div className="window-header-listener" onMouseDown={mouseDownEvent} > 
+                <div className="window-header-listener"  > 
 
                 </div>
                 {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }

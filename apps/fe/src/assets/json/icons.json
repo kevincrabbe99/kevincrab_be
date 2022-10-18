@@ -30,7 +30,7 @@
     },
     {     
         "name": "My Computer",
-        "icon": "Folder.ico",
+        "icon": "my_computer.png",
         "hoverText": "Open My Computer",
         "action": {
             "isExternal": 0,
@@ -53,10 +53,26 @@
             "destination": "https://linkedin.com/kevincrabbe"
         },
         "position": {
+            "alignment": 1,
+            "x": 0,
+            "y": 2
+        },
+        "isHidden":false
+    },
+    {
+        "name": "Internet",
+        "icon": "internet.ico",
+        "hoverText": "Open Internet",
+        "action": {
+            "isExternal": 1,
+            "destination": "OPEN_BROWSER",
+            "param": "https://google.com"
+        },
+        "position": {
             "alignment": 0,
             "x": 0,
-            "y": 3
+            "y": 4
         },
-        "isHidden":true
+        "isHidden":false
     }
 ]

@@ -48,6 +48,9 @@
 .icon-img-wrapper {
     width: 3.5em;
     position:relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon-wrapper img {
@@ -63,5 +66,16 @@
     width: 100%;
     white-space: nowrap;
     text-align: center;
-    padding-top: 0.3em;
+    padding-top: 0.5em;
+    color: var(--text-white);
+}
+
+
+
+// MINOR IMAGE ADJUSTMENTS
+
+
+.icon-wrapper img[src*="my_computer.png"] {
+    position:relative;
+    left: 0.6em;
 }

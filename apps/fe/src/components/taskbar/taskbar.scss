@@ -9,6 +9,13 @@
     border-top: 2px solid var(--gray-highlight);
 }
 
+// mobile
+@media (max-width: 768px) {
+    .wrapper-taskbar {
+        z-index: 130;
+    }
+}
+
 .taskbar-applications-wrapper {
     position:relative;
     margin-right: 7.2em;
