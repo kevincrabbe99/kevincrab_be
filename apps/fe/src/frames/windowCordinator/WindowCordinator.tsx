@@ -6,6 +6,9 @@ import DocumentWindow from '../../components/windowPages/document/DocumentWindow
 import { WindowConfig, WindowState, WindowTypesEnum } from '../../reducers/windowReducer';
 import "./windowCordinator.scss"
 
+import {isMobile} from 'react-device-detect';
+import MobileWindow from '../../components/window/mobile/MobileWindow';
+
 export default function WindowCordinator() {
 
     const dispatch = useDispatch()
@@ -79,11 +82,20 @@ export default function WindowCordinator() {
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
-                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
-                                <Window windowConfig={windowConfig} 
+                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - (100 - index)).toString() }} ref={windowRefs[index]}>
+                                {
+                                    isMobile ? 
+                                    <MobileWindow windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
                                         minimizeWindowHandler={minimizeWindowHandler}
                                         id={`window-id-${windowConfig.id!}`} /> 
+                                    :
+                                    <Window windowConfig={windowConfig} 
+                                        exitWindowHandler={exitWindowHadler} 
+                                        minimizeWindowHandler={minimizeWindowHandler}
+                                        id={`window-id-${windowConfig.id!}`} /> 
+                                }
+                                
                             </div>
                         )
                     // }

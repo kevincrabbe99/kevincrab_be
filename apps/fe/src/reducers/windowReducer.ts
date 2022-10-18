@@ -123,6 +123,21 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                         return window
                     }
                 })
+
+                // // create copy of windowConfig with id = action.payload
+                // const windowConfigToFocus = state.windows.find((window) => {
+                //     return window.id === action.payload
+                // })
+
+                // // remove windowConfig with id = action.payload from newWindowsWithNewFocus
+                // const newWindowsWithNewFocusWithoutFocusedWindow = newWindowsWithNewFocus.filter((window) => {
+                //     return window.id !== action.payload
+                // })
+
+                // // add windowConfig with id = action.payload to the start of newWindowsWithNewFocus
+                // const newWindowsWithNewFocusWithFocusedWindow = [...newWindowsWithNewFocusWithoutFocusedWindow, windowConfigToFocus]
+
+                
                 return {
                     windows: newWindowsWithNewFocus,
                     top: action.payload

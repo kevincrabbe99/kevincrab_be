@@ -46,10 +46,10 @@ export default function Taskbar( props: any ) {
         setTaskBarItemsStartIndex(0)
         
         // Used to calculate where the taskbar next page should show
-        // console.log("viewport width: " + viewPortWindowWidth)
-        // console.log("taskbar item count: " + taskBarItemCount)
-        // console.log("taskbar start index: ", taskBarItemsStartIndex)
-        // console.log("taskbar item capacity: " + taskBarItemCapacity)
+        console.log("viewport width: " + viewPortWindowWidth)
+        console.log("taskbar item count: " + taskBarItemCount)
+        console.log("taskbar start index: ", taskBarItemsStartIndex)
+        console.log("taskbar item capacity: " + taskBarItemCapacity)
     }, [windowState])
 
     return (
@@ -77,21 +77,22 @@ export default function Taskbar( props: any ) {
                     
                     
                     {
-                        windowState.windows.map((window: any, index: number) => {
+                        taskBarItemsStartIndex >= 0 &&
+                        windowState.windows.filter((window: WindowConfig) => !window.exited).map((window: WindowConfig, index: number) => {
                             return (
                                 window.exited != true &&
                                 index >= taskBarItemsStartIndex && 
                                 index < taskBarItemsStartIndex + taskBarItemCapacity ?
                                 <td>
                                     <div    className={`application_placeholder-wrapper ${!window.exited && !window.minimized ? 'tb-selected' : ''}`}
-                                            onClick={() => selectTaskbarPillEvent(window.id)}>
+                                            onClick={() => selectTaskbarPillEvent(window.id!)}>
                                         <img src={`./icons/${window.icon}`}></img>
                                         <label>{window.title}</label>
                                     </div>
                                 </td>
                                 : null
                             )
-                        })
+                        })                        
                     }
                 </tr>
             </table>

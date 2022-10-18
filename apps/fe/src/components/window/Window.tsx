@@ -24,7 +24,7 @@ export default function Window(props: any) {
     const [position, setPosition] = useState(windowConfig.position)
 
     const [windowStyle, setWindowStyle] = useState<any | null>()
-
+    
     type MousePosition = {
         x: number;
         y: number;
@@ -68,8 +68,8 @@ export default function Window(props: any) {
     }, [])
   
 
+    // start mo
     const mouseDownEvent = (e: any) => {
-        // 1. Get mouse position
         originalMousePosition = {
             x: e.clientX,
             y: e.clientY
@@ -104,21 +104,12 @@ export default function Window(props: any) {
     
     // use effect that only runs onces on component mount
     useEffect(() => {
-        if (isMobile) {
-            setWindowStyle({
-                height:size.height,
-                width:size.width,
-                left: document.documentElement.clientWidth / 2 - (size.width / 2),
-                top: document.documentElement.clientHeight / 2 - (size.height / 2) - 100
-            })
-        } else {
-            setWindowStyle({
-                height:size.height,
-                width:size.width,
-                left:x,
-                top:y 
-            })
-        }
+        setWindowStyle({
+            height:size.height,
+            width:size.width,
+            left:x,
+            top:y 
+        })
     }, [])
 
 

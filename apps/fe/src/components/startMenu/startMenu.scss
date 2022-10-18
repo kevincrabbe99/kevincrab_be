@@ -74,7 +74,10 @@
 
 .startMenu-list ul li {
     list-style-type: none;
+}
 
+.startMenu-list ul li a {
+    color: var(--gray-black);
 }
 
 .startMenu-list-item {
