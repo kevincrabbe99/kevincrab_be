@@ -57,28 +57,20 @@ export default function WindowCordinator() {
         }
     }, [windowState])
 
+    // hide minimized and exited windows
     useEffect(() => {
         for (let i = 0; i < windowRefs.length; i++) {
             const currentWindowRef = windowRefs[i].current
             if (!currentWindowRef) { return; }
-            if (exitedWindowIds.includes(currentWindowRef!.id)) {
+            if (minimizedWindowIds.includes(currentWindowRef!.id) ||
+                exitedWindowIds.includes(currentWindowRef!.id)) {
                 currentWindowRef!.style.zIndex = (parseInt(currentWindowRef!.style.zIndex) - 1).toString()
-                currentWindowRef!.style.display = "none"
-            }
-        }
-    }, [exitedWindowIds])
-
-    useEffect(() => {
-        for (let i = 0; i < windowRefs.length; i++) {
-            const currentWindowRef = windowRefs[i].current
-            if (!currentWindowRef) { return; }
-            if (minimizedWindowIds.includes(currentWindowRef!.id)) {
                 currentWindowRef!.style.display = "none"
             } else {
                 currentWindowRef!.style.display = "block"
             }
         }
-    }, [minimizedWindowIds])
+    }, [minimizedWindowIds, exitedWindowIds])
     
 
     return (
