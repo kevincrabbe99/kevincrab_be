@@ -7,6 +7,20 @@
     top: 10%;
 }
 
+// mobile 
+@media (max-width: 768px) {
+    .shutdown-wrapper {
+        width: calc(100% - 3em);
+        height: calc(100% - 3em);
+        top: 1.5em;
+    }
+}
+
+.shutdown-wrapper-vertical {
+    display: flex;
+    height: 100%;
+}
+
 .shutdown-cli-output  {
 
     color: var(--gray-main);

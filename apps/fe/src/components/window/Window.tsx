@@ -8,6 +8,8 @@ import FolderPage from '../windowPages/folder/FolderPage';
 import LoginWindowPage from '../windowPages/login/LoginWindowPage';
 import "./window.scss"
 
+import {isMobile} from 'react-device-detect';
+
 
 
 export default function Window(props: any) {
@@ -102,12 +104,21 @@ export default function Window(props: any) {
     
     // use effect that only runs onces on component mount
     useEffect(() => {
-        setWindowStyle({
-            height:size.height,
-            width:size.width,
-            left:x,
-            top:y 
-        })
+        if (isMobile) {
+            setWindowStyle({
+                height:size.height,
+                width:size.width,
+                left: document.documentElement.clientWidth / 2 - (size.width / 2),
+                top: document.documentElement.clientHeight / 2 - (size.height / 2) - 100
+            })
+        } else {
+            setWindowStyle({
+                height:size.height,
+                width:size.width,
+                left:x,
+                top:y 
+            })
+        }
     }, [])
 
 

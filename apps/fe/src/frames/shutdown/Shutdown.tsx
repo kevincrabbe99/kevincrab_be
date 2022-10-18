@@ -11,7 +11,7 @@ interface LogItem {
     time: number
 }
 
-const exitAfterLogTimeSec = 15;
+const exitAfterLogTimeSec = 11;
 
 export default function Shutdown() {
 
@@ -34,9 +34,9 @@ export default function Shutdown() {
     useEffect(() => {
         const interval = setInterval(() => {
             setLogPosition(logPosition + 1)
-        }, 900);
+        }, 250);
 
-        if (logPosition > exitAfterLogTimeSec) {
+        if (logPosition > exitAfterLogTimeSec * 4) {
             dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})
         }
 
@@ -45,26 +45,28 @@ export default function Shutdown() {
 
     return (
         <div className="shutdown-wrapper" onClick={() => dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})}>
-            <div className="shutdown-cli-output">
-                <ul>
-                {
-                        logJson.map((item: LogItem, index: number) => 
-                            renderCliItem(item, index, logPosition)
-                        )
-                }
-                </ul>
-            </div>
-            <div className="shutdown-exit-prompt">
-                <ul>
-                    <li key="sep1">Press ANY KEY to skip STARTUP...</li>
-                    <li key="sep2">
-                        {
-                            // output date as MM/DD/YYYY
-                            new Date().toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'})
-                        }
-                        -PEACHICETEA-PST
-                    </li>
-                </ul>
+            <div className="shutdown-wrapper-vertical"> 
+                <div className="shutdown-cli-output">
+                    <ul>
+                    {
+                            logJson.map((item: LogItem, index: number) => 
+                                renderCliItem(item, index, logPosition)
+                            )
+                    }
+                    </ul>
+                </div>
+                <div className="shutdown-exit-prompt">
+                    <ul>
+                        <li key="sep1">Press ANY KEY to skip STARTUP...</li>
+                        <li key="sep2">
+                            {
+                                // output date as MM/DD/YYYY
+                                new Date().toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'})
+                            }
+                            -PEACHICETEA-PST
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     )
@@ -73,7 +75,8 @@ export default function Shutdown() {
 const renderCliItem = (item: LogItem, index: number, logPosition: number) => {
     return <>
         {
-          item.time < logPosition ?
+            //  multiply time by 4 because log position updates every 250ms
+          (item.time * 4) < logPosition ?
             <li key={`cli-o-${index}}`} style={{
                 paddingTop: (item.paddingTop ? item.paddingTop : 0) + "em"
             }} >{item.text}</li> : null
