@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build --production
+RUN npm run build --omit=dev
 
 RUN npm install -g serve
 
