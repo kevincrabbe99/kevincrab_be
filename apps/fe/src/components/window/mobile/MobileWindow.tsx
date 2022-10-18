@@ -9,6 +9,7 @@ import LoginWindowPage from '../../windowPages/login/LoginWindowPage';
 import "./mobileWindow.scss"
 
 import {isMobile} from 'react-device-detect';
+import { renderWindowContent } from '../WindowContent';
 
 
 
@@ -104,10 +105,12 @@ export default function Window(props: any) {
                 {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }
                 <label className="window-header-title">
                     {windowConfig.title}
-                    {" " + windowConfig.id}
                 </label>
                 <div className="window-header-options">
-                    <button>?</button>
+                    {
+                        windowConfig.helpData ?
+                        <button>?</button> : null
+                    }
                     {
                         windowConfig.minimizable != false ? <button onClick={minimizeWindowEvent}>
                             <span className="minimize_button">
@@ -125,17 +128,4 @@ export default function Window(props: any) {
             </div>
         </div>
     )
-}
-
-const renderWindowContent = (windowConfig: WindowConfig) => {
-    switch(windowConfig.type) {
-        case 0:
-            return <LoginWindowPage />
-        case 2:
-            return <DocumentPage />
-        case 3:
-            return <FolderPage contentData={windowConfig.contentData}/>
-        default:
-            return <div>Window Content</div>
-    }
 }

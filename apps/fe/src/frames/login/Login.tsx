@@ -16,6 +16,8 @@ const loginWindow: WindowConfig = {
         "height": 160
     },
     "title": "Welcome to my Website!",
+    "helpData": "This is the login window. You can login here.",
+    "minimizable": false,
     "showXButton": false
 };
 

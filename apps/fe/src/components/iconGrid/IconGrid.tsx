@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import {documentWindowConfig}  from "../windowPages/document/DocumentWindow"
 import { folderWindowConfig } from '../windowPages/folder/FolderPage';
+import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 
 
 const MAX_ROWS = 5;
@@ -27,6 +28,10 @@ export default function IconGrid() {
             case DestinationActionTriggers.OPEN_FOLDER:
                 folderWindowConfig.contentData = action.param;
                 dispatch({type: "ADD_WINDOW", payload: folderWindowConfig});
+                break;
+            case DestinationActionTriggers.OPEN_BROWSER:
+                browserWindowConfig.contentData = action.param;
+                dispatch({type: "ADD_WINDOW", payload: browserWindowConfig});
                 break;
             default:
                  break;

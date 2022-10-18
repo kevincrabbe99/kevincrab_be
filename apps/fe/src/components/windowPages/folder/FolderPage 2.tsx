@@ -13,7 +13,6 @@ import { FileNodeAction } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
 import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
 import { documentWindowConfig } from '../document/DocumentWindow';
-import { browserWindowConfig } from '../browser/BrowserPage';
 
 export const folderWindowConfig: WindowConfig = {
     "type": 3,
@@ -77,15 +76,7 @@ export default function FolderPage(props: any) {
             contentData: action.param
           }
         })
-      } else if (action.destination == "OPEN_BROWSER") {
-        dispatch({
-          type: "ADD_WINDOW",
-          payload: {
-            ...browserWindowConfig,
-            contentData: action.param
-          }
-        })
-      } else  {
+      } else {
         dispatch({
           type: "ADD_WINDOW",
           payload: {

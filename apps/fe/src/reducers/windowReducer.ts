@@ -6,6 +6,7 @@ export enum WindowTypesEnum {
     WEB = 1,
     DOCUMENT = 2,
     FOLDER = 3,
+    BROWSER = 4
 }  
 
 export type WindowPosition = {
@@ -30,6 +31,7 @@ export type WindowConfig = {
     minimizable?: boolean;
     exited?: boolean;
     contentData?: any;
+    helpData?: any;
 }
 
 export interface WindowState {
@@ -49,6 +51,21 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 exited: false,
                 id: Math.random().toString(36).substring(7)
             }
+
+            // set window title
+            var newTitle = "";
+            switch(newWindowConfig.type) {
+                case WindowTypesEnum.BROWSER:
+                    newTitle = newWindowConfig.contentData;
+                    break;
+                case WindowTypesEnum.FOLDER:
+                    newTitle = "Exploring... " + newWindowConfig.contentData;
+                    break;
+                default:
+                    newTitle = newWindowConfig.title;
+            }
+            newWindowConfig.title = newTitle;
+
             // debugger
             // check if window exists with the same position
             const setWindowInitPosition = (editingWindowConfig: WindowConfig): WindowConfig => {

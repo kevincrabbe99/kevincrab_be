@@ -1,0 +1,122 @@
+
+
+.browserPage-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.browserPage-top {
+    height: 1.5em;
+    line-height: 1em;
+    position:relative;
+    top: -0.2em;
+}
+
+.browserPage-top ul {
+    padding-left: 0.5em;
+    margin: 0;
+}
+
+.browserPage-top ul li {
+    list-style-type:none;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 0.6em;
+}
+
+.browserPage-content {
+    width: calc(100% - 0.4em);
+    height: calc(100% - 1.2em);
+    position: relative;
+    left: 0.2em;
+    top: -0.2em;
+    overflow: auto;
+    background-color: #fff;
+}
+
+.browserPage-doc-wrapper {
+    height: 100%;
+}
+
+.browserPage-doc-wrapper iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.browserPage-submenu {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid var(--gray-highlight);
+    z-index: 1;
+    position: absolute;
+    width: 12em;
+
+    // border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-dark);
+    background-color: var(--gray-main);
+    margin-left: -0.3em;
+}
+
+.browserPage-submenu ul {
+    padding-left: 0;
+    display: grid;
+}
+
+.browserPage-submenu ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    font-size: 0.85em;
+}
+
+.browserPage-submenu ul li:hover {
+    background-color: var(--blue95);
+    color: #fff;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+.browserpage-infobars {
+    height: 5.5em;
+    font-size: 0.55em;
+    padding-left: 1.5em;
+}
+
+.browserPage-infobar-title {
+    padding-bottom: 0.3em;
+}
+
+.browserPage-infobar-title label {
+    width: 10em;
+}
+
+.browserPage-infobar-url label {
+    width: 10em;
+}
+
+.browserpage-infobars input {
+    appearance: none;
+    border: 1px solid var(--gray-dark);
+    border-radius: 0.2em;
+    background-color: transparent;
+    width: calc(100% - 13em);
+}
+
+.browserpage-infobars input:focus {
+    outline: none;
+    
+}
