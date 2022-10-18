@@ -122,21 +122,33 @@ export default function Window(props: any) {
         const didChangeFocus = !didAddWindow && !didRemoveWindow
 // debugger
         // set top window position
-        if (windowConfig.id === windowState.top) {
-            setY(getNewWindowPosition());
-            setOldTopWindowId(windowState.top)
-            return;
+
+        if (didChangeFocus) {
+            if (windowConfig.id === windowState.top) {
+                setY(windowStackerStartYPos);
+                // return;
+            }
         }
         
 
         // set position of windows from last to first
-        for (let i = 0; i < windowConfigs.length; i++) {
-            const currentWindowConfig = windowConfigs[i];
+        // for (let i = 0; i < windowConfigs.length; i++) {
+        //     const currentWindowConfig = windowConfigs[i];
 
-            if (currentWindowConfig.id === windowConfig.id) {
-                setY(windowStackerStartYPos - (i * windowStackerBufferSpace))
+        //     if (currentWindowConfig.id === windowConfig.id) {
+        //         setY(windowStackerStartYPos - (i * windowStackerBufferSpace))
+        //     }
+        // }
+
+        if (didAddWindow) {
+            if (
+                windowConfig.id !== windowState.top) {
+                setY((old) => old - windowStackerBufferSpace)
             }
         }
+        setOldTopWindowId(windowState.top)
+        setWindowCount(windowConfigs.length)
+
 
 
         // var windowCountChanged = true;
