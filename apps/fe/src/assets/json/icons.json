@@ -49,8 +49,8 @@
         "icon": "Mail.ico",
         "hoverText": "Contact Kevins",
         "action": {
-            "isExternal": 1,
-            "destination": "https://linkedin.com/kevincrabbe"
+            "isExternal": 0,
+            "destination": "OPEN_MESSENGER"
         },
         "position": {
             "alignment": 1,
@@ -64,7 +64,7 @@
         "icon": "internet.ico",
         "hoverText": "Open Internet",
         "action": {
-            "isExternal": 1,
+            "isExternal": 0,
             "destination": "OPEN_BROWSER",
             "param": "https://google.com"
         },

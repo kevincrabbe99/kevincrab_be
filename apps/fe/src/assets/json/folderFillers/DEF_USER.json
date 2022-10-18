@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Personal Website",
+        "icon": "web_shortcut.ico",
+        "hoverText": "Open Personal Website",
+        "action": {
+            "isExternal": false,
+            "destination": "OPEN_BROWSER",
+            "param": "https://kevincrab.be"
+        }
+    },
+    {
+        "name": "Github",
+        "icon": "web_shortcut.ico",
+        "hoverText": "Open Kevins Github",
+        "action": {
+            "isExternal": false,
+            "destination": "OPEN_BROWSER",
+            "param": "https://github.com/kevincrabbe99"
+        }
+    },
+    {
+        "name": "LinkedIn",
+        "icon": "web_shortcut.ico",
+        "hoverText": "Open Kevins LinkedIn",
+        "action": {
+            "isExternal": false,
+            "destination": "OPEN_BROWSER",
+            "param": "https://www.linkedin.com/in/kevincrab-be/"
+        }
+    }
+]
