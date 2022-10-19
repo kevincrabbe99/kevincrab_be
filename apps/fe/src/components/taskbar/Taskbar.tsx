@@ -45,7 +45,7 @@ export default function Taskbar( props: any ) {
             if (!currentWindow.exited) { count++ }
             if (currentWindow.id === windowState.top) { lastSelectedIndex = i }
         }
-        setTaskBarItemCount(count)
+        setTaskBarItemCount(count)       
         setTaskBarItemsStartIndex(0)
         
         // Used to calculate where the taskbar next page should show
@@ -87,7 +87,7 @@ export default function Taskbar( props: any ) {
                                 index >= taskBarItemsStartIndex && 
                                 index < taskBarItemsStartIndex + taskBarItemCapacity ?
                                 <td>
-                                    <div    className={`application_placeholder-wrapper ${!window.exited && !window.minimized ? 'tb-selected' : ''}`}
+                                    <div    className={`application_placeholder-wrapper ${window.id === windowState.top ? 'tb-selected' : ''}`}
                                             onClick={() => selectTaskbarPillEvent(window.id!)}>
                                         <img src={`./icons/${window.icon}`}></img>
                                         <label>{window.title}</label>
