@@ -93,7 +93,7 @@
 }
 
 .startMenu-list .last-item {
-    height: 5.6em !important;
+    height: 3.5em !important;
     border-bottom: 1px solid var(--gray-highlight);
 }
 
@@ -105,6 +105,7 @@
 .startMenu-list-item-icon img {
     width: 100%;
 }
+
 
 .startMenu-list-item-label {
     font-size: 0.6em;
@@ -150,4 +151,13 @@
     width: 1.1em;
     position:relative;
     top: -3px;
+}
+
+
+// MINOR ADJUSTMENTS
+.startMenu-list-item-icon img[src*="internet.ico"] {
+    width: 85%;
+    height: auto;
+    position:relative;
+    left: 0.1em;
 }

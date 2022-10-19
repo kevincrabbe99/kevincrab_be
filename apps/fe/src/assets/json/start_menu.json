@@ -17,11 +17,19 @@
                 }
             },
             {
+                "name": "Notepad",
+                "icon": "Notepad_writing.ico",
+                "action": {
+                    "isExternal": 0,
+                    "destination": "OPEN_DOCUMENT"
+                }
+            },
+            {
                 "name": "Startup",
                 "icon": "Program_Folder.ico",
                 "action": {
-                    "isExternal": 1,
-                    "destination": "C:\\Windows\\System32\\notepad.exe"
+                    "isExternal": 0,
+                    "destination": "SHUTDOWN"
                 }
             },
             {
@@ -47,7 +55,8 @@
         "icon": "my_documents.ico",
         "action": {
             "isExternal": 0,
-            "destination": null
+            "destination": "OPEN_FOLDER",
+            "param": "C://My Documents"
         }
     },
     {
@@ -56,6 +65,15 @@
         "action": {
             "isExternal": 0,
             "destination": null
+        }
+    },
+    {
+        "name": "Internet",
+        "icon": "internet.ico",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_BROWSER",
+            "param": "https://bing.com"
         }
     },
     {
