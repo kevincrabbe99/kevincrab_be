@@ -1,11 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import "./documentPage.scss"
 
-import docToolbarJson from "../../../../assets/json/toolsbars/documentToolbarConfig.json"
-import { ToolbarConfig, ToolbarSubmenuConfig } from '../../../../types/ToolbarConfig';
+import docToolbarJson from "../../../assets/json/toolsbars/documentToolbarConfig.json"
+import { ToolbarConfig, ToolbarSubmenuConfig } from '../../../types/ToolbarConfig';
+import { WindowConfig } from '../../../reducers/windowReducer';
 
 
-export default function DocumentPage() {
+
+export const documentWindowConfig: WindowConfig = {
+  "type": 2,
+  "position": {
+      "x": 200,
+      "y": 100,
+  },
+  "size": {
+      "width": 450,
+      "height": 600
+  },
+  "title": "Resume - Kevin Crabbe.pdf",
+  "showXButton": true,
+  "icon": "WordPad_document.ico"
+};
+
+export default function DocumentPage(props: any) {
+
+  const contentData: string = props.contentData
 
   const [selectedToolbarSubmenu, setSelectedToolbarSubmenu] = useState<number | null>(null);
   const [toolbarSubmenuHardSelected, setToolbarSubmenuHardSelected] = useState<boolean>(false);
@@ -52,9 +71,15 @@ export default function DocumentPage() {
           }
         </ul>
       </div>
-      <div className="docPage-content">
+      <div className="docPage-content"> 
         <div className="docPage-doc-wrapper">
-          <iframe src="./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"></iframe>
+          {
+            contentData ? 
+              <iframe src={contentData}></iframe>
+            : <div className="docPage-def-textarea">
+                <textarea></textarea>
+              </div>
+          }
         </div>
       </div>
     </div>

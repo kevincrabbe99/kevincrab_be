@@ -19,11 +19,27 @@
         "hoverText": "View Kevins Resume",
         "action": {
             "isExternal": 0,
-            "destination": "OPEN_DOCUMENT_RESUME"
+            "destination": "OPEN_DOCUMENT",
+            "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
         },
         "position": {
             "alignment": 0,
             "x": 0,
+            "y": 2
+        },
+        "isHidden": false
+    },
+    {
+        "name": "Notepad",
+        "icon": "Notepad_writing.ico",
+        "hoverText": "New Notepad Document",
+        "action": {
+            "isExternal": 0,
+            "destination": "OPEN_DOCUMENT"
+        },
+        "position": {
+            "alignment": 0,
+            "x": 1,
             "y": 2
         },
         "isHidden": false
@@ -35,7 +51,7 @@
         "action": {
             "isExternal": 0,
             "destination": "OPEN_FOLDER",
-            "param": "MY_COMPUTER"
+            "param": "My Computer"
         },
         "position": {
             "alignment": 0,

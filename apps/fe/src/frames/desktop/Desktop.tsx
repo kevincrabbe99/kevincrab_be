@@ -26,7 +26,7 @@ export default function Desktop() {
           </div>
           <div className="startMenu">
           {
-              isStartMenuOpen ? <StartMenu /> : null
+              isStartMenuOpen ? <StartMenu setIsStartMenuOpen={setIsStartMenuOpen} /> : null
           }
           </div>
           <Taskbar toggleStartMenu={toggleStartMenu} />

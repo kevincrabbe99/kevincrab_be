@@ -2,10 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { fromEvent, map } from 'rxjs';
 import { WindowConfig } from '../../reducers/windowReducer';
-import DocumentPage from '../windowPages/document/documentPage/DocumentPage';
-import DocumentWindow from '../windowPages/document/DocumentWindow';
-import FolderPage from '../windowPages/folder/FolderPage';
-import LoginWindowPage from '../windowPages/login/LoginWindowPage';
 import "./window.scss"
 
 import {isMobile} from 'react-device-detect';
