@@ -6,9 +6,9 @@ import { Alignment, Icon, IconActionType, IconGridPosition } from '../../types/I
 import { DestinationActionTriggers } from '../../types/DestinationActionTriggers';
 import { useDispatch } from 'react-redux';
 
-import {documentWindowConfig}  from "../windowPages/document/DocumentWindow"
 import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
+import { documentWindowConfig } from '../windowPages/document/DocumentPage';
 
 
 const MAX_ROWS = 5;
@@ -22,7 +22,8 @@ export default function IconGrid() {
 
     const handleDestinationAction = (action: IconActionType) => {
         switch(action.destination) {
-            case DestinationActionTriggers.OPEN_DOCUMENT_RESUME:
+            case DestinationActionTriggers.OPEN_DOCUMENT:
+                documentWindowConfig.contentData = action.param;
                 dispatch({type: "ADD_WINDOW", payload: documentWindowConfig});
                 break;
             case DestinationActionTriggers.OPEN_FOLDER:

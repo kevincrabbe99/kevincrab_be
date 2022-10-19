@@ -2,7 +2,6 @@ import React, { createRef, useEffect, useMemo, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Window from '../../components/window/Window';
-import DocumentWindow from '../../components/windowPages/document/DocumentWindow'
 import { WindowConfig, WindowState, WindowTypesEnum } from '../../reducers/windowReducer';
 import "./windowCordinator.scss"
 

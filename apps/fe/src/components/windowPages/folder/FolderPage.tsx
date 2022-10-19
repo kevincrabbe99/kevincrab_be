@@ -12,8 +12,8 @@ import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
 import { FileNodeAction } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
 import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
-import { documentWindowConfig } from '../document/DocumentWindow';
 import { browserWindowConfig } from '../browser/BrowserPage';
+import { documentWindowConfig } from '../document/DocumentPage';
 
 export const folderWindowConfig: WindowConfig = {
     "type": 3,
@@ -32,7 +32,7 @@ export const folderWindowConfig: WindowConfig = {
 
 // const mapContentDataToFolderData = (contentData: string) => {
 //   switch(contentData) {
-//     case "MY_COMPUTER" :
+//     case "My Computer" :
 //       return MyComputerJson;
 //     case "C://":
 //       return C_DRIVEJson;

@@ -61,6 +61,11 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 case WindowTypesEnum.FOLDER:
                     newTitle = "Exploring... " + newWindowConfig.contentData;
                     break;
+                case WindowTypesEnum.DOCUMENT:
+                    // get text after last '/' in newWindowConfig.contentData
+                    newTitle = reduceDocumentPathToName(newWindowConfig.contentData);
+                    // newTitle = newWindowConfig.contentData.split('/').pop();
+                    break;
                 default:
                     newTitle = newWindowConfig.title;
             }
@@ -166,3 +171,27 @@ export const windowReducer = produce((state: WindowState = initialState, action:
     }   
                    
 })
+
+const reduceDocumentPathToName = (path: string): string => {
+
+    if (path === undefined) {
+        return "New Document"
+    }
+
+    var lastSection;
+    try {
+        lastSection = path.split('/').pop();
+    } catch (e: any) {
+        return path;
+    }
+
+    // remove text after '#
+    if (lastSection!.includes('#')) {
+        lastSection = lastSection!.split('#')[0];
+    }
+
+    // replace all '_' with ' '
+    lastSection = lastSection!.replace(/_/g, ' ');
+
+    return lastSection!;
+}

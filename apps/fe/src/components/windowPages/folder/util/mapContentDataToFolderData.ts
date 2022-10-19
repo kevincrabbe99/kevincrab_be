@@ -12,7 +12,7 @@ export const mapContentDataToFolderData = (contentData: string): FileNode[] => {
 
     // map contentData to folder fillers 
     switch(contentData) {
-        case "MY_COMPUTER" :
+        case "My Computer" :
           folderData = MyComputerJson
           break;
         case "C://":

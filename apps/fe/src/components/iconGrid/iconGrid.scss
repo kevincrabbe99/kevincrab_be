@@ -20,9 +20,11 @@
 }
 
 .icon-grid-wrapper td {
-    width: 3.5em;
+    width: 4em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     height: 5em;
-    z-index:-30;
+    z-index: -30;
 }
 
 .icon-grid-wrapper a {
@@ -78,4 +80,9 @@
 .icon-wrapper img[src*="my_computer.png"] {
     position:relative;
     left: 0.6em;
+}
+
+.icon-wrapper img[src*="Notepad_writing.ico"] {
+    position:relative;
+    left: 0.1em;
 }
