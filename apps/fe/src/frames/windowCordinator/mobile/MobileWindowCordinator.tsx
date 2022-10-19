@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useMemo, useRef, useState } from 'react'
+import React, { createRef, CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { WindowConfig, WindowState } from '../../../reducers/windowReducer';
@@ -103,8 +103,40 @@ export default function MobileWindowCordinator() {
     }, [minimizedWindowIds, exitedWindowIds])
     
 
+    // listen for document.documentElement.clientWidth changes
+    const [windowHeight, setWindowHeight] = useState(document.documentElement.clientHeight)
+    const [nudgerStyle, setNudgerStyle] = useState<CSSProperties>({top: 0})
+    const initialWindowHeight = useRef(document.documentElement.clientHeight)
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowHeight(document.documentElement.clientHeight)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+
+
+    // used to nudge window height when keyboard is open
+    useEffect(() => {
+        // calculate difference
+        let difference = windowHeight - initialWindowHeight.current
+
+        // select child class of nudgerStyle .window-wrapper
+        let windowWrappers = document.querySelectorAll(".window-wrapper")
+        // loop through windowWrappers
+        for (let i = 0; i < windowWrappers.length; i++) {
+            // set windowWrappers[i].style.top to difference on type element
+            (windowWrappers[i] as HTMLElement).style.marginTop = (difference / 6) + "px"
+        }
+
+
+    }, [windowHeight])
+
     return (
         <div className="windowCordinator-wrapper">
+         <div className="windowCordinator-nudger" style={nudgerStyle}>
             {
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
@@ -122,7 +154,7 @@ export default function MobileWindowCordinator() {
                     // }
                 })
             }
-            
+            </div>
         </div>
     )
 }
