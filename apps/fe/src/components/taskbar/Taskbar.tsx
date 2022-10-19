@@ -23,7 +23,8 @@ export default function Taskbar( props: any ) {
     const taskBarItemCapacity = viewPortWindowWidth / taskBarItemWidth
 
     const selectTaskbarPillEvent = (id: string): void => {
-        dispatch({type: "FOCUS_WINDOW", payload: id})
+        // dispatch({type: "FOCUS_WINDOW", payload: id})
+        dispatch({type: "MINIMIZE_WINDOW", payload: id})
     }
 
     const isSelected = (window: WindowConfig) : boolean => {

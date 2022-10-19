@@ -123,25 +123,52 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 if (window.id === action.payload) {
                     return {
                         ...window,
-                        minimized: true
+                        minimized: !window.minimized 
                     }
                 } else {
                     return window
                 }
             })
+
+            /*
+set top if:
+- window is minimized
+- window is not minimized
+
+new windows with minimized if:
+- window is minimized
+- window is not minimized and is top
+
+            */
+
+            const shouldSetTop = state.windows.find((window) => {
+                return window.id === action.payload && window.minimized === false
+            })
+
+            const shouldToggleMinimize = state.windows.find((window) => {
+                return window.id === action.payload && (
+                    (window.minimized === false
+                    && state.top === window.id) ||
+                    (window.minimized === true)
+                )
+            })
+
+            
+
             return {
                 ...state,
-                windows: newWindowsWithMinimized
+                top: shouldSetTop ? action.payload : state.top,
+                windows: shouldToggleMinimize ? newWindowsWithMinimized : state.windows
             }
         case "FOCUS_WINDOW":
             if (state.windows.length > 0) {
 
-               
+
                 const newWindowsWithNewFocus = state.windows.map((window) => {
                     if (window.id === action.payload) {
                         return {
                             ...window,
-                            minimized: window.id === state.top ? true : false 
+                            minimized: false
                         }
                     } else {
                         return window
