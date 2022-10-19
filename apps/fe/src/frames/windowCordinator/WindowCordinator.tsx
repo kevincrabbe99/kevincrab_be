@@ -55,6 +55,10 @@ export default function WindowCordinator() {
                 if (minimizedWindowIds.includes(currentWindow.id!)) {
                     setMinimizedWindowIds(minimizedWindowIds.filter(id => id != currentWindow.id))
                 }
+            } else {
+                if (!minimizedWindowIds.includes(currentWindow.id!)) {
+                    setMinimizedWindowIds([...minimizedWindowIds, currentWindow.id!])
+                }
             }
         }
     }, [windowState])
