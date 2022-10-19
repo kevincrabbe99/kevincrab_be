@@ -18,6 +18,8 @@
         
 }
 
+.crt {
+}
 
 .crt::before {
   content: " ";
@@ -31,6 +33,7 @@
   z-index: 2;
   background-size: 100% 2px, 2px 100%;
   pointer-events: none;
+  z-index: 1000;
 }
 
 @keyframes flicker {
@@ -115,6 +118,7 @@
   z-index: 2;
   pointer-events: none;
   animation: flicker 4s infinite;
+  z-index: 1000;
 }
 
 // http://aleclownes.com/2017/02/01/crt-display.html
