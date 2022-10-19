@@ -12,6 +12,7 @@ import "./taskbar.scss"
 export default function Taskbar( props: any ) {
 
     var toggleStartMenu = props.toggleStartMenu
+    var toggleVolumeSlider = props.toggleVolumeSlider
 
     const dispatch = useDispatch()
     
@@ -100,7 +101,7 @@ export default function Taskbar( props: any ) {
             </table>
         </div>
 
-        <ClockBox />
+        <ClockBox toggleVolumeSlider={toggleVolumeSlider}/>
 
         {
             (taskBarItemCount - taskBarItemsStartIndex) > taskBarItemCapacity &&
