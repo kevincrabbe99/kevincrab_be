@@ -1,0 +1,40 @@
+
+.taskbar-right-box {
+    position: absolute;
+    bottom: 0.1em;
+    right: 0;
+    height: 1.5em;
+    width: 5em;
+    line-height: 0.2em;
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+}
+
+.taskbar-volume {
+    position:absolute;
+    height: 1.4em;
+    width: 1.5em;
+    cursor: pointer;
+}
+
+.taskbar-volume img {
+    position:relative;
+    top: 0.05em;
+    left: 0.4em;
+    height: 1.1em;
+    width: 1.1em;
+}
+
+.taskbar-clock {
+    position:absolute;
+    left: 1.9em;
+}
+
+.taskbar-right-box .taskbar-clock label {
+    position: relative;
+    top: 0.55em;
+    left: 0.3em;
+    font-size: 0.7em;
+}

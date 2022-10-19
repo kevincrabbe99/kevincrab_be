@@ -12,7 +12,7 @@ import { documentWindowConfig } from '../windowPages/document/DocumentPage';
 
 
 const MAX_ROWS = 5;
-const MAX_COLS = 3;
+const MAX_COLS = 2;
 
 
 
@@ -78,7 +78,7 @@ function IconGridRow(props: any) {
     let y: number = props.y
     let alignment: Alignment = props.alignment;
     return  <tr> {
-        [...Array(5)].map((elx, x) => (
+        [...Array(MAX_COLS)].map((elx, x) => (
             <RenderIconAtPosition_Proxy x={x} y={y} alignment={alignment} handleDestinationAction={props.handleDestinationAction} />
         )) }
     </tr>
@@ -133,9 +133,10 @@ function RenderIconWithInternalAction(props: any) {
 function getIconAtPosition(x: number, y: number, alignment: Alignment) : Icon | undefined {
     // align from right 
     if (alignment == Alignment.RIGHT) {
-        x = (MAX_COLS+1) - x
+        x = (MAX_COLS - 1) - x
     }
 
+    // search for icon
     for (var i = 0; i < iconJson.length; i++) {
         let curIconPos = iconJson[i].position;
         if (curIconPos.x == x && curIconPos.y == y && curIconPos.alignment == alignment) {

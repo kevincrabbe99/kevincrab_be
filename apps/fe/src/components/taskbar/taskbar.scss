@@ -110,25 +110,6 @@
     background-color: var(--gray-dark);
 }
 
-.taskbar-right-box {
-    position: absolute;
-    bottom: 0.1em;
-    right: 0;
-    height: 1.5em;
-    width: 5em;
-    line-height: 0.2em;
-    border-top: 2px solid var(--gray-dark);
-    border-left: 2px solid var(--gray-dark);
-    border-right: 2px solid var(--gray-highlight);
-    border-bottom: 2px solid var(--gray-highlight);
-}
-
-.taskbar-right-box label {
-    position: relative;
-    top: 0.55em;
-    left: 0.3em;
-    font-size: 0.7em;
-}
 
 .tb-move-button {
     height: 1.5em;

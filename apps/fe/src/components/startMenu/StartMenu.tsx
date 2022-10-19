@@ -48,7 +48,7 @@ export default function StartMenu(props: any) {
     <div className="startMenu-wrapper">
         <div className="startMenu-left-box">
             <label className="rotetedWindowsText">
-                <span className="rwt-windows">Windows</span>
+                <span className="rwt-windows">ReactHooks</span>
                 <span className="rwt-95">95</span>
             </label>
         </div>

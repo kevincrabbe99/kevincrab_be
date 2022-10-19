@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { WindowConfig, WindowState } from '../../reducers/windowReducer';
+import ClockBox from './components/clockBox/ClockBox';
 import "./taskbar.scss"
 
-var today = new Date(),
-    time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
+
 
 
 
@@ -98,9 +99,9 @@ export default function Taskbar( props: any ) {
                 </tr>
             </table>
         </div>
-        <div className="taskbar-right-box">
-            <label>{ time }</label> 
-        </div>
+
+        <ClockBox />
+
         {
             (taskBarItemCount - taskBarItemsStartIndex) > taskBarItemCapacity &&
             <div className="taskbar-moveRight tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex + 1)}>
