@@ -9,6 +9,7 @@ import { FrameStatesEnum } from '../../reducers/frameReducer'
 import { fromEvent, map } from 'rxjs'
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage'
 import { folderWindowConfig } from '../windowPages/folder/FolderPage'
+import { documentWindowConfig } from '../windowPages/document/DocumentPage'
 
 
 
@@ -36,6 +37,11 @@ export default function StartMenu(props: any) {
                 console.log("open folder")
                 folderWindowConfig.contentData = action.param;
                 dispatch({type: "ADD_WINDOW", payload: folderWindowConfig});
+                break;
+            case DestinationActionTriggers.OPEN_DOCUMENT:
+                console.log("open document")
+                documentWindowConfig.contentData = action.param;
+                dispatch({type: "ADD_WINDOW", payload: documentWindowConfig});
                 break;
             default:
                 break;

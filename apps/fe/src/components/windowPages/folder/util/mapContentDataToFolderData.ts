@@ -18,7 +18,7 @@ export const mapContentDataToFolderData = (contentData: string): FileNode[] => {
         case "C://":
             folderData = C_DRIVEJson
             break;
-        case "C://DEF_USER":
+        case "C://kcrabbe":
           folderData = DEF_USERJson
           break;
         case "C://My Documents":

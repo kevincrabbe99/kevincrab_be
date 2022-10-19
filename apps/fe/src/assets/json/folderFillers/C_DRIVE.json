@@ -6,7 +6,7 @@
         "action": {
             "isExternal": false,
             "destination": "OPEN_FOLDER",
-            "param": "C://DEF_USER"
+            "param": "C://kcrabbe"
         }
     },
     {
