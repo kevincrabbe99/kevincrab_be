@@ -1,0 +1,180 @@
+
+
+.volume-slider-container {
+    // use bottom right as origin
+    transform-origin: bottom right;
+
+    position:absolute;
+    bottom: 0.0em;
+    right: 5em;
+    width: 5.5em;
+    height: 11em;
+    z-index: 90;
+
+    border: 2px solid var(--gray-dark);
+    border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    border-right: 2px solid var(--gray-dark);
+    z-index: 150;
+}
+
+.volumeSlider-wrapper {
+    background-color: var(--gray-main);
+    width: 100%;
+    height: 100%;
+    position:relative;
+}
+
+.slider-label {
+    position: absolute;
+    height:3em;
+    width: 100%;
+    font-size: 0.6em;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.volumeSlider-top {
+    position:absolute;
+    top: 2.2em;
+    height: 7em;
+    width: 100%;
+    display:inline-flex;
+}
+
+.volumeSlider-top-left {
+    width: 2em;
+    height: 100%;
+    position:relative;
+    left: 0.2em;
+}
+
+.volumeTriangle {
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 4px solid transparent;
+    
+    border-top: 100px solid var(--gray-main);
+    z-index: 60;
+
+    // rotate clockwise 10 degrees
+    transform: rotate(-4deg);
+    position:absolute;
+    top: -0.5em;
+}
+
+.volumeTriangle-border-bottomRight {
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    
+    border-top: 100px solid var(--gray-dark);
+
+    // rotate clockwise 10 degrees
+    transform: rotate(-3deg);
+    position:absolute;
+    top: -0.2em;
+    left: 0.2em;
+}
+
+.volumeTriangle-border-bottomLeft {
+    width: 0; 
+    height: 0; 
+    border-left: 3px solid transparent;
+    border-right: 2px solid transparent;
+    
+    border-top: 100px solid var(--gray-highlight);
+
+    // rotate clockwise 10 degrees
+    transform: rotate(-9deg);
+    position:absolute;
+    top: -0.2em;
+    left: 0em;
+}
+
+.volumeTriangle-mask {
+    height: 100%;
+    overflow: hidden;
+    position:relative;
+}
+
+.volumeTriangle-mask div {
+    margin-left: 1.3em;
+}
+
+.volumeSlider-top-right {
+    display: flex;
+    justify-content: center;
+    width:3em;
+}
+
+
+.slider-track {
+    width: 0.3em;
+    height: 90%;
+    background-color: var(--gray-black);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 1px solid var(--gray-highlight);
+    border-top: 1px solid var(--gray-highlight);
+    border-bottom: 1px solid var(--gray-highlight);
+}
+
+.slider-thumb {
+    width: 1.5em;
+    height: 0.8em;
+    background-color: var(--gray-main);
+    border-left: 2px solid var(--gray-highlight);
+    border-right: 1px solid var(--gray-dark);
+    border-top: 2px solid var(--gray-highlight);
+    border-bottom: 1px solid var(--gray-dark);
+    position: absolute;
+    // top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.volumeSlider-bottom {
+    position:absolute;
+    top: 8.8em;
+    width: 100%;
+    height: 2em;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    padding-left: 0.8em;
+}
+
+.volumeSlider-bottom label {
+    font-size: 0.6em;
+    font-weight: normal;
+    margin-right: 0.5em;
+    padding-left: 0.5em;
+    position:relative;
+    top: 0.05em;
+}
+
+
+.volumeSlider-bottom input[type="checkbox"] {
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+    background-color: #fff;
+    appearance: none;
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.volumeSlider-bottom input[type="checkbox"]:checked {
+    // 
+    background-color: var(--gray-dark);
+    // background url = "./icons/my_computer.png"
+}
+
+
+
+.volumeSlider-bottom input[type="checkbox"]:focus {
+    outline: none;
+}
