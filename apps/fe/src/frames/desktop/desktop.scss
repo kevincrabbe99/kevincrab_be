@@ -34,6 +34,15 @@
     }
 }
 
+@media only screen and (min-width: 1200px) {
+    .desktop-wrapper {
+        position:relative;
+        width: 960px;
+        height: 100%;
+        margin: 0px auto;
+    }
+}
+
 .exitStartMenu_listener {
     position:absolute;
     top: 0em;
