@@ -8,12 +8,16 @@
     height: 1.9em;
     border-top: 2px solid var(--gray-highlight);
     z-index: 90;
+    border-bottom-left-radius: 0.1em;
+    border-bottom-right-radius: 0.1em;
 }
 
 // mobile
 @media (max-width: 768px) {
     .wrapper-taskbar {
         z-index: 130;
+        border-bottom-left-radius: 0em;
+        border-bottom-right-radius: 0em;
     }
 }
 

@@ -9,7 +9,11 @@ function App() {
 
   return (
     <div className="App" data-theme="dark">
+      <div className="crt">
+      </div>
+      <span className="crt-text">
         <FrameRouter />
+      </span>
     </div>
   );
 }
