@@ -9,7 +9,7 @@ import FolderIconGrid from './components/folderIconGrid/FolderIconGrid';
 
 import MyComputerJson from "../../../assets/json/folderFillers/My_Computer.json"
 import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
-import { FileNodeAction } from '../../../types/FileNode';
+import { FileNode, FileNodeAction, FileNodeType } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
 import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
 import { browserWindowConfig } from '../browser/BrowserPage';
@@ -73,35 +73,66 @@ export default function FolderPage(props: any) {
       setSelectedToolbarSubmenu(null)
   }
 
-  const handleFileNodeAction = (action: FileNodeAction) => {
-    if (!action.isExternal) {
-      if (action.destination === "OPEN_FOLDER") {
+  const handleFileNodeAction = (node: FileNode) => {
+    let action = node.action!;
+    if (node.type === FileNodeType.FOLDER) {
+
+      console.log("opening windoow folder: ", node)
+      folderWindowConfig.contentData = node.name;
+      dispatch({
+        type: "ADD_WINDOW",
+        payload: folderWindowConfig
+      })
+    } else if (node.type === FileNodeType.INTERNAL) {
+      if (action.destination === "OPEN_DOCUMENT") {
+        documentWindowConfig.contentData = action.param;
         dispatch({
           type: "ADD_WINDOW",
-          payload: {
-            ...folderWindowConfig,
-            contentData: action.param
-          }
+          payload: documentWindowConfig
         })
-      } else if (action.destination == "OPEN_BROWSER") {
+      } else if (action.destination === "OPEN_BROWSER") {
+        browserWindowConfig.contentData = action.param;
         dispatch({
           type: "ADD_WINDOW",
-          payload: {
-            ...browserWindowConfig,
-            contentData: action.param
-          }
-        })
-      } else  {
-        dispatch({
-          type: "ADD_WINDOW",
-          payload: {
-            ...documentWindowConfig,
-            contentData: action.param
-          }
+          payload: browserWindowConfig
         })
       }
-
+    } else if (node.type === FileNodeType.EXTERNAL) {
+      let url = action.param;
+      window.open(url, '_blank');
     }
+
+    // if (node.action) {
+    //   if (!action.isExternal) {
+    //     if (action.destination === "OPEN_FOLDER") {
+    //       dispatch({
+    //         type: "ADD_WINDOW",
+    //         payload: {
+    //           ...folderWindowConfig,
+    //           contentData: action.param
+    //         }
+    //       })
+    //     } else if (action.destination == "OPEN_BROWSER") {
+    //       dispatch({
+    //         type: "ADD_WINDOW",
+    //         payload: {
+    //           ...browserWindowConfig,
+    //           contentData: action.param
+    //         }
+    //       })
+    //     } else  {
+    //       dispatch({
+    //         type: "ADD_WINDOW",
+    //         payload: {
+    //           ...documentWindowConfig,
+    //           contentData: action.param
+    //         }
+    //       })
+    //     }
+  
+    //   }
+    // }
+  
   }
 
 //  listen for any click event 

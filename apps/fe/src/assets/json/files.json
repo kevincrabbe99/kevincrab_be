@@ -1,0 +1,146 @@
+[
+    {
+        "name": "My Computer",
+        "icon": "my_computer.ico",
+        "hoverText": "Open My Computer",
+        "type": 0,
+        "path": "",
+        "children": [
+            {
+                "name": "3.5 Floppy (A:)",
+                "icon": "Deskette_Drive.ico",
+                "hoverText": "3.5 Floppy (A:)",
+                "type": 0,
+                "path": "A://"
+            },
+            {
+                "name": "(C:)",
+                "icon": "Deskette_Drive.ico",
+                "hoverText": "5.5 Floppy (B:)",
+                "type": 0,
+                "path": "C://",
+                "children": [
+                    {
+                        "name": "kcrabbe",
+                        "icon": "Folder.ico",
+                        "hoverText": "Open kcrabbe",
+                        "type": 0,
+                        "path": "C://Users//kcrabbe",
+                        "children": [
+                            {
+                                "name": "Personal Website",
+                                "icon": "web_shortcut.ico",
+                                "hoverText": "Open Personal Website",
+                                "type": 1,
+                                "path": "C://kcrabbe//Personal Website",
+                                "action": {
+                                    "isExternal": false,
+                                    "destination": "OPEN_BROWSER",
+                                    "param": "https://kevincrab.be"
+                                }
+                            },
+                            {
+                                "name": "iOS App",
+                                "icon": "web_shortcut.ico",
+                                "hoverText": "Open Personal Website",
+                                "type": 1,
+                                "path": "C://kcrabbe//Personal Website",
+                                "action": {
+                                    "isExternal": false,
+                                    "destination": "OPEN_BROWSER",
+                                    "param": "https://apple.co/39pU9Of"
+                                }
+                            },
+                            {
+                                "name": "Github",
+                                "icon": "web_shortcut.ico",
+                                "hoverText": "Open Kevins Github",
+                                "type": 2,
+                                "action": {
+                                    "isExternal": false,
+                                    "destination": "OPEN_BROWSER",
+                                    "param": "https://github.com/kevincrabbe99"
+                                }
+                            },
+                            {
+                                "name": "LinkedIn",
+                                "icon": "web_shortcut.ico",
+                                "hoverText": "Open Kevins LinkedIn",
+                                "type": 1,
+                                "action": {
+                                    "isExternal": false,
+                                    "destination": "OPEN_BROWSER",
+                                    "param": "https://www.linkedin.com/in/kevincrab-be/"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "My Documents",
+                        "icon": "Folder.ico",
+                        "hoverText": "Open My Documents",
+                        "type": 0,
+                        "path": "C://My Documents",
+                        "children": [
+                            {
+                                "name": "Kevin Crabbe Resume",
+                                "icon": "WordPad_document.ico",
+                                "hoverText": "Open Kevin Crabbe Resume",
+                                "type": 1,
+                                "action": {
+                                    "isExternal": false,
+                                    "destination": "OPEN_DOCUMENT",
+                                    "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "My Music",
+                        "icon": "Folder.ico",
+                        "hoverText": "Open My Music",
+                        "type": 0,
+                        "path": "C://My Music"
+                    },
+                    {
+                        "name": "Windows",
+                        "icon": "Folder.ico",
+                        "hoverText": "Open Windows",
+                        "type": 0,
+                        "path": "C://Windows"
+                    }
+                    ,
+                    {
+                        "name": "temp",
+                        "icon": "Folder.ico",
+                        "hoverText": "Open Folder temp",
+                        "type": 0,
+                        "path": "C://temp"
+                    }
+                
+                ]
+            },
+            {
+                "name": "New (D:)",
+                "icon": "Deskette_Drive.ico",
+                "hoverText": "5.5 Floppy (B:)",
+                "type": 0,
+                "path": "D://"
+            },
+            {
+                "name": "Control Panel",
+                "icon": "Controls_Folder.ico",
+                "hoverText": "Open Control Panel",
+                "type": 0,
+                "path": "C://Windows/Program Files/Control Panel"
+            },
+            {
+                "name": "Printers",
+                "icon": "Printers_Folder.ico",
+                "hoverText": "Open Control Panel",
+                "type": 0,
+                "path": "C://Windows/Program Files/Printers"
+            }
+        ]
+    }    
+]

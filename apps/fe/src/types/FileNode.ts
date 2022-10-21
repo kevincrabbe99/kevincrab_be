@@ -1,4 +1,10 @@
 
+export enum FileNodeType {
+    FOLDER = 0,
+    INTERNAL = 1,
+    EXTERNAL = 2,
+}
+
 export interface FileNodeAction {
     isExternal: boolean,
     destination: string,
@@ -10,5 +16,7 @@ export interface FileNode {
     name: string;
     icon: string;
     hoverText: string | null;
-    action: FileNodeAction;
+    type: FileNodeType;
+    action?: FileNodeAction;
+    children?: FileNode[];
 }

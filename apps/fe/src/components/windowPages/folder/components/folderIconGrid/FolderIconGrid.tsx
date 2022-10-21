@@ -7,8 +7,8 @@ export default function FolderIconGrid(props: any) {
     const content: FileNode[] = props.content;
     const handleFileNodeAction = props.handleFileNodeAction;
 
-    const fileNodeActionEvent = (e: any, action: FileNodeAction) => {
-        handleFileNodeAction(action)
+    const fileNodeActionEvent = (e: any, item: FileNode) => {
+        handleFileNodeAction(item)
     }
 
     return (
@@ -17,7 +17,7 @@ export default function FolderIconGrid(props: any) {
                 content && 
                 content.map((item: FileNode, index: number) => {
                     return (
-                        <div key={`${item.name}-${index}`} className="folderIconGrid-item" onClick={() => fileNodeActionEvent( (e:any)=> e, item.action) }>
+                        <div key={`${item.name}-${index}`} className="folderIconGrid-item" onClick={() => fileNodeActionEvent( (e:any)=> e, item) }>
                             <div className="folderIconGrid-item-icon">
                                 <img src={`./icons/${item.icon}`} />
                             </div>
