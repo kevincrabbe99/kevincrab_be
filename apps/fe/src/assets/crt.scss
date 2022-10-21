@@ -95,7 +95,7 @@
     opacity: 0;
     z-index: 2;
     pointer-events: none;
-    animation: flicker 0.15s infinite;
+    animation: flicker-heavy 0.15s infinite;
   }
 
 
@@ -189,31 +189,31 @@
   
   @keyframes flicker {
     0% {
-        opacity: 0.27861;
+        opacity: 0.87861;
         }
         5% {
-        opacity: 0.34769;
+        opacity: 0.84769;
         }
         10% {
-        opacity: 0.23604;
+        opacity: 0.83604;
         }
         15% {
         opacity: 0.90626;
         }
         20% {
-        opacity: 0.18128;
+        opacity: 0.78128;
         }
         25% {
         opacity: 0.83891;
         }
         30% {
-        opacity: 0.65583;
+        opacity: 0.75583;
         }
         35% {
-        opacity: 0.67807;
+        opacity: 0.77807;
         }
         40% {
-        opacity: 0.26559;
+        opacity: 0.96559;
         }
         45% {
         opacity: 0.84693;
@@ -222,19 +222,19 @@
         opacity: 0.96019;
         }
         55% {
-        opacity: 0.08594;
+        opacity: 0.88594;
         }
         60% {
-        opacity: 0.20313;
+        opacity: 0.80313;
         }
         65% {
         opacity: 0.71988;
         }
         70% {
-        opacity: 0.53455;
+        opacity: 0.83455;
         }
         75% {
-        opacity: 0.37288;
+        opacity: 0.87288;
         }
         80% {
         opacity: 0.71428;
@@ -246,10 +246,10 @@
         opacity: 0.7003;
         }
         95% {
-        opacity: 0.36108;
+        opacity: 0.96108;
         }
         100% {
-        opacity: 0.24387;
+        opacity: 0.84387;
         }
   }
   
