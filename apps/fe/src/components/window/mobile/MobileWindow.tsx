@@ -59,22 +59,13 @@ export default function Window(props: any) {
     // runs when reorder changes
     useEffect(() => {
         
-        // filtered windows
-        let filteredWindows = windowState.windows.filter((window: WindowConfig) => !window.exited && !window.minimized).reverse()
-
         // position of windowConfig.id in windowState.windows
-        let windowConfigIndex = filteredWindows.findIndex((windowConfig: WindowConfig) => windowConfig.id === props.windowConfig.id)
+        let windowConfigIndex = windowState.windows.filter(window => !window.exited).findIndex((windowConfig: WindowConfig) => windowConfig.id === props.windowConfig.id)
 
         // get index of windowPositions with value = windowConfigIndex
         let windowPositionIndex = windowPositions.findIndex((windowPosition: number) => windowPosition === windowConfigIndex)
 
-
-        // position new window one buffer space above the window above it
-        let newY = windowStackerStartYPos - (windowPositionIndex * windowStackerBufferSpace)
-
-        setY((old) => (newY))
-
-        // setY(windowStackerStartYPos - (filteredWindows.length - windowPositionIndex * windowStackerBufferSpace))
+        setY(windowStackerStartYPos - (windowPositionIndex * windowStackerBufferSpace))
 
     }, [windowPositions])
 

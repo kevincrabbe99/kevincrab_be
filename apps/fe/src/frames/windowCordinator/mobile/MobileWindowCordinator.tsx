@@ -18,7 +18,6 @@ export default function MobileWindowCordinator() {
 
     const [exitedWindowIds, setExitedWindowIds] = useState<string[]>([])
     const [minimizedWindowIds, setMinimizedWindowIds] = useState<string[]>([])
-    const [showingWindows, setShowingWindows] = useState<WindowConfig[]>([])
     
     const exitWindowHadler = (id: string) => {
         setExitedWindowIds([...exitedWindowIds, id])
@@ -63,22 +62,18 @@ export default function MobileWindowCordinator() {
     // used to set window position for mobile
     const [windowPositions, setWindowPositions] = useState<number[]>([])
     useEffect(() => {
-
-        // filter and reverse
-        const filteredWindows = windowState.windows.filter(window => !window.exited && !window.minimized).reverse()
-
         // create empty array of window positions with size 100
         let windowPositionsTemp = Array(100).fill(0)
 
         // get index of windowState.top in windowState.windows
-        let topWindowIndex = filteredWindows.findIndex(window => window.id === windowState.top)
+        let topWindowIndex = windowState.windows.filter(window => !window.exited).findIndex(window => window.id === windowState.top)
         
         // set windowPositionsTemp[0] to topWindowIndex
         windowPositionsTemp[0] = topWindowIndex
 
 
         // loop through windowState.windows with !window.exited
-        filteredWindows.reverse().forEach((window, index) => {
+        windowState.windows.filter(window => !window.exited && !window.minimized).forEach((window, index) => {
             // if index is not topWindowIndex
             if (index != topWindowIndex) {
                 // set windowPositionsTemp[index] to index
@@ -93,34 +88,22 @@ export default function MobileWindowCordinator() {
 
 
     // hide minimized and exited windows
-    // useEffect(() => {
-    //     for (let i = 0; i < windowRefs.length; i++) {
-    //         const currentWindowRef = windowRefs[i].current
-    //         if (!currentWindowRef) { return; }
-    //         if (minimizedWindowIds.includes(currentWindowRef!.id) ||
-    //             exitedWindowIds.includes(currentWindowRef!.id)) {
-    //             currentWindowRef!.style.zIndex = (parseInt(currentWindowRef!.style.zIndex) - 1).toString()
-    //             currentWindowRef!.style.display = "none"
-    //         } else {
-    //             currentWindowRef!.style.display = "block"
-    //         }
-    //     }
-    // }, [minimizedWindowIds, exitedWindowIds])
-    
     useEffect(() => {
         for (let i = 0; i < windowRefs.length; i++) {
             const currentWindowRef = windowRefs[i].current
             if (!currentWindowRef) { return; }
-            if (!showingWindows.map(window => window.id).includes(currentWindowRef!.id)) {
+            if (minimizedWindowIds.includes(currentWindowRef!.id) ||
+                exitedWindowIds.includes(currentWindowRef!.id)) {
                 currentWindowRef!.style.zIndex = (parseInt(currentWindowRef!.style.zIndex) - 1).toString()
                 currentWindowRef!.style.display = "none"
             } else {
                 currentWindowRef!.style.display = "block"
             }
         }
-    }, [showingWindows])
+    }, [minimizedWindowIds, exitedWindowIds])
+    
 
-    // listen for document.documentElement.clientHeight changes
+    // listen for document.documentElement.clientWidth changes
     const [windowHeight, setWindowHeight] = useState(document.documentElement.clientHeight)
     const [nudgerStyle, setNudgerStyle] = useState<CSSProperties>({top: 0})
     const initialWindowHeight = useRef(document.documentElement.clientHeight)
@@ -151,18 +134,14 @@ export default function MobileWindowCordinator() {
 
     }, [windowHeight])
 
-    useEffect(() => {
-        setShowingWindows(windowState.windows.filter(window => !window.exited && !window.minimized))
-    }, [windowState])
-
     return (
         <div className="windowCordinator-wrapper">
          <div className="windowCordinator-nudger" style={nudgerStyle}>
             {
-                showingWindows.reverse().map((windowConfig: WindowConfig, index: number) => {
+                windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
-                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 + index).toString() }} ref={windowRefs[index]}>
+                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
                          
                                     <MobileWindow windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
