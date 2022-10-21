@@ -16,7 +16,7 @@ import { browserWindowConfig } from '../browser/BrowserPage';
 import { documentWindowConfig } from '../document/DocumentPage';
 
 const WINDOW_HEIGHT = 400
-const WINDOW_WIDTH = WINDOW_HEIGHT * .875
+const WINDOW_WIDTH = WINDOW_HEIGHT
 const WINDOW_X = (document.documentElement.clientWidth / 2) - (WINDOW_WIDTH / 2) - 100
 const WINDOW_Y = (document.documentElement.clientHeight / 2) - (WINDOW_HEIGHT / 2) - 100
 
