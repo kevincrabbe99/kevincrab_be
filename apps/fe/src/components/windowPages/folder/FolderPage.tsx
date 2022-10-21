@@ -15,15 +15,21 @@ import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
 import { browserWindowConfig } from '../browser/BrowserPage';
 import { documentWindowConfig } from '../document/DocumentPage';
 
+const WINDOW_HEIGHT = 400
+const WINDOW_WIDTH = WINDOW_HEIGHT * .875
+const WINDOW_X = (document.documentElement.clientWidth / 2) - (WINDOW_WIDTH / 2) - 100
+const WINDOW_Y = (document.documentElement.clientHeight / 2) - (WINDOW_HEIGHT / 2) - 100
+
+
 export const folderWindowConfig: WindowConfig = {
     "type": 3,
     "position": {
-        "x": 200,
-        "y": 150,
+        "x": WINDOW_X,
+        "y": WINDOW_Y,
     },
     "size": {
-        "width": 400,
-        "height": 350
+        "width": WINDOW_WIDTH,
+        "height": WINDOW_HEIGHT
     },
     "title": "Exploring",
     "showXButton": true,

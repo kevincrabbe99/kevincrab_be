@@ -77,7 +77,7 @@
     },
     {
         "name": "Internet",
-        "icon": "internet.ico",
+        "icon": "Earth_16.ico",
         "hoverText": "Open Internet",
         "action": {
             "isExternal": 0,

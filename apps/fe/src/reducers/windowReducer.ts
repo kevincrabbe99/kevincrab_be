@@ -114,6 +114,12 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                     return window
                 }
             })
+
+            // if no windows exist, return initial state
+            if (newWindowsWithoutPayload.length === 0) {
+                return initialState;
+            }
+
             return {
                 ...state,
                 windows: newWindowsWithoutPayload
@@ -174,8 +180,6 @@ new windows with minimized if:
                         return window
                     }
                 })
-
-               
                 
                 return {
                     windows: newWindowsWithNewFocus,
@@ -183,6 +187,13 @@ new windows with minimized if:
                 }
             }
             return state
+        case "RESET_WINDOWS":
+
+            return {
+                windows: []
+            }
+
+            break;
         default:
             return state;
     }   

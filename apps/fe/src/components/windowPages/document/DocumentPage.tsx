@@ -6,16 +6,20 @@ import { ToolbarConfig, ToolbarSubmenuConfig } from '../../../types/ToolbarConfi
 import { WindowConfig } from '../../../reducers/windowReducer';
 
 
+const DOCUMENT_HEIGHT = ((document.documentElement.clientHeight) * 0.9) - 80
+const DOCUMENT_WIDTH = (DOCUMENT_HEIGHT / 11) * 8.5
+const DOCUMENT_X = (document.documentElement.clientWidth / 2) - (DOCUMENT_WIDTH / 2) - 40
+const DOCUMENT_Y = 40
 
 export const documentWindowConfig: WindowConfig = {
   "type": 2,
   "position": {
-      "x": 200,
-      "y": 100,
+      "x": DOCUMENT_X,
+      "y": DOCUMENT_Y,
   },
   "size": {
-      "width": 450,
-      "height": 600
+      "width": DOCUMENT_WIDTH,
+      "height": DOCUMENT_HEIGHT
   },
   "title": "Resume - Kevin Crabbe.pdf",
   "showXButton": true,

@@ -26,6 +26,8 @@ export default function StartMenu(props: any) {
       switch(action.destination) {
             case DestinationActionTriggers.SHUTDOWN:
                 console.log("shutdown")
+                // delete every window
+                dispatch({type: "RESET_WINDOWS"})
                 dispatch({type: "SET_STATE", payload: FrameStatesEnum.SHUTDOWN});
                 break;
             case DestinationActionTriggers.OPEN_BROWSER:
