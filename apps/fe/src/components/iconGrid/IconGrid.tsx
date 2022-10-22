@@ -1,7 +1,7 @@
 import React from 'react'
 import "./iconGrid.scss"
 
-import iconJson from '../../assets/json/icons.json'
+// import iconJson from '../../assets/json/icons.json'
 import { Alignment, Icon, IconActionType, IconGridPosition } from '../../types/Icon'
 import { DestinationActionTriggers } from '../../types/DestinationActionTriggers';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 import { documentWindowConfig } from '../windowPages/document/DocumentPage';
+import { mapContentDataToFolderData } from '../windowPages/folder/util/mapContentDataToFolderData';
+import { FileNode } from '../../types/FileNode';
 
 
 const MAX_ROWS = 5;
@@ -57,7 +59,7 @@ export default function IconGrid() {
         <div className="icon-grid-right">
             <table>
             {
-                [...Array(MAX_COLS)].map((ely, y) => (
+                [...Array(MAX_ROWS)].map((ely, y) => (
                     
                     <IconGridRow y={y} alignment={1}  handleDestinationAction={handleDestinationAction} />
                 
@@ -87,9 +89,9 @@ function IconGridRow(props: any) {
 function RenderIconAtPosition_Proxy(props: any) { 
     let x = props.x; let y = props.y;
     let alignment = props.alignment;     
-    const icon: Icon | undefined = getIconAtPosition(x, y, alignment);
+    const icon: FileNode | undefined = getIconAtPosition(x, y, alignment);
     if (icon && !icon.isHidden) {
-        if (icon.action.isExternal) {
+        if (icon.action && icon.action.isExternal) {
             return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
         } else {
             return <RenderIconWithInternalAction x={x} y={y} alignment={alignment} icon={icon} handleDestinationAction={props.handleDestinationAction} />
@@ -130,15 +132,17 @@ function RenderIconWithInternalAction(props: any) {
         )
 }
 
-function getIconAtPosition(x: number, y: number, alignment: Alignment) : Icon | undefined {
+function getIconAtPosition(x: number, y: number, alignment: Alignment) : FileNode | undefined {
     // align from right 
     if (alignment == Alignment.RIGHT) {
         x = (MAX_COLS - 1) - x
     }
 
+    let iconJson = mapContentDataToFolderData("Desktop");
+
     // search for icon
     for (var i = 0; i < iconJson.length; i++) {
-        let curIconPos = iconJson[i].position;
+        let curIconPos = iconJson[i].position!;
         if (curIconPos.x == x && curIconPos.y == y && curIconPos.alignment == alignment) {
             return iconJson[i];
         }

@@ -21,8 +21,8 @@
 
 .icon-grid-wrapper td {
     width: 4em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
     height: 5em;
     z-index: -30;
 }
@@ -85,4 +85,17 @@
 .icon-wrapper img[src*="Notepad_writing.ico"] {
     position:relative;
     left: 0.1em;
+}
+
+.icon-wrapper img[src*="my_documents.ico"] {
+    position:relative;
+    left: 0.95em;
+    // zoom in on image
+    transform: scale(1.3);
+}
+
+
+.icon-wrapper img[src*="trash_full.ico"] {
+    position:relative;
+    left: 0.35em;
 }

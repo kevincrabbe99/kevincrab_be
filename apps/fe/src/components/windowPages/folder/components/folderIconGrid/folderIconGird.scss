@@ -19,6 +19,17 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 0.2em;
+    cursor: pointer;
+}
+
+.folderIconGrid-item-icon {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 
 .folderIconGrid-item-icon img {
@@ -29,4 +40,10 @@
 .folderIconGrid-item-label {
     font-size: 0.55em;
     text-align: center;
+}
+
+
+.folderIconGrid-item-icon img[src*="Desktop.ico"] {
+    position:relative;
+    top: -0.15em;
 }

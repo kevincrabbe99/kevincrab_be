@@ -6,7 +6,7 @@ import MyDocumentsJson from "../../../../assets/json/folderFillers/My_Documents.
 import C_DRIVEJson from "../../../../assets/json/folderFillers/C_DRIVE.json"
 import DEF_USERJson from "../../../../assets/json/folderFillers/DEF_USER.json"
 
-import files from "../../../../assets/json/files.json"
+import filesJson from "../../../../assets/json/files.json" 
 
 
 export const mapContentDataToFolderData = (contentData: string): FileNode[] => {
@@ -47,9 +47,11 @@ export const mapContentDataToFolderData = (contentData: string): FileNode[] => {
 
 export const getFileNodeFromName = (name: string): FileNode | null => {
   var file = null;
+  var files: FileNode[] = filesJson;
 
   for (var i = 0; i < files.length; i++) {
-    if (files[i].name === name) {
+    if (files[i].name === name &&
+        !files[i].isShortcut) {
       return files[i];
     } else {
       file = getFileNodeFromNameInner(name, files[i]);
@@ -64,7 +66,8 @@ export const getFileNodeFromName = (name: string): FileNode | null => {
 
 const getFileNodeFromNameInner = (name: string, file: FileNode): FileNode | null => {
       
-    if (file.name === name) {
+    if (file.name === name &&
+        !file.isShortcut) {
       return file;
     }
   

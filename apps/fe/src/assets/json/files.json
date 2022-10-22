@@ -25,82 +25,225 @@
                         "icon": "Folder.ico",
                         "hoverText": "Open kcrabbe",
                         "type": 0,
-                        "path": "C://Users//kcrabbe",
+                        "path": "C://kcrabbe/",
                         "children": [
                             {
-                                "name": "Personal Website",
-                                "icon": "web_shortcut.ico",
-                                "hoverText": "Open Personal Website",
-                                "type": 1,
-                                "path": "C://kcrabbe//Personal Website",
-                                "action": {
-                                    "isExternal": false,
-                                    "destination": "OPEN_BROWSER",
-                                    "param": "https://kevincrab.be"
-                                }
+                                "name": "Desktop",
+                                "icon": "Desktop.ico",
+                                "hoverText": "Open Desktop",
+                                "type": 0,
+                                "path": "C://kcrabbe/Desktop",
+                                "children": [
+                                    {
+                                        "name": "My Computer",
+                                        "icon": "my_computer.png",
+                                        "hoverText": "Open My Computer",
+                                        "type": 0,
+                                        "isShortcut": true,
+                                        "path": "",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "My Computer"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 0,
+                                            "y": 1
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
+                                        "name": "My Documents",
+                                        "icon": "my_documents.ico",
+                                        "hoverText": "Open My Documents",
+                                        "type": 0,
+                                        "isShortcut": true,
+                                        "path": "C://kcrabbe/My Documents",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "My Documents"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 0,
+                                            "y": 2
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
+                                        "name": "Internet",
+                                        "icon": "Earth_16.ico",
+                                        "hoverText": "Open Internet",
+                                        "type": 0,
+                                        "path": "C://Windows/Program Files/Internet",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_BROWSER",
+                                            "param": "https://bing.com"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 0,
+                                            "y": 3
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
+                                        "name": "Notepad",
+                                        "icon": "Notepad_writing.ico",
+                                        "hoverText": "New Notepad Document",
+                                        "type": 0,
+                                        "path": "C://Windows/Program Files/Notepad",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_DOCUMENT"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 1,
+                                            "y": 2
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
+                                        "name": "LinkedIn",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open LinkedIn",
+                                        "type": 0,
+                                        "path": "https://www.linkedin.com/in/kevincrab-be/",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://www.linkedin.com/in/kevincrab-be/"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 2
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
+                                        "name": "reach out!",
+                                        "icon": "Mail.ico",
+                                        "hoverText": "Contact Kevin!",
+                                        "type": 0,
+                                        "path": "C://Windows/Program Files/Messenger",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_MESSENGER"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 3
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
+                                        "name": "Recycle Bin",
+                                        "icon": "trash_full.ico",
+                                        "hoverText": "Open Recycle Bin",
+                                        "type": 0,
+                                        "path": "C://Windows/Recycle Bin",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "Recycle Bin"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 0
+                                        },
+                                        "isHidden": false
+                                    }
+                                ]
                             },
                             {
-                                "name": "iOS App",
-                                "icon": "web_shortcut.ico",
-                                "hoverText": "Open Personal Website",
-                                "type": 1,
-                                "path": "C://kcrabbe//Personal Website",
-                                "action": {
-                                    "isExternal": false,
-                                    "destination": "OPEN_BROWSER",
-                                    "param": "https://apple.co/39pU9Of"
-                                }
+                                "name": "My Documents",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open My Documents",
+                                "type": 0,
+                                "path": "C://My Documents",
+                                "children": [
+                                    {
+                                        "name": "Kevin Crabbe Resume",
+                                        "icon": "WordPad_document.ico",
+                                        "hoverText": "Open Kevin Crabbe Resume",
+                                        "type": 1,
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_DOCUMENT",
+                                            "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
+                                        }
+                                    },
+                                    {
+                                        "name": "Personal Website",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Personal Website",
+                                        "type": 1,
+                                        "path": "C://kcrabbe//Personal Website",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_BROWSER",
+                                            "param": "https://kevincrab.be"
+                                        }
+                                    },
+                                    {
+                                        "name": "iOS App",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Personal Website",
+                                        "type": 1,
+                                        "path": "C://kcrabbe//Personal Website",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_BROWSER",
+                                            "param": "https://apple.co/39pU9Of"
+                                        }
+                                    },
+                                    {
+                                        "name": "Github",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins Github",
+                                        "type": 2,
+                                        "path": "C://kcrabbe/Github",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_BROWSER",
+                                            "param": "https://github.com/kevincrabbe99"
+                                        }
+                                    },
+                                    {
+                                        "name": "LinkedIn",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins LinkedIn",
+                                        "type": 1,
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_BROWSER",
+                                            "param": "https://www.linkedin.com/in/kevincrab-be/"
+                                        }
+                                    }
+
+                                ]
                             },
                             {
-                                "name": "Github",
-                                "icon": "web_shortcut.ico",
-                                "hoverText": "Open Kevins Github",
-                                "type": 2,
-                                "action": {
-                                    "isExternal": false,
-                                    "destination": "OPEN_BROWSER",
-                                    "param": "https://github.com/kevincrabbe99"
-                                }
+                                "name": "My Music",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open My Music",
+                                "type": 0,
+                                "path": "C://kcrabbe/My Music"
                             },
                             {
-                                "name": "LinkedIn",
-                                "icon": "web_shortcut.ico",
-                                "hoverText": "Open Kevins LinkedIn",
-                                "type": 1,
-                                "action": {
-                                    "isExternal": false,
-                                    "destination": "OPEN_BROWSER",
-                                    "param": "https://www.linkedin.com/in/kevincrab-be/"
-                                }
+                                "name": "My Photos",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open My Photos",
+                                "type": 0,
+                                "path": "C://kcrabbe/My Photos"
                             }
                         ]
-                    },
-                    {
-                        "name": "My Documents",
-                        "icon": "Folder.ico",
-                        "hoverText": "Open My Documents",
-                        "type": 0,
-                        "path": "C://My Documents",
-                        "children": [
-                            {
-                                "name": "Kevin Crabbe Resume",
-                                "icon": "WordPad_document.ico",
-                                "hoverText": "Open Kevin Crabbe Resume",
-                                "type": 1,
-                                "action": {
-                                    "isExternal": false,
-                                    "destination": "OPEN_DOCUMENT",
-                                    "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "name": "My Music",
-                        "icon": "Folder.ico",
-                        "hoverText": "Open My Music",
-                        "type": 0,
-                        "path": "C://My Music"
                     },
                     {
                         "name": "Windows",
