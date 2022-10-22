@@ -1,3 +1,4 @@
+import { IconGridPosition } from "./Icon";
 
 export enum FileNodeType {
     FOLDER = 0,
@@ -8,7 +9,7 @@ export enum FileNodeType {
 export interface FileNodeAction {
     isExternal: boolean,
     destination: string,
-    param: string
+    param?: string
 }
 
 export interface FileNode {
@@ -19,4 +20,7 @@ export interface FileNode {
     type: FileNodeType;
     action?: FileNodeAction;
     children?: FileNode[];
+    position?: IconGridPosition;
+    isHidden?: boolean | undefined;
+    isShortcut?: boolean | undefined;
 }
