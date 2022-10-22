@@ -10,7 +10,7 @@ import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 import { documentWindowConfig } from '../windowPages/document/DocumentPage';
 import { mapContentDataToFolderData } from '../windowPages/folder/util/mapContentDataToFolderData';
-import { FileNode } from '../../types/FileNode';
+import { FileNode, FileNodeType } from '../../types/FileNode';
 
 
 const MAX_ROWS = 5;
@@ -91,7 +91,7 @@ function RenderIconAtPosition_Proxy(props: any) {
     let alignment = props.alignment;     
     const icon: FileNode | undefined = getIconAtPosition(x, y, alignment);
     if (icon && !icon.isHidden) {
-        if (icon.action && icon.action.isExternal) {
+        if (icon.type === FileNodeType.EXTERNAL) {
             return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
         } else {
             return <RenderIconWithInternalAction x={x} y={y} alignment={alignment} icon={icon} handleDestinationAction={props.handleDestinationAction} />

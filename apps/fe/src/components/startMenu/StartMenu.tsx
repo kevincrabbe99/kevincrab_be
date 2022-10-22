@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { StartMenuActionType, StartMenuItem } from '../../types/StartMenuItem'
 import "./startMenu.scss"
 
-import startMenuJson from '../../assets/json/start_menu.json'
+// import startMenuJson from '../../assets/json/start_menu.json'
 import { DestinationActionTriggers } from '../../types/DestinationActionTriggers'
 import { useDispatch } from 'react-redux'
 import { FrameStatesEnum } from '../../reducers/frameReducer'
@@ -10,6 +10,8 @@ import { fromEvent, map } from 'rxjs'
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage'
 import { folderWindowConfig } from '../windowPages/folder/FolderPage'
 import { documentWindowConfig } from '../windowPages/document/DocumentPage'
+import { mapContentDataToFolderData } from '../windowPages/folder/util/mapContentDataToFolderData'
+import { FileNode, FileNodeType } from '../../types/FileNode'
 
 
 
@@ -22,8 +24,15 @@ export default function StartMenu(props: any) {
 
   const dispatch = useDispatch();
 
-  const handleDestinationAction = (action: StartMenuActionType) => {
-      switch(action.destination) {
+  const handleDestinationAction = (item: FileNode) => {
+
+    if (item.type == FileNodeType.FOLDER) {
+        console.log("opeing folder: ", item)
+        folderWindowConfig.contentData = item.name;
+        dispatch({ type: "ADD_WINDOW", payload: folderWindowConfig });
+    } else {
+        const action = item.action!
+        switch(action.destination) {
             case DestinationActionTriggers.SHUTDOWN:
                 console.log("shutdown")
                 // delete every window
@@ -47,10 +56,13 @@ export default function StartMenu(props: any) {
                 break;
             default:
                 break;
-      }
+        }
+    }
 
-      setIsStartMenuOpen(false)
+    setIsStartMenuOpen(false)
   }
+
+  const startMenuNodes: FileNode[] = mapContentDataToFolderData("Start Menu")
 
   return (
     <div className="startMenu-wrapper">
@@ -64,9 +76,9 @@ export default function StartMenu(props: any) {
             <div className="startMenu-list">
                 <ul>
                     {
-                        startMenuJson.map((item: StartMenuItem, index: number) => 
+                        startMenuNodes.map((item: FileNode, index: number) => 
                             // if last item in list
-                            index === startMenuJson.length - 1 ?
+                            index === startMenuNodes.length - 1 ?
                             <>
                                 <li className="last-item"> 
                                 </li>
@@ -83,7 +95,7 @@ export default function StartMenu(props: any) {
   )
 }
 
-const renderStartMenuItem = (item: StartMenuItem, setSelectedSubmenu: React.Dispatch<React.SetStateAction<string | null>>, selectedSubmenu?: string | null) => {
+const renderStartMenuItem = (item: FileNode, setSelectedSubmenu: React.Dispatch<React.SetStateAction<string | null>>, selectedSubmenu?: string | null) => {
     return (
         <>
             <div className="startMenu-list-item-icon">
@@ -93,7 +105,7 @@ const renderStartMenuItem = (item: StartMenuItem, setSelectedSubmenu: React.Disp
                 <label>{item.name}</label>
             </div>
             {
-                item.submenu ? <>
+                item.children ? <>
                 <div className="startMenu-list-item-arrow">
                     <label className="right-tick">&#9658;</label>
                 </div>
@@ -103,58 +115,69 @@ const renderStartMenuItem = (item: StartMenuItem, setSelectedSubmenu: React.Disp
     )
 }
 
-const renderStartMenuItemActionWrapper = (item: StartMenuItem, setSelectedSubmenu: React.Dispatch<React.SetStateAction<string | null>>, handleDestinationAction: any, selectedSubmenu?: string | null) => {
-    // is an internal action item
-    if (item.action.isExternal === 0 && !item.submenu) {
-        return (
-            <li>
-                <div className="startMenu-list-item" onClick={() => handleDestinationAction(item.action)}>
-                    {renderStartMenuItem(item, setSelectedSubmenu, selectedSubmenu)}
-                </div>
-                {
-                    item.submenu &&
-                    item.name == selectedSubmenu ? renderStartMenuSubmenu(item.submenu, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction) : null
-                }
-            </li>
-        )
-    // is an external link with no submenu
-    } else if (!item.submenu && item.action.isExternal === 1) {
-        return (
-            <li>
-                <a href = {item.action.destination as string}>
-                    <div className="startMenu-list-item">
-                        {renderStartMenuItem(item, setSelectedSubmenu, selectedSubmenu)}
-                    </div>
-                </a>
-                {
-                    item.submenu &&
-                    item.name == selectedSubmenu ? renderStartMenuSubmenu(item.submenu, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction) : null
-                }
-            </li>
-        )
-    // is an item with a submenu
-    } else {
+const renderStartMenuItemActionWrapper = (item: FileNode, setSelectedSubmenu: React.Dispatch<React.SetStateAction<string | null>>, handleDestinationAction: any, selectedSubmenu?: string | null) => {
+   
+    if (!item) { return; }
+
+    if (item.type == FileNodeType.FOLDER) {
         return (
             <li>
                 <div className="startMenu-list-item" onClick={() => setSelectedSubmenu((item.name == selectedSubmenu ? null : item.name ))}>
                     {renderStartMenuItem(item, setSelectedSubmenu, selectedSubmenu)}
                 </div>
                 {
-                    item.submenu &&
-                    item.name == selectedSubmenu ? renderStartMenuSubmenu(item.submenu, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction) : null
+                    item.children &&
+                    item.name == selectedSubmenu ? renderStartMenuSubmenu(item.children, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction) : null
+                }
+            </li>
+        )
+    } else if (item.type == FileNodeType.INTERNAL) {
+        return (
+            <li>
+                <div className="startMenu-list-item" onClick={() => handleDestinationAction(item)}>
+                    {renderStartMenuItem(item, setSelectedSubmenu, selectedSubmenu)}
+                </div>
+                {
+                    item.children &&
+                    item.name == selectedSubmenu ? renderStartMenuSubmenu(item.children, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction) : null
+                }
+            </li>
+        )
+    } else if (item.type == FileNodeType.EXTERNAL) {
+        return (
+            <li>
+                <a href = {item.action!.destination as string}>
+                    <div className="startMenu-list-item">
+                        {renderStartMenuItem(item, setSelectedSubmenu, selectedSubmenu)}
+                    </div>
+                </a>
+                {
+                    item.children &&
+                    item.name == selectedSubmenu ? renderStartMenuSubmenu(item.children, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction) : null
                 }
             </li>
         )
     }
+    
+    // // is an internal action item
+    // if (item.action.isExternal === 0 && !item.submenu) {
+        
+    // // is an external link with no submenu
+    // } else if (!item.submenu && item.action.isExternal === 1) {
+        
+    // // is an item with a submenu
+    // } else {
+        
+    // }
 }
 
 
-const renderStartMenuSubmenu = (submenu: StartMenuItem[], setSelectedSubmenu: React.Dispatch<React.SetStateAction<string | null>>, handleDestinationAction: any) => {
+const renderStartMenuSubmenu = (submenu: FileNode[], setSelectedSubmenu: React.Dispatch<React.SetStateAction<string | null>>, handleDestinationAction: any) => {
     return (
         <div className="startMenu-list-item-submenu">
             <ul>
                 {
-                    submenu.map((item: StartMenuItem) => 
+                    submenu.map((item: FileNode) => 
                        renderStartMenuItemActionWrapper(item, setSelectedSubmenu = setSelectedSubmenu, handleDestinationAction)
                     )
                 }

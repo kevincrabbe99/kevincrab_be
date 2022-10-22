@@ -14,6 +14,8 @@ import { useDispatch } from 'react-redux';
 import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
 import { browserWindowConfig } from '../browser/BrowserPage';
 import { documentWindowConfig } from '../document/DocumentPage';
+import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
+import { FrameStatesEnum } from '../../../reducers/frameReducer';
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -84,17 +86,23 @@ export default function FolderPage(props: any) {
         payload: folderWindowConfig
       })
     } else if (node.type === FileNodeType.INTERNAL) {
-      if (action.destination === "OPEN_DOCUMENT") {
+      if (action.destination === DestinationActionTriggers.OPEN_DOCUMENT) {
         documentWindowConfig.contentData = action.param;
         dispatch({
           type: "ADD_WINDOW",
           payload: documentWindowConfig
         })
-      } else if (action.destination === "OPEN_BROWSER") {
+      } else if (action.destination === DestinationActionTriggers.OPEN_BROWSER) {
         browserWindowConfig.contentData = action.param;
         dispatch({
           type: "ADD_WINDOW",
           payload: browserWindowConfig
+        })
+      } else if (action.destination === DestinationActionTriggers.SHUTDOWN) {
+        dispatch({type: "RESET_WINDOWS"})
+        dispatch({
+          type: "SET_STATE",
+          payload: FrameStatesEnum.SHUTDOWN
         })
       }
     } else if (node.type === FileNodeType.EXTERNAL) {
