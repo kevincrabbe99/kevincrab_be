@@ -10,8 +10,11 @@ import { fromEvent, map } from 'rxjs'
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage'
 import { folderWindowConfig } from '../windowPages/folder/FolderPage'
 import { documentWindowConfig } from '../windowPages/document/DocumentPage'
-import { mapContentDataToFolderData } from '../windowPages/folder/util/mapContentDataToFolderData'
+import { mapContentDataToFolderData } from '../../util/mapContentDataToFolderData'
 import { FileNode, FileNodeType } from '../../types/FileNode'
+import { windowDispatcher } from '../../dispatchers/windowDispatcher'
+import { frameDispatcher } from '../../dispatchers/frameDispatcher'
+import { WindowTypesEnum } from '../../reducers/windowReducer'
 
 
 
@@ -25,36 +28,34 @@ export default function StartMenu(props: any) {
   const dispatch = useDispatch();
 
   const handleDestinationAction = (item: FileNode) => {
-
-    if (item.type == FileNodeType.FOLDER) {
+    
+    if (item.type === FileNodeType.FOLDER) {
         console.log("opeing folder: ", item)
-        folderWindowConfig.contentData = item.name;
-        dispatch({ type: "ADD_WINDOW", payload: folderWindowConfig });
+        windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, item.name)
     } else {
         const action = item.action!
         switch(action.destination) {
             case DestinationActionTriggers.SHUTDOWN:
                 console.log("shutdown")
                 // delete every window
-                dispatch({type: "RESET_WINDOWS"})
-                dispatch({type: "SET_STATE", payload: FrameStatesEnum.SHUTDOWN});
+                windowDispatcher.deleteAllWindows(dispatch)
+                frameDispatcher.shutdown(dispatch)
                 break;
             case DestinationActionTriggers.OPEN_BROWSER:
                 console.log("open browser")
-                browserWindowConfig.contentData = action.param;
-                dispatch({type: "ADD_WINDOW", payload: browserWindowConfig});
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER ,action.param)
                 break;
             case DestinationActionTriggers.OPEN_FOLDER:
                 console.log("open folder")
-                folderWindowConfig.contentData = action.param;
-                dispatch({type: "ADD_WINDOW", payload: folderWindowConfig});
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER ,action.param)
                 break;
             case DestinationActionTriggers.OPEN_DOCUMENT:
                 console.log("open document")
-                documentWindowConfig.contentData = action.param;
-                dispatch({type: "ADD_WINDOW", payload: documentWindowConfig});
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT ,action.param)
                 break;
             default:
+                console.log("Unrecognized action: ", action, " \n Using Fallback Window")
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
                 break;
         }
     }

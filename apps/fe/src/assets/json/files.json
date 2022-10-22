@@ -343,7 +343,7 @@
                                         "name": "My Documents",
                                         "icon": "my_documents.ico",
                                         "hoverText": "Open Documents",
-                                        "type": 0,
+                                        "type": 1,
                                         "isShortcut": true,
                                         "path": "C://kcrabbe/My Documents",
                                         "action": {

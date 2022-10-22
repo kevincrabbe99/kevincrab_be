@@ -9,8 +9,10 @@ import { useDispatch } from 'react-redux';
 import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 import { documentWindowConfig } from '../windowPages/document/DocumentPage';
-import { mapContentDataToFolderData } from '../windowPages/folder/util/mapContentDataToFolderData';
+import { mapContentDataToFolderData } from '../../util/mapContentDataToFolderData';
 import { FileNode, FileNodeType } from '../../types/FileNode';
+import { windowDispatcher } from '../../dispatchers/windowDispatcher';
+import { WindowTypesEnum } from '../../reducers/windowReducer';
 
 
 const MAX_ROWS = 5;
@@ -25,19 +27,18 @@ export default function IconGrid() {
     const handleDestinationAction = (action: IconActionType) => {
         switch(action.destination) {
             case DestinationActionTriggers.OPEN_DOCUMENT:
-                documentWindowConfig.contentData = action.param;
-                dispatch({type: "ADD_WINDOW", payload: documentWindowConfig});
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT ,action.param)
                 break;
             case DestinationActionTriggers.OPEN_FOLDER:
-                folderWindowConfig.contentData = action.param;
-                dispatch({type: "ADD_WINDOW", payload: folderWindowConfig});
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER ,action.param)
                 break;
             case DestinationActionTriggers.OPEN_BROWSER:
-                browserWindowConfig.contentData = action.param;
-                dispatch({type: "ADD_WINDOW", payload: browserWindowConfig});
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER ,action.param)
                 break;
             default:
-                 break;
+                console.log("Unrecognized action: ", action, " \n Using Fallback Window")
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
+                break;
         }
     }
 

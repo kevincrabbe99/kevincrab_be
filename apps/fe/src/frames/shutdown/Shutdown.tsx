@@ -4,6 +4,7 @@ import "./shutdown.scss"
 import logJson from "../../assets/json/shutdown_cli_items.json"
 import { useDispatch } from 'react-redux';
 import { FrameStatesEnum } from '../../reducers/frameReducer';
+import { frameDispatcher } from '../../dispatchers/frameDispatcher';
 
 interface LogItem {
     text: string,
@@ -22,7 +23,7 @@ export default function Shutdown() {
     useEffect(() => {
         const handleKeyPress = (e: any) => {
             console.log("key pressed")
-            dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN});
+            frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)
         }
         window.addEventListener("keydown", handleKeyPress)
         return () => {
@@ -37,14 +38,14 @@ export default function Shutdown() {
         }, 250);
 
         if (logPosition > exitAfterLogTimeSec * 4) {
-            dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})
+            frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)
         }
 
         return () => clearInterval(interval);
     }, [logPosition]);
 
     return (
-        <div className="shutdown-wrapper" onClick={() => dispatch({type: "SET_STATE", payload: FrameStatesEnum.LOGIN})}>
+        <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)}>
             <div className="shutdown-wrapper-vertical"> 
                 <div className="shutdown-cli-output">
                     <ul>

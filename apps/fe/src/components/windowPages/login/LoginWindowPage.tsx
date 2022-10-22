@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { login } from '../../../actions/frameActions';
+import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import "./loginWindowPage.scss"
 
@@ -9,11 +10,11 @@ export default function LoginWindowPage() {
     const dispatch = useDispatch();
 
     const loginSubmit = (e: any) => {
-        dispatch({type: "SET_STATE", payload: FrameStatesEnum.DESKTOP});
+        frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
     }
 
     const loginCancel = (e: any) => {
-        dispatch({type: "SET_STATE", payload: FrameStatesEnum.SHUTDOWN});
+        frameDispatcher.setState(dispatch, FrameStatesEnum.SHUTDOWN)
     }
 
     return (

@@ -6,7 +6,12 @@ export enum WindowTypesEnum {
     WEB = 1,
     DOCUMENT = 2,
     FOLDER = 3,
-    BROWSER = 4
+    BROWSER = 4,
+    SETTINGS = 5,
+    RUN = 6,
+    ABOUT = 7,
+    HELP = 8,
+    FALLBACK=9
 }  
 
 export type WindowPosition = {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 import { WindowConfig, WindowState } from '../../reducers/windowReducer';
 import ClockBox from './components/clockBox/ClockBox';
 import "./taskbar.scss"
@@ -25,8 +26,8 @@ export default function Taskbar( props: any ) {
     const taskBarItemCapacity = viewPortWindowWidth / taskBarItemWidth
 
     const selectTaskbarPillEvent = (id: string): void => {
-        // dispatch({type: "FOCUS_WINDOW", payload: id})
-        dispatch({type: "MINIMIZE_WINDOW", payload: id})
+        windowDispatcher.focusWindow(dispatch, id)
+        //  windowDispatcher.minimizeWindow(dispatch, id)
     }
 
     const isSelected = (window: WindowConfig) : boolean => {
