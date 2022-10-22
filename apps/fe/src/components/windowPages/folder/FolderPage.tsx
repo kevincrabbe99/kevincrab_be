@@ -15,6 +15,7 @@ import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
 import { browserWindowConfig } from '../browser/BrowserPage';
 import { documentWindowConfig } from '../document/DocumentPage';
 import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
+import { FrameStatesEnum } from '../../../reducers/frameReducer';
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -96,6 +97,12 @@ export default function FolderPage(props: any) {
         dispatch({
           type: "ADD_WINDOW",
           payload: browserWindowConfig
+        })
+      } else if (action.destination === DestinationActionTriggers.SHUTDOWN) {
+        dispatch({type: "RESET_WINDOWS"})
+        dispatch({
+          type: "SET_STATE",
+          payload: FrameStatesEnum.SHUTDOWN
         })
       }
     } else if (node.type === FileNodeType.EXTERNAL) {

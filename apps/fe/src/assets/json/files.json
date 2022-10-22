@@ -111,7 +111,7 @@
                                         "name": "LinkedIn",
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open LinkedIn",
-                                        "type": 0,
+                                        "type": 2,
                                         "path": "https://www.linkedin.com/in/kevincrab-be/",
                                         "action": {
                                             "isExternal": true,
@@ -265,6 +265,14 @@
                         "type": 0,
                         "path": "C://Windows",
                         "children":[
+                            {
+                                "name": "test",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open test",
+                                "type": 0,
+                                "path": "C://Windows/test"
+            
+                            },
                             {    
                                 "name": "Start Menu",
                                 "icon": "Folder.ico",
@@ -335,7 +343,7 @@
                                         "name": "My Documents",
                                         "icon": "my_documents.ico",
                                         "hoverText": "Open Documents",
-                                        "type": 1,
+                                        "type": 0,
                                         "isShortcut": true,
                                         "path": "C://kcrabbe/My Documents",
                                         "action": {
