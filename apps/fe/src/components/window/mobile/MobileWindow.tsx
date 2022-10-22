@@ -5,6 +5,7 @@ import "./mobileWindow.scss"
 
 import {isMobile} from 'react-device-detect';
 import { renderWindowContent } from '../WindowContent';
+import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 
 
 
@@ -82,7 +83,7 @@ export default function Window(props: any) {
     // add click event listener to windowRef
     useEffect(() => {
         const windowSelectEvent = (e: any) => {
-             dispatch({type: "FOCUS_WINDOW", payload: windowConfig.id})
+            windowDispatcher.focusWindow(dispatch, windowConfig.id!)
         }
 
         if (windowRef.current) {

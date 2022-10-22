@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { WindowConfig } from '../../../reducers/windowReducer';
+import { WindowConfig, WindowTypesEnum } from '../../../reducers/windowReducer';
 import { ToolbarConfig, ToolbarSubmenuConfig } from '../../../types/ToolbarConfig';
 import folderToolbarJson from "../../../assets/json/toolsbars/folderToolbarConfig.json"
 
@@ -16,6 +16,8 @@ import { browserWindowConfig } from '../browser/BrowserPage';
 import { documentWindowConfig } from '../document/DocumentPage';
 import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
 import { FrameStatesEnum } from '../../../reducers/frameReducer';
+import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
+import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -76,70 +78,23 @@ export default function FolderPage(props: any) {
   }
 
   const handleFileNodeAction = (node: FileNode) => {
+    
     let action = node.action!;
     if (node.type === FileNodeType.FOLDER) {
-
-      console.log("opening windoow folder: ", node)
-      folderWindowConfig.contentData = node.name;
-      dispatch({
-        type: "ADD_WINDOW",
-        payload: folderWindowConfig
-      })
+      windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, node.name)
     } else if (node.type === FileNodeType.INTERNAL) {
       if (action.destination === DestinationActionTriggers.OPEN_DOCUMENT) {
-        documentWindowConfig.contentData = action.param;
-        dispatch({
-          type: "ADD_WINDOW",
-          payload: documentWindowConfig
-        })
+        windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT, action.param)
       } else if (action.destination === DestinationActionTriggers.OPEN_BROWSER) {
-        browserWindowConfig.contentData = action.param;
-        dispatch({
-          type: "ADD_WINDOW",
-          payload: browserWindowConfig
-        })
+        windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER, action.param)
       } else if (action.destination === DestinationActionTriggers.SHUTDOWN) {
-        dispatch({type: "RESET_WINDOWS"})
-        dispatch({
-          type: "SET_STATE",
-          payload: FrameStatesEnum.SHUTDOWN
-        })
+        windowDispatcher.deleteAllWindows(dispatch)
+        frameDispatcher.shutdown(dispatch)
       }
     } else if (node.type === FileNodeType.EXTERNAL) {
       let url = action.param;
       window.open(url, '_blank');
     }
-
-    // if (node.action) {
-    //   if (!action.isExternal) {
-    //     if (action.destination === "OPEN_FOLDER") {
-    //       dispatch({
-    //         type: "ADD_WINDOW",
-    //         payload: {
-    //           ...folderWindowConfig,
-    //           contentData: action.param
-    //         }
-    //       })
-    //     } else if (action.destination == "OPEN_BROWSER") {
-    //       dispatch({
-    //         type: "ADD_WINDOW",
-    //         payload: {
-    //           ...browserWindowConfig,
-    //           contentData: action.param
-    //         }
-    //       })
-    //     } else  {
-    //       dispatch({
-    //         type: "ADD_WINDOW",
-    //         payload: {
-    //           ...documentWindowConfig,
-    //           contentData: action.param
-    //         }
-    //       })
-    //     }
-  
-    //   }
-    // }
   
   }
 

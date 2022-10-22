@@ -7,6 +7,7 @@ import "./windowCordinator.scss"
 
 import {isMobile} from 'react-device-detect';
 import MobileWindow from '../../components/window/mobile/MobileWindow';
+import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 
 export default function WindowCordinator() {
 
@@ -22,12 +23,12 @@ export default function WindowCordinator() {
     
     const exitWindowHadler = (id: string) => {
         setExitedWindowIds([...exitedWindowIds, id])
-        dispatch({type: "REMOVE_WINDOW", payload: id})
+        windowDispatcher.closeWindow(dispatch, id)
     }
 
     const minimizeWindowHandler = (id: string) => {
         setMinimizedWindowIds([...minimizedWindowIds, id])
-        dispatch({type: "MINIMIZE_WINDOW", payload: id})
+        windowDispatcher.minimizeWindow(dispatch, id)
     }   
 
     useEffect(() => {
