@@ -62,47 +62,49 @@ export default function Taskbar( props: any ) {
     <div className="wrapper-taskbar">
         <div className="taskbar-applications-wrapper">
             <table>
-                <tr>
-                    <td>
-                        <div className="startButton" onClick={() => toggleStartMenu()}>
-                            <img src="./icons/windows.png"></img>
-                            <label>Start</label>
-                        </div>
-                    </td>
-                    
-                    {
-                        taskBarItemsStartIndex > taskBarItemCapacity &&
-                        <td>
-                            <div className="taskbar-moveLeft tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex - 1)}>
-                             <label>
-                              &#9664;
-                             </label>
+                <tbody>
+                    <tr>
+                        <td id="td-pill-start">
+                            <div className="startButton" onClick={() => toggleStartMenu()}>
+                                <img src="./icons/windows.png"></img>
+                                <label>Start</label>
                             </div>
                         </td>
-                    }
-                    
-                    
-                    {
-                        taskBarItemsStartIndex >= 0 &&
-                        windowState.runningWindows &&
-                        windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity + 1).map((window: WindowConfig) => {
-                        //  .map((window: WindowConfig, index: number) => {
-                            return (
-                                window.exited != true &&
-                                // index >= taskBarItemsStartIndex && 
-                                // index < taskBarItemsStartIndex + taskBarItemCapacity ?
-                                <td>
-                                    <div    className={`application_placeholder-wrapper ${window.id === windowState.top ? 'tb-selected' : ''}`}
-                                            onClick={() => selectTaskbarPillEvent(window.id!)}>
-                                        <img src={`./icons/${window.icon}`}></img>
-                                        <label>{window.title}</label>
-                                    </div>
-                                </td>
-                                // : null
-                            )
-                        })                        
-                    }
-                </tr>
+                        
+                        {
+                            taskBarItemsStartIndex > taskBarItemCapacity &&
+                            <td key="tb-pill-left-move">
+                                <div className="taskbar-moveLeft tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex - 1)}>
+                                <label>
+                                &#9664;
+                                </label>
+                                </div>
+                            </td>
+                        }
+                        
+                        
+                        {
+                            taskBarItemsStartIndex >= 0 &&
+                            windowState.runningWindows &&
+                            windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity + 1).map((window: WindowConfig) => {
+                            //  .map((window: WindowConfig, index: number) => {
+                                return (
+                                    window.exited != true &&
+                                    // index >= taskBarItemsStartIndex && 
+                                    // index < taskBarItemsStartIndex + taskBarItemCapacity ?
+                                    <td key={`tb-pill-${window.id}`}>
+                                        <div className={`application_placeholder-wrapper ${window.id === windowState.top ? 'tb-selected' : ''}`}
+                                                onClick={() => selectTaskbarPillEvent(window.id!)}>
+                                            <img src={`./icons/${window.icon}`}></img>
+                                            <label>{window.title}</label>
+                                        </div>
+                                    </td>
+                                    // : null
+                                )
+                            })                        
+                        }
+                    </tr>
+                </tbody>
             </table>
         </div>
 

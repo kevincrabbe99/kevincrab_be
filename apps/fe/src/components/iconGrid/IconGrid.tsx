@@ -47,25 +47,29 @@ export default function IconGrid() {
         
         <div className="icon-grid-left">
             <table>
-            {
-                [...Array(MAX_ROWS)].map((ely, y) => (
-                    
-                    <IconGridRow y={y} alignment={0} handleDestinationAction={handleDestinationAction} />
-                
-                ))
-            }
+                <tbody>
+                    {
+                        [...Array(MAX_ROWS)].map((ely, y) => (
+                            
+                            <IconGridRow key={`icgr-a1-${y}`} y={y} alignment={0} handleDestinationAction={handleDestinationAction} />
+                        
+                        ))
+                    }  
+                </tbody>
             </table> 
         </div>   
 
         <div className="icon-grid-right">
             <table>
-            {
-                [...Array(MAX_ROWS)].map((ely, y) => (
-                    
-                    <IconGridRow y={y} alignment={1}  handleDestinationAction={handleDestinationAction} />
-                
-                ))
-            }
+                <tbody>
+                    {
+                        [...Array(MAX_ROWS)].map((ely, y) => (
+                            
+                            <IconGridRow key={`icgr-a0-${y}`} y={y} alignment={1}  handleDestinationAction={handleDestinationAction} />
+                        
+                        ))
+                    }
+                </tbody>
             </table>
         </div>
 
@@ -80,9 +84,9 @@ export default function IconGrid() {
 function IconGridRow(props: any) {
     let y: number = props.y
     let alignment: Alignment = props.alignment;
-    return  <tr> {
-        [...Array(MAX_COLS)].map((elx, x) => (
-            <RenderIconAtPosition_Proxy x={x} y={y} alignment={alignment} handleDestinationAction={props.handleDestinationAction} />
+    return  <tr key={`dk-ic-y${y}-a${alignment}`} >
+        { [...Array(MAX_COLS)].map((elx, x) => (
+            <RenderIconAtPosition_Proxy key={`ic-proxy-a${props.alignment}-y${y}-x${x}`} x={x} y={y} alignment={alignment} handleDestinationAction={props.handleDestinationAction} />
         )) }
     </tr>
 }
@@ -98,14 +102,14 @@ function RenderIconAtPosition_Proxy(props: any) {
             return <RenderIconWithInternalAction x={x} y={y} alignment={alignment} icon={icon} handleDestinationAction={props.handleDestinationAction} />
         }
     } else {
-        return <td> </td>
+        return <td></td>
     }
 }   
 
 function RenderIconWithExternalAction(props: any) { 
     const icon: Icon = props.icon;
     return (
-        <td>
+        <td key={`ic-tr-${props.id}`}>
             <a href={icon.action.destination} target="_blank">
                 <div className="icon-wrapper">
                     <div className="icon-img-wrapper">
