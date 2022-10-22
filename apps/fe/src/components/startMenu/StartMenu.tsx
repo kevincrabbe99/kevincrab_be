@@ -53,6 +53,10 @@ export default function StartMenu(props: any) {
                 console.log("open document")
                 windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT ,action.param)
                 break;
+            case DestinationActionTriggers.OPEN_RUN:
+                console.log("open run")
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.RUN)
+                break;
             default:
                 console.log("Unrecognized action: ", action, " \n Using Fallback Window")
                 windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
