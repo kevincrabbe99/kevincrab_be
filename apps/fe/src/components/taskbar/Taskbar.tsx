@@ -47,7 +47,9 @@ export default function Taskbar( props: any ) {
             if (currentWindow.id === windowState.top) { lastSelectedIndex = i }
         }
         setTaskBarItemCount(count)       
-        setTaskBarItemsStartIndex(0)
+        
+        var jumpToindex = lastSelectedIndex - taskBarItemCapacity + 1
+        setTaskBarItemsStartIndex(jumpToindex > 0 ? jumpToindex : 0)
         
         // Used to calculate where the taskbar next page should show
         console.log("viewport width: " + viewPortWindowWidth)
@@ -69,7 +71,7 @@ export default function Taskbar( props: any ) {
                     </td>
                     
                     {
-                        taskBarItemsStartIndex > 0 &&
+                        taskBarItemsStartIndex > taskBarItemCapacity &&
                         <td>
                             <div className="taskbar-moveLeft tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex - 1)}>
                              <label>
@@ -82,11 +84,13 @@ export default function Taskbar( props: any ) {
                     
                     {
                         taskBarItemsStartIndex >= 0 &&
-                        windowState.windows.filter((window: WindowConfig) => !window.exited).map((window: WindowConfig, index: number) => {
+                        windowState.runningWindows &&
+                        windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity + 1).map((window: WindowConfig) => {
+                        //  .map((window: WindowConfig, index: number) => {
                             return (
                                 window.exited != true &&
-                                index >= taskBarItemsStartIndex && 
-                                index < taskBarItemsStartIndex + taskBarItemCapacity ?
+                                // index >= taskBarItemsStartIndex && 
+                                // index < taskBarItemsStartIndex + taskBarItemCapacity ?
                                 <td>
                                     <div    className={`application_placeholder-wrapper ${window.id === windowState.top ? 'tb-selected' : ''}`}
                                             onClick={() => selectTaskbarPillEvent(window.id!)}>
@@ -94,7 +98,7 @@ export default function Taskbar( props: any ) {
                                         <label>{window.title}</label>
                                     </div>
                                 </td>
-                                : null
+                                // : null
                             )
                         })                        
                     }
@@ -105,7 +109,7 @@ export default function Taskbar( props: any ) {
         <ClockBox toggleVolumeSlider={toggleVolumeSlider}/>
 
         {
-            (taskBarItemCount - taskBarItemsStartIndex) > taskBarItemCapacity &&
+            (taskBarItemCount - taskBarItemsStartIndex) + 1 > taskBarItemCapacity &&
             <div className="taskbar-moveRight tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex + 1)}>
                 <label>
                 &#9654;

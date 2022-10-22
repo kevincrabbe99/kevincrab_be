@@ -84,6 +84,7 @@ export default function WindowCordinator() {
     return (
         <div className="windowCordinator-wrapper">
             {
+                windowState.windows &&
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
