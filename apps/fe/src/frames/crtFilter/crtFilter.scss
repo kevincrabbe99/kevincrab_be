@@ -3,6 +3,12 @@
 
 // Thank you Alec for the great work!
 
+.crt-disable {
+    // disable crt effect
+    filter: none !important;
+}
+
+
 .crt-heavy::before {
     content: " ";
     display: block;

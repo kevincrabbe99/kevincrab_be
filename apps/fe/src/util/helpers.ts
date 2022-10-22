@@ -34,7 +34,7 @@ export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
 }
 
 
-// Handles FileNodeAction for icons and start menu
+// Handles FileNodeAction for icons, start menu & folderPage
 export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch) => {
     switch(action.destination) {
         case DestinationActionTriggers.SHUTDOWN:

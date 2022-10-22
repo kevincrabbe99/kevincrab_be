@@ -360,7 +360,8 @@
                                         "path": "C://Windows/Control Panel",
                                         "action": {
                                             "isExternal": false,
-                                            "destination": "OPEN_SETTINGS"
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "Control Panel"
                                         }
                                     },
                                     {
@@ -389,7 +390,50 @@
                                         "isHidden": false
                                     }
                                 ]
+                            },
+                            {
+                                "name": "Program Files",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open Program Files",
+                                "type": 0,
+                                "path": "C://Windows/Program Files",
+                                "children": [
+                                    {
+                                        "name": "Control Panel",
+                                        "icon": "Controls_Folder.ico",
+                                        "hoverText": "Open Control Panel",
+                                        "type": 0,
+                                        "path": "C://Windows/Program Files/Control Panel",
+                                        "children": [
+                                            {
+                                                "name": "Display",
+                                                "icon": "Customize_computer.ico",
+                                                "hoverText": "Open Display Settings",
+                                                "type": 1,
+                                                "path": "C://Windows/Program Files/Control Panel/Display",
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "OPEN_SETTINGS",
+                                                    "param": "DISPLAY"
+                                                }
+                                            },
+                                            {
+                                                "name": "Personalization",
+                                                "icon": "User_view.ico",
+                                                "hoverText": "Open Personalization Settings",
+                                                "type": 1,
+                                                "path": "C://Windows/Program Files/Control Panel/Personalization",
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "OPEN_SETTINGS",
+                                                    "param": "PERSONALIZATION"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
+                            
                         ]
                     },
                     {
@@ -407,13 +451,6 @@
                 "hoverText": "5.5 Floppy (B:)",
                 "type": 0,
                 "path": "D://"
-            },
-            {
-                "name": "Control Panel",
-                "icon": "Controls_Folder.ico",
-                "hoverText": "Open Control Panel",
-                "type": 0,
-                "path": "C://Windows/Program Files/Control Panel"
             },
             {
                 "name": "Printers",

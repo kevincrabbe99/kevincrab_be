@@ -1,5 +1,8 @@
 import { WindowAction } from "../actions/windowAction";
 import produce from "immer";
+import { SettingsPageTypesEnum } from "../components/window/WindowContent";
+import { SettingsWindowTypesEnum } from "../components/windowPages/settings/SettingsPage";
+import { OverrideSettingsDisplaySize } from "../components/windowPages/settings/subapps/display/DisplaySettingsPage";
 
 export enum WindowTypesEnum {
     LOGIN = 0,
@@ -29,8 +32,8 @@ export type WindowConfig = {
     type: WindowTypesEnum;
     position: WindowPosition;
     size: WindowSize;
-    title: String;
-    icon?: String;
+    title: string;
+    icon?: string;
     showXButton?: boolean;
     minimized?: boolean;
     minimizable?: boolean;
@@ -69,23 +72,10 @@ export const windowReducer = produce((state: WindowState = initialState, action:
             }
 
             // set window title
-            var newTitle = "";
-            switch(newWindowConfig.type) {
-                case WindowTypesEnum.BROWSER:
-                    newTitle = newWindowConfig.contentData;
-                    break;
-                case WindowTypesEnum.FOLDER:
-                    newTitle = "Exploring... " + newWindowConfig.contentData;
-                    break;
-                case WindowTypesEnum.DOCUMENT:
-                    // get text after last '/' in newWindowConfig.contentData
-                    newTitle = reduceDocumentPathToName(newWindowConfig.contentData);
-                    // newTitle = newWindowConfig.contentData.split('/').pop();
-                    break;
-                default:
-                    newTitle = newWindowConfig.title;
-            }
-            newWindowConfig.title = newTitle;
+            newWindowConfig.title = getModifiedWindowTitle(newWindowConfig);
+
+            // modify window size if needed
+            newWindowConfig.size = getModifiedWindowSize(newWindowConfig);
 
             // debugger
             // check if window exists with the same position
@@ -308,6 +298,73 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                    
 })
 
+
+// Helper function to return a modified title based on the config 
+const getModifiedWindowTitle = (windowConfig: WindowConfig): string => {
+    var newTitle = "";
+    switch(windowConfig.type) {
+        case WindowTypesEnum.BROWSER:
+            newTitle = windowConfig.contentData;
+            break;
+        case WindowTypesEnum.FOLDER:
+            newTitle = "Exploring... " + windowConfig.contentData;
+            // check if window is control panel
+            if (windowConfig.contentData === "Control Panel") {
+                newTitle = "Control Panel"
+            }
+            break;
+        case WindowTypesEnum.DOCUMENT:
+            newTitle = reduceDocumentPathToName(windowConfig.contentData);
+            break;
+        case WindowTypesEnum.SETTINGS:
+            newTitle = "Settings";
+            switch(windowConfig.contentData) {
+                case SettingsWindowTypesEnum.DISPLAY:
+                    newTitle = "Display Settings";
+                    break;
+                case SettingsWindowTypesEnum.PERSONALIZATION:
+                    newTitle = "Personalization Settings";
+                    break;
+                default:
+            }
+            break;
+        default:
+            newTitle = windowConfig.title;
+    }
+    return newTitle;
+}
+
+
+const getModifiedWindowSize = (windowConfig: WindowConfig): WindowSize => {
+    var newWindowSize: WindowSize = windowConfig.size;
+    
+    // check window type
+    switch(windowConfig.type) {
+        case WindowTypesEnum.SETTINGS:
+
+            // check window contentData
+            switch(windowConfig.contentData) {
+                case SettingsWindowTypesEnum.DISPLAY:
+                    newWindowSize = OverrideSettingsDisplaySize
+                    break;
+                case SettingsWindowTypesEnum.PERSONALIZATION:
+                    newWindowSize = {
+                        width: 500,
+                        height: 500
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+
+    return newWindowSize;
+}
+
+// Helper function get get the document name from the url
 const reduceDocumentPathToName = (path: string): string => {
 
     if (path === undefined) {
