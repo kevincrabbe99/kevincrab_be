@@ -36,7 +36,9 @@ export default function IconGrid() {
                 windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER ,action.param)
                 break;
             default:
-                 break;
+                console.log("Unrecognized action: ", action, " \n Using Fallback Window")
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
+                break;
         }
     }
 

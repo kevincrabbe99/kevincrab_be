@@ -12,8 +12,6 @@ import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
 import { FileNode, FileNodeAction, FileNodeType } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
 import { mapContentDataToFolderData } from '../../../util/mapContentDataToFolderData';
-import { browserWindowConfig } from '../browser/BrowserPage';
-import { documentWindowConfig } from '../document/DocumentPage';
 import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
 import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';

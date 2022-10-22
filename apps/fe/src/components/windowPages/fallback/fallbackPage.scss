@@ -1,0 +1,62 @@
+.fallback-wrapper {
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+}
+
+.fallback-top {
+    width: 100%;
+    height: 60%;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.fallback-icon {
+    width: 5em;
+    display: grid;
+    justify-content: center;
+}
+
+.fallback-icon img {
+    width: 2.5em;
+    height: auto;
+}
+
+.fallback-text h1 {
+    font-size: 0.7em;
+}
+
+.fallback-text p {
+    font-size: 0.6em;
+}
+
+.fallback-buttons {
+    float:right;
+}
+
+.fallback-buttons button {
+    font-size: 0.5em;
+    border-top: 2px solid var(--gray-highlight);
+    border-left: 2px solid var(--gray-highlight);
+    border-right: 2px solid var(--gray-dark);
+    border-bottom: 2px solid var(--gray-dark);
+    background-color: var(--gray-main);
+    color: var(--gray-black);
+    margin-bottom: 0.3em;
+    width: 4.6rem;
+    height: 1.5rem;
+}
+
+.fallback-buttons button:hover {
+    border-top: 2px solid var(--gray-dark);
+    border-left: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+    border-bottom: 2px solid var(--gray-highlight);
+    cursor: pointer;
+}
+
+.fallback-buttons button:focus {
+    outline: none;
+}
