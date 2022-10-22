@@ -360,7 +360,7 @@
                                         "path": "C://Windows/Control Panel",
                                         "action": {
                                             "isExternal": false,
-                                            "destination": ""
+                                            "destination": "OPEN_SETTINGS"
                                         }
                                     },
                                     {

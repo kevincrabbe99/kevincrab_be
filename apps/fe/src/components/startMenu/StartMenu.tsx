@@ -15,6 +15,7 @@ import { FileNode, FileNodeType } from '../../types/FileNode'
 import { windowDispatcher } from '../../dispatchers/windowDispatcher'
 import { frameDispatcher } from '../../dispatchers/frameDispatcher'
 import { WindowTypesEnum } from '../../reducers/windowReducer'
+import { handleIconAction } from '../../util/helpers'
 
 
 
@@ -34,34 +35,7 @@ export default function StartMenu(props: any) {
         windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, item.name)
     } else {
         const action = item.action!
-        switch(action.destination) {
-            case DestinationActionTriggers.SHUTDOWN:
-                console.log("shutdown")
-                // delete every window
-                windowDispatcher.deleteAllWindows(dispatch)
-                frameDispatcher.shutdown(dispatch)
-                break;
-            case DestinationActionTriggers.OPEN_BROWSER:
-                console.log("open browser")
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER ,action.param)
-                break;
-            case DestinationActionTriggers.OPEN_FOLDER:
-                console.log("open folder")
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER ,action.param)
-                break;
-            case DestinationActionTriggers.OPEN_DOCUMENT:
-                console.log("open document")
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT ,action.param)
-                break;
-            case DestinationActionTriggers.OPEN_RUN:
-                console.log("open run")
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.RUN)
-                break;
-            default:
-                console.log("Unrecognized action: ", action, " \n Using Fallback Window")
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
-                break;
-        }
+        handleIconAction(action, dispatch)
     }
 
     setIsStartMenuOpen(false)

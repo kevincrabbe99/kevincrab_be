@@ -10,9 +10,10 @@ import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 import { documentWindowConfig } from '../windowPages/document/DocumentPage';
 import { mapContentDataToFolderData } from '../../util/mapContentDataToFolderData';
-import { FileNode, FileNodeType } from '../../types/FileNode';
+import { FileNode, FileNodeAction, FileNodeType } from '../../types/FileNode';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 import { WindowTypesEnum } from '../../reducers/windowReducer';
+import { handleIconAction } from '../../util/helpers';
 
 
 const MAX_ROWS = 5;
@@ -24,22 +25,8 @@ export default function IconGrid() {
 
     const dispatch = useDispatch();
 
-    const handleDestinationAction = (action: IconActionType) => {
-        switch(action.destination) {
-            case DestinationActionTriggers.OPEN_DOCUMENT:
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT ,action.param)
-                break;
-            case DestinationActionTriggers.OPEN_FOLDER:
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER ,action.param)
-                break;
-            case DestinationActionTriggers.OPEN_BROWSER:
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER ,action.param)
-                break;
-            default:
-                console.log("Unrecognized action: ", action, " \n Using Fallback Window")
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
-                break;
-        }
+    const handleDestinationAction = (action: FileNodeAction) => {
+        handleIconAction(action, dispatch)
     }
 
   return (
