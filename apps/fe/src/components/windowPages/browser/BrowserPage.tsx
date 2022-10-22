@@ -42,7 +42,7 @@ export default function BrowserPage(props: any) {
 //  listen for any click event 
   useEffect(() => {
     const clickAnywhere = (event: any) => {
-      console.log("click anywhere")
+      // console.log("click anywhere")
       hideAllToolbarSubmenus()
     }
 

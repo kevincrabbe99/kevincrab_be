@@ -16,6 +16,7 @@ import { DestinationActionTriggers } from '../../../types/DestinationActionTrigg
 import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
+import { handleIconAction } from '../../../util/helpers';
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -81,14 +82,7 @@ export default function FolderPage(props: any) {
     if (node.type === FileNodeType.FOLDER) {
       windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, node.name)
     } else if (node.type === FileNodeType.INTERNAL) {
-      if (action.destination === DestinationActionTriggers.OPEN_DOCUMENT) {
-        windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT, action.param)
-      } else if (action.destination === DestinationActionTriggers.OPEN_BROWSER) {
-        windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER, action.param)
-      } else if (action.destination === DestinationActionTriggers.SHUTDOWN) {
-        windowDispatcher.deleteAllWindows(dispatch)
-        frameDispatcher.shutdown(dispatch)
-      }
+      handleIconAction(action, dispatch)
     } else if (node.type === FileNodeType.EXTERNAL) {
       let url = action.param;
       window.open(url, '_blank');

@@ -22,7 +22,6 @@ export default function Shutdown() {
     // listen for any key press
     useEffect(() => {
         const handleKeyPress = (e: any) => {
-            console.log("key pressed")
             frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)
         }
         window.addEventListener("keydown", handleKeyPress)

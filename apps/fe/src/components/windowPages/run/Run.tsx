@@ -36,7 +36,6 @@ export default function Run(props: any) {
     const runEvent = () => {
         const type = input_typeRef.current!.value;
         const payload = input_payloadRef.current!.value;
-        console.log("DISPADLW")
         dispatch({type: type, payload: payload});
     }
 

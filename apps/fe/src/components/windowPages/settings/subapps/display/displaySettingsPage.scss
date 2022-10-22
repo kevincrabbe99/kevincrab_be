@@ -1,0 +1,57 @@
+
+.dsPage-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    position:relative;
+    top: 5%;
+    height: 90%;        
+}
+
+.dsPage-wrapper label {
+    font-size: 0.66em;
+}
+
+.dsPage-wrapper table {
+    width: 100%;
+}
+
+.dsPage-wrapper tbody {
+    width: 100%;
+}
+
+.dsPage-wrapper tr {
+    display: inline-flex;
+    align-items: center;  
+    width: 100%;  
+}
+
+// select first column
+.dsPage-wrapper table tr td:first-child {
+    width: 70%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// select second column
+.dsPage-wrapper table tr td:nth-child(2) {
+    width: 30%;
+    display:flex;
+    justify-content: center;
+}
+
+.dsPage-wrapper input[type="checkbox"] {
+    appearance: none;
+    font-size: 0.66em;
+    height: 1.5em;
+    width: 1.5em;
+    background-color: var(--gray-main);
+    border-left: 2px solid var(--gray-dark);
+    border-top: 2px solid var(--gray-dark);
+    border-bottom: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+}
+
+.dsPage-wrapper input[type="checkbox"]:checked {
+    background-color: var(--gray-dark);
+}

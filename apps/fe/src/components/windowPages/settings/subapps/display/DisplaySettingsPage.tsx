@@ -1,0 +1,42 @@
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { frameDispatcher } from '../../../../../dispatchers/frameDispatcher'
+import { WindowSize } from '../../../../../reducers/windowReducer'
+import "./displaySettingsPage.scss"
+
+export const OverrideSettingsDisplaySize: WindowSize = {
+    width: 275,
+    height: 75
+}
+
+export default function DisplaySettingsPage(props: any) {
+
+    const dispatch = useDispatch()
+    
+    const frameState = useSelector((state: any) => state.frame)
+
+    const [crtToggle, setCrtToggle] = useState<boolean>(frameState.useCrt)
+
+    const setCrtToggleEvent = (e:boolean) => {
+        const newState = e
+        setCrtToggle(newState)
+        frameDispatcher.setUseCrt(dispatch, newState)
+    }
+
+    return (
+        <div className="dsPage-wrapper">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Disable CRT Filter</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" checked={crtToggle} onChange={(e) => setCrtToggleEvent(e.target.checked)} />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    )
+}
