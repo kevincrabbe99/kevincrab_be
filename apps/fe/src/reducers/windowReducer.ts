@@ -41,10 +41,13 @@ export type WindowConfig = {
 
 export interface WindowState {
     windows: WindowConfig[];
+    showingWindows: WindowConfig[];
+    minimizedWindows: WindowConfig[];
+    closedWindows: WindowConfig[];
     top?: string;
 }
 
-const initialState: WindowState = {windows: []};
+const initialState: WindowState = {windows: [], showingWindows: [], minimizedWindows: [], closedWindows: []};
 
 export const windowReducer = produce((state: WindowState = initialState, action: WindowAction) => {
     switch(action.type) {
@@ -103,13 +106,18 @@ export const windowReducer = produce((state: WindowState = initialState, action:
             }
             newWindowConfig = setWindowInitPosition(newWindowConfig);
 
+            // add to showingWindows
+            const newShowingWindows1 = [...state.showingWindows, newWindowConfig];
+
             const newWindow = {
                 windows: [...state.windows, newWindowConfig],
+                showingWindows: newShowingWindows1,
                 top: newWindowConfig.id
             }
             return newWindow;
         case "REMOVE_WINDOW":
             const newWindowsWithoutPayload = state.windows.map((window) => {
+                // set exited to true on windowConfig
                 if (window.id === action.payload) {
                     return {
                         ...window,
@@ -120,6 +128,21 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 }
             })
 
+            // remove from showingWindows
+            const newShowingWindows = state.showingWindows.filter((window) => {
+                return window.id !== action.payload
+            })
+
+            // add to closedWindows
+            const newClosedWindows = state.closedWindows.concat(state.windows.filter((window) => {
+                return window.id === action.payload
+            }))
+
+            // remove from minimizedWindows
+            const newMinimizedWindows = state.minimizedWindows.filter((window) => {
+                return window.id !== action.payload
+            })
+
             // if no windows exist, return initial state
             if (newWindowsWithoutPayload.length === 0) {
                 return initialState;
@@ -127,7 +150,10 @@ export const windowReducer = produce((state: WindowState = initialState, action:
 
             return {
                 ...state,
-                windows: newWindowsWithoutPayload
+                windows: newWindowsWithoutPayload,
+                showingWindows: newShowingWindows,
+                closedWindows: newClosedWindows,
+                minimizedWindows: newMinimizedWindows
             }
         case "MINIMIZE_WINDOW":
             const newWindowsWithMinimized = state.windows.map((window) => {
@@ -141,17 +167,6 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 }
             })
 
-            /*
-set top if:
-- window is minimized
-- window is not minimized
-
-new windows with minimized if:
-- window is minimized
-- window is not minimized and is top
-
-            */
-
             const shouldSetTop = state.windows.find((window) => {
                 return window.id === action.payload && window.minimized === false
             })
@@ -164,12 +179,22 @@ new windows with minimized if:
                 )
             })
 
-            
+            // add to minimizedWindows
+            const newMinimizedWindows2 = state.minimizedWindows.concat(state.windows.filter((window) => {
+                return window.id === action.payload && window.minimized === false
+            }))
+
+            // remove from showingWindows
+            const newShowingWindows2 = state.showingWindows.filter((window) => {
+                return window.id !== action.payload
+            })
 
             return {
                 ...state,
                 top: shouldSetTop ? action.payload : state.top,
-                windows: shouldToggleMinimize ? newWindowsWithMinimized : state.windows
+                windows: shouldToggleMinimize ? newWindowsWithMinimized : state.windows,
+                newMinimizedWindows: newMinimizedWindows2,
+                showingWindows: newShowingWindows2
             }
         case "FOCUS_WINDOW":
             if (state.windows.length > 0) {
@@ -185,9 +210,15 @@ new windows with minimized if:
                         return window
                     }
                 })
+
+                // remove from monimizedWindows
+                const newMinimizedWindows3 = state.minimizedWindows.filter((window) => {
+                    return window.id !== action.payload
+                })
                 
                 return {
                     windows: newWindowsWithNewFocus,
+                    minimizedWindows: newMinimizedWindows3,
                     top: action.payload
                 }
             }
@@ -195,7 +226,10 @@ new windows with minimized if:
         case "RESET_WINDOWS":
 
             return {
-                windows: []
+                windows: [],
+                minimizedWindows: [],
+                closedWindows: [],
+                showingWindows: []
             }
 
             break;
