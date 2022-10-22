@@ -11,7 +11,7 @@ import MyComputerJson from "../../../assets/json/folderFillers/My_Computer.json"
 import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
 import { FileNode, FileNodeAction, FileNodeType } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
-import { mapContentDataToFolderData } from './util/mapContentDataToFolderData';
+import { mapContentDataToFolderData } from '../../../util/mapContentDataToFolderData';
 import { browserWindowConfig } from '../browser/BrowserPage';
 import { documentWindowConfig } from '../document/DocumentPage';
 import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
@@ -78,7 +78,7 @@ export default function FolderPage(props: any) {
   }
 
   const handleFileNodeAction = (node: FileNode) => {
-    
+
     let action = node.action!;
     if (node.type === FileNodeType.FOLDER) {
       windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, node.name)

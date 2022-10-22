@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 import { documentWindowConfig } from '../windowPages/document/DocumentPage';
-import { mapContentDataToFolderData } from '../windowPages/folder/util/mapContentDataToFolderData';
+import { mapContentDataToFolderData } from '../../util/mapContentDataToFolderData';
 import { FileNode, FileNodeType } from '../../types/FileNode';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 import { WindowTypesEnum } from '../../reducers/windowReducer';
