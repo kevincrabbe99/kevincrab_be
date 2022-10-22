@@ -157,7 +157,20 @@
                                             "x": 0,
                                             "y": 0
                                         },
-                                        "isHidden": false
+                                        "isHidden": false,
+                                        "children": [
+                                            {
+                                                "name": "Secret Document",
+                                                "icon": "WordPad_document.ico",
+                                                "hoverText": "Open Secret Document",
+                                                "type": 1,
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "OPEN_DOCUMENT",
+                                                    "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
+                                                }
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -250,9 +263,127 @@
                         "icon": "Folder.ico",
                         "hoverText": "Open Windows",
                         "type": 0,
-                        "path": "C://Windows"
-                    }
-                    ,
+                        "path": "C://Windows",
+                        "children":[
+                            {    
+                                "name": "Start Menu",
+                                "icon": "Folder.ico",
+                                "hoverText": "Start Menu Items",
+                                "type": 0,
+                                "path": "C://Windows/Start Menu",
+                                "children": [
+                                    {
+                                        "name": "Programs",
+                                        "icon": "Program_Folder.ico",
+                                        "hoverText": "Open Programs",
+                                        "type": 0,
+                                        "path": "C://Windows/Start Menu/Programs",
+                                        "children": [
+                                            {
+                                                "name": "Accessories",
+                                                "icon": "Program_Folder.ico",
+                                                "hoverText": "Open Accessories",
+                                                "type": 1,
+                                                "isShortcut": true,
+                                                "path": "C://Windows/Start Menu/Programs/Accessories",
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "OPEN_FOLDER",
+                                                    "param": "Accessories"
+                                                }
+                                            },
+                                            {
+                                                "name": "Notepad",
+                                                "icon": "Notepad_writing.ico",
+                                                "hoverText": "New Notepad Document",
+                                                "type": 1,
+                                                "path": "C://Windows/Program Files/Notepad",
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "OPEN_DOCUMENT"
+                                                },
+                                                "isHidden": false
+                                            }, 
+                                            {
+                                                "name": "Internet",
+                                                "icon": "Earth_16.ico",
+                                                "hoverText": "Open Internet",
+                                                "type": 1,
+                                                "path": "C://Windows/Program Files/Internet",
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "OPEN_BROWSER",
+                                                    "param": "https://bing.com"
+                                                },
+                                                "isHidden": false
+                                            },
+                                            {
+                                                "name": "Startup",
+                                                "icon": "Program_Folder.ico",
+                                                "hoverText": "Run Startup",
+                                                "type": 1,
+                                                "path": "C://Windows/Program Files/Startup",
+                                                "action": {
+                                                    "isExternal": false,
+                                                    "destination": "SHUTDOWN"
+                                                },
+                                                "isHidden": false
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "My Documents",
+                                        "icon": "my_documents.ico",
+                                        "hoverText": "Open Documents",
+                                        "type": 1,
+                                        "isShortcut": true,
+                                        "path": "C://kcrabbe/My Documents",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "My Documents"
+                                        }
+                                    },
+                                    {
+                                        "name": "Settings",
+                                        "icon": "Settings.ico",
+                                        "hoverText": "Open Settomgs",
+                                        "type": 1,
+                                        "path": "C://Windows/Control Panel",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": ""
+                                        }
+                                    },
+                                    {
+                                        "name": "Run",
+                                        "icon": "run.ico",
+                                        "hoverText": "Run",
+                                        "type": 1,
+                                        "isShortcut": true,
+                                        "path": "C://kcrabbe/Windows/Program Files/Accessories/Run",
+                                        "isHidden": false, 
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_RUN"
+                                        }
+                                    },
+                                    {
+                                        "name": "Shut Down",
+                                        "icon": "shut_down_computer.ico",
+                                        "hoverText": "Power Down",
+                                        "type": 1,
+                                        "path": "C://Windows/Program Files/Internet",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "SHUTDOWN"
+                                        },
+                                        "isHidden": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                     {
                         "name": "temp",
                         "icon": "Folder.ico",
@@ -260,7 +391,6 @@
                         "type": 0,
                         "path": "C://temp"
                     }
-                
                 ]
             },
             {

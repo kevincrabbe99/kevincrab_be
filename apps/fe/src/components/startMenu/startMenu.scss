@@ -93,13 +93,14 @@
 }
 
 .startMenu-list .last-item {
-    height: 3.5em !important;
+    height: 3.4em !important;
     border-bottom: 1px solid var(--gray-highlight);
 }
 
 .startMenu-list-item-icon {
     margin-right: 0.5em;
     width: 1.9em;
+    height: 1.9em;
 }
 
 .startMenu-list-item-icon img {
@@ -156,8 +157,19 @@
 
 // MINOR ADJUSTMENTS
 .startMenu-list-item-icon img[src*="internet.ico"] {
-    width: 85%;
-    height: auto;
+    scale : 0.8;
     position:relative;
     left: 0.1em;
+}
+
+.startMenu-list-item-icon img[src*="my_documents.ico"] {
+    scale: 1.3;
+}
+
+.startMenu-list-item-icon img[src*="Settings.ico"] {
+    scale: 1.2;
+}
+
+.startMenu-list-item-icon img[src*="run.ico"] {
+    scale: 1.3;
 }
