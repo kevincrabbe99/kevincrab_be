@@ -46,7 +46,7 @@ export default function DocumentPage(props: any) {
 //  listen for any click event 
   useEffect(() => {
     const clickAnywhere = (event: any) => {
-      console.log("click anywhere")
+      // console.log("click anywhere")
       hideAllToolbarSubmenus()
     }
 

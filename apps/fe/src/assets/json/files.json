@@ -425,7 +425,7 @@
                                                 "path": "C://Windows/Program Files/Control Panel/Personalization",
                                                 "action": {
                                                     "isExternal": false,
-                                                    "destination": "OPEN_SETTINGS",
+                                                    "destination": "xx_OPEN_SETTINGS",
                                                     "param": "PERSONALIZATION"
                                                 }
                                             }

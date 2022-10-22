@@ -18,7 +18,8 @@ export const fallbackWindowConfig: WindowConfig = {
     },
     "title": "Access Denied",
     "showXButton": true,
-    "icon": "Cross.ico"
+    "icon": "Cross.ico",
+    "minimizable": false,
   };
 
 export default function FallbackPage(props: any) {

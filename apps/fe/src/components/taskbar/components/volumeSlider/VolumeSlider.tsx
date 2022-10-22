@@ -32,7 +32,6 @@ export default function VolumeSlider(props:any) {
                 } else if (newPos > 100) {
                     newPos = 100
                 }
-                console.log("touch down: " + newPos)
                 setY(newPos)
             }
         }   

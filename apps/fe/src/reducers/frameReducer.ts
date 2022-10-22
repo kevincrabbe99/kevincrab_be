@@ -60,7 +60,7 @@ const initialState: FrameState = {
 
 
 export const frameReducer = produce((state: FrameState = initialState, action: FrameAction) => {
-    console.log("reducing", action);
+    // console.log("reducing", action);s
     switch (action.type) {
         case "SET_STATE":
             const newData = { state: action.payload as FrameStatesEnum };

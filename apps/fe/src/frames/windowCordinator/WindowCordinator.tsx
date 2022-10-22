@@ -88,7 +88,7 @@ export default function WindowCordinator() {
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
-                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - (100 - index)).toString() }} ref={windowRefs[index]}>
+                            <div className="windowZPlacement" id={windowConfig.id!} key={`winZpl-${windowConfig.id}`} style={{zIndex: (100 - (100 - index)).toString() }} ref={windowRefs[index]}>
                             
                                     <Window windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
