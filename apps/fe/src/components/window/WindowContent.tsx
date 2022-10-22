@@ -4,6 +4,7 @@ import DocumentPage from "../windowPages/document/DocumentPage"
 import FolderPage from "../windowPages/folder/FolderPage"
 import LoginWindowPage from "../windowPages/login/LoginWindowPage"
 import FallbackPage from "../windowPages/fallback/FallbackPage"
+import Run from "../windowPages/run/Run"
 
 export const renderWindowContent = (windowConfig: WindowConfig) => {
     switch(windowConfig.type) {
@@ -15,9 +16,11 @@ export const renderWindowContent = (windowConfig: WindowConfig) => {
             return <FolderPage contentData={windowConfig.contentData}/>
         case 4:
             return <BrowserPage contentData={windowConfig.contentData}/>
+        case 6:
+            return <Run windowConfig={windowConfig} />
         case 9:
             return <FallbackPage windowConfig={windowConfig} />
         default:
-            return <div>Window Content</div>
+            return <FallbackPage windowConfig={windowConfig} />
     }
 }

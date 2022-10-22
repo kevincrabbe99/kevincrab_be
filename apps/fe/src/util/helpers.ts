@@ -3,6 +3,7 @@ import { folderWindowConfig } from "../components/windowPages/folder/FolderPage"
 import { browserWindowConfig } from "../components/windowPages/browser/BrowserPage";
 import { WindowTypesEnum } from "../reducers/windowReducer";
 import { fallbackWindowConfig } from "../components/windowPages/fallback/FallbackPage";
+import { runWindowConfig } from "../components/windowPages/run/Run";
 
 
 export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
@@ -13,9 +14,12 @@ export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
             return folderWindowConfig;
         case WindowTypesEnum.BROWSER:
             return browserWindowConfig
+        case WindowTypesEnum.RUN:
+            return runWindowConfig
         case WindowTypesEnum.FALLBACK:
             return fallbackWindowConfig
         default:
-            return documentWindowConfig;
+            fallbackWindowConfig.title = "Unknown Window Type"
+            return fallbackWindowConfig;
     }
 }
