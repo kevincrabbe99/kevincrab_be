@@ -1,5 +1,5 @@
-import { FrameAction } from "../actions/frameActions";
 import produce from "immer";
+import { cookieManager } from "../util/cookieManager";
 
 
 const getStateFromCookie = () => {
@@ -16,7 +16,7 @@ const getStateFromCookie = () => {
 };
 
 const setStateCookie = (state: number) => {
-    document.cookie = `FRAME_STATE=${state};path=/`;
+    cookieManager.setCookie("FRAME_STATE", state);
 };
 
 const getIsUsingCrtFromCookie = (): boolean => {
@@ -33,7 +33,7 @@ const getIsUsingCrtFromCookie = (): boolean => {
 }
 
 const setCrtCookie = (useCrt: boolean) => {
-    document.cookie = `USE_CRT=${useCrt};path=/`;
+    cookieManager.setCookie("USE_CRT", useCrt);
 }
 
 export enum FrameStatesEnum {
@@ -57,6 +57,10 @@ const initialState: FrameState = {
 };
 
 
+export interface FrameAction {
+    type: string;
+    payload?: FrameStatesEnum | string;
+}
 
 
 export const frameReducer = produce((state: FrameState = initialState, action: FrameAction) => {

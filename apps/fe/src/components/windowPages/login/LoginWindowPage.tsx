@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { login } from '../../../actions/frameActions';
 import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import "./loginWindowPage.scss"

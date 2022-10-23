@@ -4,13 +4,13 @@ import "./startMenu.scss"
 
 // import startMenuJson from '../../assets/json/start_menu.json'
 import { DestinationActionTriggers } from '../../types/DestinationActionTriggers'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { FrameStatesEnum } from '../../reducers/frameReducer'
 import { fromEvent, map } from 'rxjs'
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage'
 import { folderWindowConfig } from '../windowPages/folder/FolderPage'
 import { documentWindowConfig } from '../windowPages/document/DocumentPage'
-import { mapContentDataToFolderData } from '../../util/mapContentDataToFolderData'
+import { mapContentDataToFolderData } from '../../util/mappers/mapContentDataToFolderData'
 import { FileNode, FileNodeType } from '../../types/FileNode'
 import { windowDispatcher } from '../../dispatchers/windowDispatcher'
 import { frameDispatcher } from '../../dispatchers/frameDispatcher'
@@ -23,15 +23,14 @@ export default function StartMenu(props: any) {
 
   const setIsStartMenuOpen = props.setIsStartMenuOpen
 
-  const [selectedSubmenu, setSelectedSubmenu] = useState<string | null>(null)
-
-
   const dispatch = useDispatch();
+  const scopesState = useSelector((state: any) => state.scopes)
+
+  const [selectedSubmenu, setSelectedSubmenu] = useState<string | null>(null)
 
   const handleDestinationAction = (item: FileNode) => {
     
     if (item.type === FileNodeType.FOLDER) {
-        console.log("opeing folder: ", item)
         windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, item.name)
     } else {
         const action = item.action!
@@ -41,7 +40,7 @@ export default function StartMenu(props: any) {
     setIsStartMenuOpen(false)
   }
 
-  const startMenuNodes: FileNode[] = mapContentDataToFolderData("Start Menu")
+  const startMenuNodes: FileNode[] = mapContentDataToFolderData("Start Menu", scopesState.scopes)
 
   return (
     <div className="startMenu-wrapper">
@@ -66,7 +65,6 @@ export default function StartMenu(props: any) {
                                     item={item} 
                                     setSelectedSubmenu={setSelectedSubmenu} 
                                     handleDestinationAction={handleDestinationAction} />
-                                {/* {RenderStartMenuItemActionWrapper(item, setSelectedSubmenu, handleDestinationAction, selectedSubmenu)} */}
                             </>
                             : 
                             <RenderStartMenuItemActionWrapper 

@@ -1,3 +1,5 @@
 {
+    "baseURL": "localhost",
+    "port": 3000,
     "timezone": "America/Los_Angeles"
 }

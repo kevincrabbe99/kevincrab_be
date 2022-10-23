@@ -9,14 +9,17 @@ import { useDispatch } from 'react-redux';
 import { folderWindowConfig } from '../windowPages/folder/FolderPage';
 import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
 import { documentWindowConfig } from '../windowPages/document/DocumentPage';
-import { mapContentDataToFolderData } from '../../util/mapContentDataToFolderData';
+import { mapContentDataToFolderData } from '../../util/mappers/mapContentDataToFolderData';
 import { FileNode, FileNodeAction, FileNodeType } from '../../types/FileNode';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 import { WindowTypesEnum } from '../../reducers/windowReducer';
 import { handleIconAction } from '../../util/helpers';
+import { useSelector } from 'react-redux';
+import { ScopesEnum } from '../../reducers/scopeReducer';
+import { fileManager } from '../../util/fileManager';
 
 
-const MAX_ROWS = 5;
+const MAX_ROWS = 8;
 const MAX_COLS = 2;
 
 
@@ -24,6 +27,7 @@ const MAX_COLS = 2;
 export default function IconGrid() {
 
     const dispatch = useDispatch();
+    const scopesState = useSelector((state: any) => state.scopes);
 
     const handleDestinationAction = (action: FileNodeAction) => {
         handleIconAction(action, dispatch)
@@ -38,7 +42,12 @@ export default function IconGrid() {
                     {
                         [...Array(MAX_ROWS)].map((ely, y) => (
                             
-                            <IconGridRow key={`icgr-a1-${y}`} y={y} alignment={0} handleDestinationAction={handleDestinationAction} />
+                            <IconGridRow 
+                                key={`icgr-a1-${y}`} 
+                                y={y} alignment={0} 
+                                handleDestinationAction={handleDestinationAction} 
+                                scopes={scopesState.scopes}
+                                />
                         
                         ))
                     }  
@@ -52,7 +61,11 @@ export default function IconGrid() {
                     {
                         [...Array(MAX_ROWS)].map((ely, y) => (
                             
-                            <IconGridRow key={`icgr-a0-${y}`} y={y} alignment={1}  handleDestinationAction={handleDestinationAction} />
+                            <IconGridRow 
+                                key={`icgr-a0-${y}`} 
+                                y={y} alignment={1}  
+                                handleDestinationAction={handleDestinationAction} 
+                                scopes={scopesState.scopes}/>
                         
                         ))
                     }
@@ -73,15 +86,20 @@ function IconGridRow(props: any) {
     let alignment: Alignment = props.alignment;
     return  <tr key={`dk-ic-y${y}-a${alignment}`} >
         { [...Array(MAX_COLS)].map((elx, x) => (
-            <RenderIconAtPosition_Proxy key={`ic-proxy-a${props.alignment}-y${y}-x${x}`} x={x} y={y} alignment={alignment} handleDestinationAction={props.handleDestinationAction} />
+            <RenderIconAtPosition_Proxy 
+                key={`ic-proxy-a${props.alignment}-y${y}-x${x}`} 
+                x={x} y={y} alignment={alignment} 
+                handleDestinationAction={props.handleDestinationAction} 
+                scopes={props.scopes}/>
         )) }
     </tr>
 }
 
 function RenderIconAtPosition_Proxy(props: any) { 
     let x = props.x; let y = props.y;
+    let scopes = props.scopes;
     let alignment = props.alignment;     
-    const icon: FileNode | undefined = getIconAtPosition(x, y, alignment);
+    const icon: FileNode | undefined = GetIconAtPosition(x, y, alignment, scopes);
     if (icon && !icon.isHidden) {
         if (icon.type === FileNodeType.EXTERNAL) {
             return <RenderIconWithExternalAction x={x} y={y} alignment={alignment} icon={icon} />
@@ -124,19 +142,21 @@ function RenderIconWithInternalAction(props: any) {
         )
 }
 
-function getIconAtPosition(x: number, y: number, alignment: Alignment) : FileNode | undefined {
+function GetIconAtPosition(x: number, y: number, alignment: Alignment, scopes: ScopesEnum[]) : FileNode | undefined {
     // align from right 
     if (alignment == Alignment.RIGHT) {
         x = (MAX_COLS - 1) - x
     }
-
-    let iconJson = mapContentDataToFolderData("Desktop");
+    
+    let iconJson = mapContentDataToFolderData("Desktop", scopes);
 
     // search for icon
     for (var i = 0; i < iconJson.length; i++) {
         let curIconPos = iconJson[i].position!;
         if (curIconPos.x == x && curIconPos.y == y && curIconPos.alignment == alignment) {
-            return iconJson[i];
+            if (fileManager.isScoped(scopes, iconJson[i].name)) {
+                return iconJson[i];
+            }
         }
     }
 }

@@ -48,7 +48,7 @@
 }
 
 .icon-img-wrapper {
-    width: 3.5em;
+    // width: 3.5em;
     position:relative;
     display: grid;
     justify-content: center;
@@ -79,17 +79,17 @@
 
 .icon-wrapper img[src*="my_computer.png"] {
     position:relative;
-    left: 0.6em;
+    left: 0em;
 }
 
 .icon-wrapper img[src*="Notepad_writing.ico"] {
     position:relative;
-    left: 0.1em;
+    // left: 0.1em;
 }
 
 .icon-wrapper img[src*="my_documents.ico"] {
     position:relative;
-    left: 0.95em;
+    left: -0.1em;
     // zoom in on image
     transform: scale(1.3);
 }
@@ -97,5 +97,5 @@
 
 .icon-wrapper img[src*="trash_full.ico"] {
     position:relative;
-    left: 0.35em;
+    left: 0em;
 }

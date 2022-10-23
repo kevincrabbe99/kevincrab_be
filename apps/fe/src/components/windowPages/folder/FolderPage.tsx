@@ -11,12 +11,13 @@ import MyComputerJson from "../../../assets/json/folderFillers/My_Computer.json"
 import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
 import { FileNode, FileNodeAction, FileNodeType } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
-import { mapContentDataToFolderData } from '../../../util/mapContentDataToFolderData';
+import { mapContentDataToFolderData } from '../../../util/mappers/mapContentDataToFolderData';
 import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
 import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { handleIconAction } from '../../../util/helpers';
+import { useSelector } from 'react-redux';
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -53,6 +54,7 @@ export const folderWindowConfig: WindowConfig = {
 export default function FolderPage(props: any) {
 
   const dispatch = useDispatch();
+  const scopesState = useSelector((state: any) => state.scopes)
 
   const contentData: string = props.contentData
 
@@ -93,7 +95,7 @@ export default function FolderPage(props: any) {
 //  listen for any click event 
   useEffect(() => {
     const clickAnywhere = (event: any) => {
-      console.log("click anywhere")
+      // console.log("click anywhere")
       hideAllToolbarSubmenus()
     }
 
@@ -125,9 +127,9 @@ export default function FolderPage(props: any) {
         <div className="folderPage-content-wrapper">
           {
             viewMode === ViewMode.LIST ?
-            <FolderIconList content={mapContentDataToFolderData(contentData)} 
+            <FolderIconList content={mapContentDataToFolderData(contentData, scopesState.scopes)} 
                             handleFileNodeAction = {handleFileNodeAction}/> :
-            <FolderIconGrid content={mapContentDataToFolderData(contentData)}
+            <FolderIconGrid content={mapContentDataToFolderData(contentData, scopesState.scopes)}
                             handleFileNodeAction = {handleFileNodeAction} />
           }
         </div>
