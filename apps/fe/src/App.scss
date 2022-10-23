@@ -18,3 +18,27 @@
         
 }
 
+button {
+  font-size: 0.56em !important;
+  border-top: 2px solid var(--gray-highlight);
+  border-left: 2px solid var(--gray-highlight);
+  border-right: 2px solid var(--gray-dark);
+  border-bottom: 2px solid var(--gray-dark);
+  background-color: var(--gray-main);
+  color: var(--gray-black);
+  margin-bottom: 0.3em;
+  width: 4.6rem;
+  height: 1.5rem;
+}
+
+button:hover {
+  border-top: 2px solid var(--gray-dark);
+  border-left: 2px solid var(--gray-dark);
+  border-right: 2px solid var(--gray-highlight);
+  border-bottom: 2px solid var(--gray-highlight);
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}

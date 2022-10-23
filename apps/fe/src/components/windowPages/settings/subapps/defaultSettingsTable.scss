@@ -1,0 +1,79 @@
+
+.defaultSettingsTable-wrapper label {
+    font-size: 0.66em;
+}
+
+.defaultSettingsTable-wrapper table {
+    width: 100%;
+}
+
+.defaultSettingsTable-wrapper tbody {
+    width: 100%;
+}
+
+.defaultSettingsTable-wrapper tr {
+    display: inline-flex;
+    align-items: center;  
+    width: 100%;  
+}
+
+// select first column
+.defaultSettingsTable-wrapper table tr td:first-child {
+    width: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// select second column
+.defaultSettingsTable-wrapper table tr td:nth-child(2) {
+    width: 50%;
+    display:flex;
+    justify-content: center;
+}
+
+.defaultSettingsTable-wrapper input[type="checkbox"] {
+    appearance: none;
+    font-size: 0.66em;
+    height: 1.5em;
+    width: 1.5em;
+    background-color: var(--gray-main);
+    border-left: 2px solid var(--gray-dark);
+    border-top: 2px solid var(--gray-dark);
+    border-bottom: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+}
+
+.defaultSettingsTable-wrapper input[type="checkbox"]:checked {
+    background-color: var(--gray-dark);
+}
+
+
+.defaultSettingsTable-wrapper select {
+    appearance: none;
+    font-size: 0.66em;
+    height: 2.2em;
+    width: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    background-color: var(--gray-main);
+    border-left: 2px solid var(--gray-dark);
+    border-top: 2px solid var(--gray-dark);
+    border-bottom: 2px solid var(--gray-dark);
+    border-right: 2px solid var(--gray-highlight);
+}    
+
+.defaultSettingsTable-wrapper select:focus {
+    outline: none;
+}
+
+.defaultSettingsTable-wrapper button {
+    margin-left: 0.5em;
+}
+
+.defaultSettingsTable-wrapper .btn-row {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    height: 3em;
+}

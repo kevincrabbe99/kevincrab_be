@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { frameReducer, FrameState } from './reducers/frameReducer';
+import { scopeReducer } from './reducers/scopeReducer';
 import { windowReducer } from './reducers/windowReducer';
 
 export const store = configureStore({
     reducer: {
         frame: frameReducer,
-        windows: windowReducer
+        windows: windowReducer,
+        scopes: scopeReducer,
     },
 });
 

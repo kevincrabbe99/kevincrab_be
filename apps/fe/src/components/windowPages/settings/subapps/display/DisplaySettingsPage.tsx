@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { frameDispatcher } from '../../../../../dispatchers/frameDispatcher'
 import { WindowSize } from '../../../../../reducers/windowReducer'
 import "./displaySettingsPage.scss"
+import "../defaultSettingsTable.scss"
 
 export const OverrideSettingsDisplaySize: WindowSize = {
     width: 275,
@@ -24,7 +25,7 @@ export default function DisplaySettingsPage(props: any) {
     }
 
     return (
-        <div className="dsPage-wrapper">
+        <div className="defaultSettingsTable-wrapper dsPage-wrapper">
             <table>
                 <tbody>
                     <tr>

@@ -88,7 +88,8 @@
                                             "x": 0,
                                             "y": 3
                                         },
-                                        "isHidden": false
+                                        "isHidden": false,
+                                        "excludedScopes": ["PERSONAL_WEBSITE"]
                                     },
                                     {
                                         "name": "Notepad",
@@ -105,7 +106,62 @@
                                             "x": 1,
                                             "y": 2
                                         },
-                                        "isHidden": false
+                                        "isHidden": false,
+                                        "excludedScopes": ["PERSONAL_WEBSITE"]
+                                    },
+                                    {
+                                        "name": "Kevin's Github",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins Github",
+                                        "type": 2,
+                                        "path": "https://github.com/kevincrabbe99",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://github.com/kevincrabbe99"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 3
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["PERSONAL_WEBSITE", "PORTFOLIO", "RESUME", "NONE"]
+                                    },
+                                    {
+                                        "name": "Author's Website",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins Website",
+                                        "type": 2,
+                                        "path": "https:/me.kevincrab.be",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https:/me.kevincrab.be"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 3
+                                        },
+                                        "isHidden": false,
+                                        "excludedScopes": ["PERSONAL_WEBSITE", "PORTFOLIO"]
+                                    },
+                                    {
+                                        "name": "Source Code",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins Github",
+                                        "type": 2,
+                                        "path": "https://github.com/kevincrabbe99",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://github.com/kevincrabbe99"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 4
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["EMULATOR", "NONE"]
                                     },
                                     {
                                         "name": "LinkedIn",
@@ -122,7 +178,8 @@
                                             "x": 0,
                                             "y": 2
                                         },
-                                        "isHidden": false
+                                        "isHidden": false,
+                                        "scopes": ["PERSONAL_WEBSITE", "PORTFOLIO", "RESUME"]
                                     },
                                     {
                                         "name": "reach out!",
@@ -135,11 +192,12 @@
                                             "destination": "OPEN_MESSENGER"
                                         },
                                         "position": {
-                                            "alignment": 1,
+                                            "alignment": 0,
                                             "x": 0,
-                                            "y": 3
+                                            "y": 4
                                         },
-                                        "isHidden": false
+                                        "isHidden": false,
+                                        "excludedScopes": ["EMULATOR"]
                                     },
                                     {
                                         "name": "Recycle Bin",
@@ -425,7 +483,7 @@
                                                 "path": "C://Windows/Program Files/Control Panel/Personalization",
                                                 "action": {
                                                     "isExternal": false,
-                                                    "destination": "xx_OPEN_SETTINGS",
+                                                    "destination": "OPEN_SETTINGS",
                                                     "param": "PERSONALIZATION"
                                                 }
                                             }

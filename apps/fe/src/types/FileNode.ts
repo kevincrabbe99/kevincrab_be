@@ -1,3 +1,4 @@
+import { ScopesEnum } from "../reducers/scopeReducer";
 import { IconGridPosition } from "./Icon";
 
 export enum FileNodeType {
@@ -23,4 +24,6 @@ export interface FileNode {
     position?: IconGridPosition;
     isHidden?: boolean | undefined;
     isShortcut?: boolean | undefined;
+    scopes?: ScopesEnum[] | string[] | undefined;
+    excludedScopes?: ScopesEnum[] | string[] | undefined;
 }

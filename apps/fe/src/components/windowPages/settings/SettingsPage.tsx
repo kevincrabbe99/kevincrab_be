@@ -2,6 +2,7 @@ import React from 'react'
 import { WindowConfig } from '../../../reducers/windowReducer';
 import "./settings.scss"
 import DisplaySettingsPage from './subapps/display/DisplaySettingsPage';
+import PersonalizationSettingsPage from './subapps/personalization/PersonalizationSettingsPage';
 
 export const settingsWindowConfig: WindowConfig = {
     "type": 5,
@@ -35,7 +36,7 @@ export default function SettingsPage(props: any) {
         param === SettingsWindowTypesEnum.DISPLAY ?
         <DisplaySettingsPage windowConfig={windowConfig} /> :
         param === SettingsWindowTypesEnum.PERSONALIZATION ?
-        <div>Personalization</div> :
+        <PersonalizationSettingsPage windowConfig={windowConfig} /> :
         <div>Unknown</div>
       }
     </div>

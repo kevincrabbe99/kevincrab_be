@@ -1,8 +1,8 @@
-import { WindowAction } from "../actions/windowAction";
 import produce from "immer";
 import { SettingsPageTypesEnum } from "../components/window/WindowContent";
 import { SettingsWindowTypesEnum } from "../components/windowPages/settings/SettingsPage";
 import { OverrideSettingsDisplaySize } from "../components/windowPages/settings/subapps/display/DisplaySettingsPage";
+import { OverrideSettingsPersonalizationSize } from "../components/windowPages/settings/subapps/personalization/PersonalizationSettingsPage";
 
 export enum WindowTypesEnum {
     LOGIN = 0,
@@ -59,6 +59,11 @@ const initialState: WindowState = {
     runningWindows: [],
     top: undefined
 };
+
+export interface WindowAction {
+    type: String;
+    payload?: WindowConfig;
+}
 
 export const windowReducer = produce((state: WindowState = initialState, action: WindowAction) => {
     switch(action.type) {
@@ -348,10 +353,7 @@ const getModifiedWindowSize = (windowConfig: WindowConfig): WindowSize => {
                     newWindowSize = OverrideSettingsDisplaySize
                     break;
                 case SettingsWindowTypesEnum.PERSONALIZATION:
-                    newWindowSize = {
-                        width: 500,
-                        height: 500
-                    }
+                    newWindowSize = OverrideSettingsPersonalizationSize
                     break;
                 default:
                     break;
