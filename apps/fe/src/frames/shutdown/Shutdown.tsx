@@ -5,6 +5,8 @@ import logJson from "../../assets/json/shutdown_cli_items.json"
 import { useDispatch } from 'react-redux';
 import { FrameStatesEnum } from '../../reducers/frameReducer';
 import { frameDispatcher } from '../../dispatchers/frameDispatcher';
+import { useSelector } from 'react-redux';
+import { ScopesEnum } from '../../reducers/scopeReducer';
 
 interface LogItem {
     text: string,
@@ -16,9 +18,24 @@ const exitAfterLogTimeSec = 11;
 
 export default function Shutdown() {
 
-    const [logPosition, setLogPosition] = useState<number>(0)
+
     const dispatch = useDispatch()
+    const scopeState = useSelector((state: any) => state.scopes)
+
+
+    const [logPosition, setLogPosition] = useState<number>(0)
     
+    // run once
+    // jump to page depending on scope
+    useEffect(() => {
+        if (!scopeState) { return;}
+        switch(scopeState.scopes[0]) {
+            case ScopesEnum.RESUME:
+                frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+                break;
+        }
+    }, [])
+
     // listen for any key press
     useEffect(() => {
         const handleKeyPress = (e: any) => {

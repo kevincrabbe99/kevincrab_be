@@ -4,15 +4,23 @@ import { WindowConfig } from '../../reducers/windowReducer';
 import "./login.scss"
 
 import { isMobile } from 'react-device-detect';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { ScopesEnum } from '../../reducers/scopeReducer';
+import { frameDispatcher } from '../../dispatchers/frameDispatcher';
+import { FrameStatesEnum } from '../../reducers/frameReducer';
+
+const loginWindowWidth: number = (document.documentElement.clientWidth > 400) ? 400 : document.documentElement.clientWidth - 20
+const loginWindowX: number = (document.documentElement.clientWidth - loginWindowWidth) / 2
 
 const loginWindow: WindowConfig = {
     "type": 0,
     "position": {
-        "x": ((document.documentElement.clientWidth / 2)-200),
+        "x": loginWindowX,
         "y": ((document.documentElement.clientHeight / 2)-75),
     },
     "size": {
-        "width": 400,
+        "width": loginWindowWidth,
         "height": 160
     },
     "title": "Welcome to my Website!",
@@ -25,10 +33,29 @@ const loginWindow: WindowConfig = {
 
 export default function Login() {
 
+    const dispatch = useDispatch()
+    const scopeState = useSelector((state: any) => state.scopes)
+
     // listen for document.documentElement.clientWidth changes
     const [windowHeight, setWindowHeight] = useState(document.documentElement.clientHeight)
     const [nudgerStyle, setNudgerStyle] = useState<CSSProperties>({top: 0})
     const initialWindowHeight = useRef(document.documentElement.clientHeight)
+
+    // run once
+    // jump to page depending on scope
+    useEffect(() => {
+        if (!scopeState) { return;}
+        switch(scopeState.scopes[0]) {
+            case ScopesEnum.RESUME:
+                frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+                break;
+            case ScopesEnum.PERSONAL_WEBSITE:
+                frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+                break;
+            default: break;
+        }
+    }, [])
+    
     useEffect(() => {
         const handleResize = () => {
             setWindowHeight(document.documentElement.clientHeight)
