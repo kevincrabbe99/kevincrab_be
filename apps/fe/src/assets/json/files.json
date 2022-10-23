@@ -89,7 +89,7 @@
                                             "y": 3
                                         },
                                         "isHidden": false,
-                                        "excludedScopes": ["PERSONAL_WEBSITE"]
+                                        "excludedScopes": ["RESUME"]
                                     },
                                     {
                                         "name": "Notepad",
@@ -107,7 +107,7 @@
                                             "y": 2
                                         },
                                         "isHidden": false,
-                                        "excludedScopes": ["PERSONAL_WEBSITE"]
+                                        "excludedScopes": ["RESUME"]
                                     },
                                     {
                                         "name": "Kevin's Github",
@@ -132,10 +132,10 @@
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open Kevins Website",
                                         "type": 2,
-                                        "path": "https:/me.kevincrab.be",
+                                        "path": "https://me.kevincrab.be",
                                         "action": {
                                             "isExternal": true,
-                                            "destination": "https:/me.kevincrab.be"
+                                            "destination": "https://me.kevincrab.be"
                                         },
                                         "position": {
                                             "alignment": 1,
@@ -150,10 +150,10 @@
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open Kevins Github",
                                         "type": 2,
-                                        "path": "https://github.com/kevincrabbe99",
+                                        "path": "https://github.com/kevincrabbe99/kevincrab_be",
                                         "action": {
                                             "isExternal": true,
-                                            "destination": "https://github.com/kevincrabbe99"
+                                            "destination": "https://github.com/kevincrabbe99/kevincrab_be"
                                         },
                                         "position": {
                                             "alignment": 1,
