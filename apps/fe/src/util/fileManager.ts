@@ -42,7 +42,7 @@ export const fileManager = {
     isNodeScoped(scopes: ScopesEnum[], file: FileNode): boolean | null {
         
         // console.log("check for scopes", scopes, file.name);
-        if (!scopes) { return true }
+        // if (!scopes) { return true }
 
         // return true if file has no scopes
         if (!file.scopes && !file.excludedScopes) { return true }   
@@ -54,6 +54,8 @@ export const fileManager = {
                     return false;
                 }
             }
+        } else if (!file.scopes) {
+            return true;
         }
 
         // check if a scopes matches

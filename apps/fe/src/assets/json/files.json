@@ -146,6 +146,24 @@
                                         "excludedScopes": ["PERSONAL_WEBSITE", "PORTFOLIO"]
                                     },
                                     {
+                                        "name": "Kevin Crabbe Resume",
+                                        "icon": "WordPad_document.ico",
+                                        "hoverText": "Open Kevin Crabbe Resume",
+                                        "type": 1,
+                                        "isShortcut": true,
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 0,
+                                            "y": 2
+                                        },
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_DOCUMENT",
+                                            "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
+                                        },
+                                        "scopes": ["RESUME"]
+                                    },
+                                    {
                                         "name": "Source Code",
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open Kevins Github",
@@ -158,7 +176,7 @@
                                         "position": {
                                             "alignment": 1,
                                             "x": 0,
-                                            "y": 4
+                                            "y": 7
                                         },
                                         "isHidden": false,
                                         "scopes": ["EMULATOR", "NONE"]
