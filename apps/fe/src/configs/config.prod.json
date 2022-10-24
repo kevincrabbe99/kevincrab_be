@@ -1,0 +1,8 @@
+{
+    "baseURL": "kevincrab",
+    "port": null,
+    "isHttps": true,
+    "domain": "kevincrab",
+    "topLevelDomain": "be",
+    "fullUrl": "kevincrab.com"
+}

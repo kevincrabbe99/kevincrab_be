@@ -11,6 +11,7 @@ import { DestinationActionTriggers } from "../types/DestinationActionTriggers";
 import { windowDispatcher } from "../dispatchers/windowDispatcher";
 import { frameDispatcher } from "../dispatchers/frameDispatcher";
 import { FileNodeAction } from "../types/FileNode";
+import { appConfig } from "../configs/configurator";
 
 // Maps WindowTypesEnum to a default window config
 export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
@@ -61,4 +62,18 @@ export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch) => 
             windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
             break;
     }
+}
+
+// Returns url with provided subdomain
+// If subdomain is invalid, then the normal url is returned
+export const getUrlWithSubdomain = (subdomain: string): string => {
+    if (!subdomain || subdomain === "") { return getUrl() }
+    const newUrl = (appConfig.isHttps ? "https://" : "http://") + subdomain + "." + appConfig.domain + (appConfig.topLevelDomain ? "." + appConfig.topLevelDomain : "")
+    return newUrl
+}
+
+// Returns the current url
+export const getUrl = (): string => {
+    const newUrl = (appConfig.isHttps ? "https://" : "http://") + appConfig.domain + (appConfig.topLevelDomain ? "." + appConfig.topLevelDomain : "")
+    return newUrl
 }

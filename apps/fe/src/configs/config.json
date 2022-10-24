@@ -1,7 +1,9 @@
 {
     "baseURL": "localhost",
     "port": 3000,
+    "isHttps": false,
     "topLevelDomain": null,
     "domain": "localhost:3000",
+    "fullUrl": "http://localhost:3000",
     "timezone": "America/Los_Angeles"
 }

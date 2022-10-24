@@ -7,6 +7,7 @@ import { scopeDispatcher } from '../../../../../dispatchers/scopeDispatcher'
 import { windowDispatcher } from '../../../../../dispatchers/windowDispatcher'
 import { ScopesEnum } from '../../../../../reducers/scopeReducer'
 import { WindowSize } from '../../../../../reducers/windowReducer'
+import { getUrlWithSubdomain } from '../../../../../util/helpers'
 import { mapScopeToSubdomain } from '../../../../../util/mappers/mapSubdomainToScope'
 import "./personalizationSettingsPage.scss"
 
@@ -16,11 +17,11 @@ export const OverrideSettingsPersonalizationSize: WindowSize = {
 }
 
 const JumpToScopeOptions = [
+    { name: "Default User", value: ScopesEnum.NONE },
     { name: "Emulator", value: ScopesEnum.EMULATOR },
-    { name: "Resume", value: ScopesEnum.RESUME },
+    { name: "Portfolio", value: ScopesEnum.PORTFOLIO },
     { name: "Personal Website", value: ScopesEnum.PERSONAL_WEBSITE },
-    { name: "Resume Website", value: ScopesEnum.RESUME },
-    { name: "Resume Portfolio", value: ScopesEnum.PORTFOLIO },
+    { name: "Resume Website", value: ScopesEnum.RESUME }
 ]
 
 export default function PersonalizationSettingsPage(props: any) {
@@ -49,9 +50,10 @@ export default function PersonalizationSettingsPage(props: any) {
         const newSubdomain = mapScopeToSubdomain(selectedValue)
         // console.log("newSubdomain: ", newSubdomain);
         
-        // replace the domain with the new subdomain
-        const newUrl = window.location.href.replace(window.location.hostname, newSubdomain + "." + window.location.hostname)
-        window.location.href = newUrl
+        // replace the subdomain with the new subdomain
+        // const newUrl = window.location.href.replace(window.location.hostname, newSubdomain + "." + appConfig.domain)
+
+        window.location.href = getUrlWithSubdomain(newSubdomain)
     }
     
 

@@ -16,6 +16,7 @@ import { windowDispatcher } from '../../dispatchers/windowDispatcher'
 import { frameDispatcher } from '../../dispatchers/frameDispatcher'
 import { WindowTypesEnum } from '../../reducers/windowReducer'
 import { handleIconAction } from '../../util/helpers'
+import { ScopesEnum } from '../../reducers/scopeReducer'
 
 
 
@@ -40,13 +41,28 @@ export default function StartMenu(props: any) {
     setIsStartMenuOpen(false)
   }
 
+  const getStartMenuLabel = (): string => {
+    switch(scopesState.scopes[0]) {
+        case ScopesEnum.EMULATOR:
+            return "WinEmulator"
+        case ScopesEnum.PERSONAL_WEBSITE:
+            return "KevinCrabbe"
+        case ScopesEnum.RESUME:
+            return "Kevin Crabbe"
+        case ScopesEnum.PORTFOLIO:
+            return "kevincrab.be"
+        default:
+            return "kevincrab.be"
+    }
+  }
+
   const startMenuNodes: FileNode[] = mapContentDataToFolderData("Start Menu", scopesState.scopes)
 
   return (
     <div className="startMenu-wrapper">
         <div className="startMenu-left-box">
             <label className="rotetedWindowsText">
-                <span className="rwt-windows">ReactHooks</span>
+                <span className="rwt-windows">{getStartMenuLabel()}</span>
                 <span className="rwt-95">95</span>
             </label>
         </div>
