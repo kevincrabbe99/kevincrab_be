@@ -30,7 +30,7 @@ export default function DisplaySettingsPage(props: any) {
                 <tbody>
                     <tr>
                         <td>
-                            <label>Disable CRT Filter</label>
+                            <label>Enable CRT Filter</label>
                         </td>
                         <td>
                             <input type="checkbox" checked={crtToggle} onChange={(e) => setCrtToggleEvent(e.target.checked)} />

@@ -19,3 +19,23 @@ export const mapSubdomainToScope = (subdomain: string) => {
     }
   }
   
+
+export const mapScopeToSubdomain = (scope: ScopesEnum) => {
+
+    switch (scope) {
+      case ScopesEnum.NONE:
+        return ''
+      case ScopesEnum.EMULATOR:
+        return 'emulator'
+      case ScopesEnum.PORTFOLIO:
+        return 'portfolio'
+    case ScopesEnum.RESUME:
+        return 'resume'
+    case ScopesEnum.PERSONAL_WEBSITE:
+        return 'me'
+      default:
+        return ''
+    }  
+
+  }
+  

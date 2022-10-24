@@ -84,8 +84,8 @@ export default function WindowCordinator() {
     return (
         <div className="windowCordinator-wrapper">
             {
-                windowState.windows &&
-                windowState.windows.map((windowConfig: WindowConfig, index: number) => {
+                windowState.showingWindows &&
+                windowState.showingWindows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
                             <div className="windowZPlacement" id={windowConfig.id!} key={`winZpl-${windowConfig.id}`} style={{zIndex: (100 - (100 - index)).toString() }} ref={windowRefs[index]}>
