@@ -3,7 +3,6 @@ import { ScopesEnum } from "../../reducers/scopeReducer"
 
 export const mapSubdomainToScope = (subdomain: string) => {
 
-
     switch (subdomain) {
       case 'kevincrab':
         return ScopesEnum.NONE
