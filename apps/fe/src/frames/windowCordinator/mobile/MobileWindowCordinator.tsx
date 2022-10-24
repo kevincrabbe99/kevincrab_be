@@ -144,7 +144,7 @@ export default function MobileWindowCordinator() {
                 windowState.windows.map((windowConfig: WindowConfig, index: number) => {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
-                            <div className="windowZPlacement" id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
+                            <div className="windowZPlacement" key={`wczpl-${windowConfig.id}`} id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
                          
                                     <MobileWindow windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 

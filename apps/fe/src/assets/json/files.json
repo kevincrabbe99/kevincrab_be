@@ -176,10 +176,10 @@
                                         "position": {
                                             "alignment": 1,
                                             "x": 0,
-                                            "y": 7
+                                            "y": 6
                                         },
                                         "isHidden": false,
-                                        "scopes": ["EMULATOR", "NONE"]
+                                        "scopes": ["EMULATOR", "PERSONAL_WEBSITE", "PORTFOLIO", "NONE"]
                                     },
                                     {
                                         "name": "LinkedIn",
@@ -503,7 +503,8 @@
                                                     "isExternal": false,
                                                     "destination": "OPEN_SETTINGS",
                                                     "param": "PERSONALIZATION"
-                                                }
+                                                },
+                                                "excludedScopes": ["RESUME"]
                                             }
                                         ]
                                     }

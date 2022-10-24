@@ -12,13 +12,5 @@ export const scopeDispatcher = {
         dispatch({type: "SET_SCOPES", payload: scopes})
     },     
     
-    // Lock the scope to the current scope
-    // By setting a lock cookie
-    lockScope: (dispatch: Dispatch) => {
-        dispatch({type: "SET_SCOPE_LOCK", payload: true})
-    },
-    unlockScope: (dispatch: Dispatch) => {
-        dispatch({type: "SET_SCOPE_LOCK", payload: false})
-    }
 
 }
