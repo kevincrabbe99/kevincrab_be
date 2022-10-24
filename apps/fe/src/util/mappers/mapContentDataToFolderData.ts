@@ -9,7 +9,13 @@ export const mapContentDataToFolderData = (contentData: string, scopes: ScopesEn
     const folderData: FileNode | null  = fileManager.getFileNodeFromName(contentData, scopes)
     if (!folderData) { return [] }
     const folderDataChildren = folderData!.children || []
-    return folderDataChildren;
+
+    // remove nodes that are not in the scope
+    const filteredFolderDataChildren = folderDataChildren.filter((child) => {
+        return fileManager.isNodeScoped(scopes, child)
+    })
+
+    return filteredFolderDataChildren;
 
 }
 

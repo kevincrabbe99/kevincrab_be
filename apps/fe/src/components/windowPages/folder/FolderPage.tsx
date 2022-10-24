@@ -40,17 +40,6 @@ export const folderWindowConfig: WindowConfig = {
     "icon": "Folder.ico"
 };
 
-// const mapContentDataToFolderData = (contentData: string) => {
-//   switch(contentData) {
-//     case "My Computer" :
-//       return MyComputerJson;
-//     case "C://":
-//       return C_DRIVEJson;
-//     default:
-//       return null;
-//   }
-// }
-
 export default function FolderPage(props: any) {
 
   const dispatch = useDispatch();

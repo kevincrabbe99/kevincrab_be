@@ -80,7 +80,7 @@ export default function PersonalizationSettingsPage(props: any) {
                     </tr>
                     <tr className="btn-row">
                         <td>
-                            <button onClick={cancelEvent} >Cancel</button>
+                            <button onClick={cancelEvent}>Cancel</button>
                             <button onClick={submitEvent}>Restart</button>
                         </td>
                     </tr>
