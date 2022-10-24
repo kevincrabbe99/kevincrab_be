@@ -505,6 +505,13 @@
                                                     "param": "PERSONALIZATION"
                                                 },
                                                 "excludedScopes": ["RESUME"]
+                                            },
+                                            {
+                                                "name": "Printers",
+                                                "icon": "Printers_folder.ico",
+                                                "hoverText": "Open Connected Printers",
+                                                "type": 0,
+                                                "path": "C://Windows/Program Files/Printers"
                                             }
                                         ]
                                     }
@@ -530,11 +537,20 @@
                 "path": "D://"
             },
             {
-                "name": "Printers",
-                "icon": "Printers_Folder.ico",
+                "name": "Control Panel",
+                "icon": "Controls_Folder.ico",
                 "hoverText": "Open Control Panel",
                 "type": 0,
-                "path": "C://Windows/Program Files/Printers"
+                "path": "C://Windows/Program Files/Control Panel",
+                "isShortcut": true
+            },
+            {
+                "name": "Printers",
+                "icon": "Printers_folder.ico",
+                "hoverText": "Open Connected Printers",
+                "type": 0,
+                "path": "C://Windows/Program Files/Printers",
+                "isShortcut": true
             }
         ]
     }    

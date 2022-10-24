@@ -37,7 +37,7 @@ export default function FallbackPage(props: any) {
         <div className="fallback-wrapper">
             <div className="fallback-top">
                 <div className="fallback-icon">
-                    <img src="./icons/Dark_agent.ico" alt="Cross Icon" />
+                    <img src="./icons/Dark_Agent.ico" alt="Cross Icon" />
                 </div>
                 <div className="fallback-text">
                     <h1>Access Denied</h1>

@@ -20,7 +20,7 @@ export const runWindowConfig: WindowConfig = {
     },
     "title": "Run",
     "showXButton": true,
-    "icon": "Run.ico"
+    "icon": "run.ico"
   };
 
 
@@ -43,7 +43,7 @@ export default function Run(props: any) {
         <div className="run-wrapper">
             <div className="run-top">
                 <div className="run-top-left">
-                    <img src="./icons/Run.ico" />
+                    <img src="./icons/run.ico" />
                 </div>
                 <div className="run-top-right">
                     <p>Enter the reducer type and payload, and Redux will run it for you.</p>
