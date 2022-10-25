@@ -1,4 +1,4 @@
-import { WindowConfig } from "../../reducers/windowReducer"
+import { WindowConfig, WindowTypesEnum } from "../../reducers/windowReducer"
 import BrowserPage from "../windowPages/browser/BrowserPage"
 import DocumentPage from "../windowPages/document/DocumentPage"
 import FolderPage from "../windowPages/folder/FolderPage"
@@ -6,6 +6,7 @@ import LoginWindowPage from "../windowPages/login/LoginWindowPage"
 import FallbackPage from "../windowPages/fallback/FallbackPage"
 import Run from "../windowPages/run/Run"
 import SettingsPage from "../windowPages/settings/SettingsPage"
+import MessengerPage from "../windowPages/messenger/MessengerPage"
 
 export enum SettingsPageTypesEnum {
     DISPLAY = 0,
@@ -26,6 +27,8 @@ export const renderWindowContent = (windowConfig: WindowConfig) => {
             return <SettingsPage contentData={windowConfig.contentData} windowConfig={windowConfig}/>
         case 6:
             return <Run windowConfig={windowConfig} />
+        case WindowTypesEnum.MESSENGER:
+            return <MessengerPage windowConfig={windowConfig} />
         case 9:
             return <FallbackPage windowConfig={windowConfig} />
         default:

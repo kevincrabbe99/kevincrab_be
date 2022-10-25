@@ -5,5 +5,6 @@ export enum DestinationActionTriggers {
     OPEN_FOLDER = 'OPEN_FOLDER',
     OPEN_BROWSER = 'OPEN_BROWSER',
     OPEN_SETTINGS = 'OPEN_SETTINGS',
+    OPEN_MESSENGER = 'OPEN_MESSENGER',
     OPEN_RUN = 'OPEN_RUN'
 }

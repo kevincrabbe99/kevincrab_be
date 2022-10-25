@@ -12,6 +12,7 @@ import { windowDispatcher } from "../dispatchers/windowDispatcher";
 import { frameDispatcher } from "../dispatchers/frameDispatcher";
 import { FileNodeAction } from "../types/FileNode";
 import { appConfig } from "../configs/configurator";
+import { messengerWindowConfig } from "../components/windowPages/messenger/MessengerPage";
 
 // Maps WindowTypesEnum to a default window config
 export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
@@ -26,6 +27,8 @@ export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
             return settingsWindowConfig;
         case WindowTypesEnum.RUN:
             return runWindowConfig
+        case WindowTypesEnum.MESSENGER:
+            return messengerWindowConfig;
         case WindowTypesEnum.FALLBACK:
             return fallbackWindowConfig
         default:
@@ -53,6 +56,9 @@ export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch) => 
             break;
         case DestinationActionTriggers.OPEN_SETTINGS:
             windowDispatcher.openWindow(dispatch, WindowTypesEnum.SETTINGS, action.param)
+            break;
+        case DestinationActionTriggers.OPEN_MESSENGER:
+            windowDispatcher.openWindow(dispatch, WindowTypesEnum.MESSENGER)
             break;
         case DestinationActionTriggers.OPEN_RUN:
             windowDispatcher.openWindow(dispatch, WindowTypesEnum.RUN)
