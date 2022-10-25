@@ -93,7 +93,7 @@ export default function WindowCordinator() {
                                     <Window windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
                                         minimizeWindowHandler={minimizeWindowHandler}
-                                        id={`window-id-${windowConfig.id!}`} /> 
+                                        key={`window-id-${windowConfig.id!}`} /> 
                                 
                             </div>
                         )

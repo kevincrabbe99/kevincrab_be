@@ -8,9 +8,13 @@ import {isMobile} from 'react-device-detect';
 import { renderWindowContent } from './WindowContent';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 
+export type WindowProps = {
+    windowConfig: WindowConfig,
+    exitWindowHandler?: any,
+    minimizeWindowHandler?: any
+}
 
-
-export default function Window(props: any) {
+export default function Window(props: WindowProps) {
 
     let windowConfig:WindowConfig = props.windowConfig;
     let exitWindowHandler = props.exitWindowHandler;

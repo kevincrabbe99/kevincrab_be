@@ -6,4 +6,17 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds:{
+    default: 'Desktop Green',
+    values: [
+      {
+        name: 'Desktop Green',
+        value: '#55AAAA',
+      },
+      {
+        name: 'black',
+        value: '#000000',
+      }
+    ]
+  }
 }

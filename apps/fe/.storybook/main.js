@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -7,10 +9,17 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/preset-create-react-app"
+    "@storybook/preset-create-react-app",
+    "@storybook/preset-scss",
+    {
+       "name": 'storybook-addon-sass-postcss',
+       "options": {
+        "loadSassAfterPostCSS": true,
+      },
+    },
   ],
   "framework": "@storybook/react",
   "core": {
-    "builder": "@storybook/builder-webpack5"
-  }
-}
+    "builder": "@storybook/builder-webpack5",
+  },
+};
