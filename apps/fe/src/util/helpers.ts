@@ -12,6 +12,8 @@ import { windowDispatcher } from "../dispatchers/windowDispatcher";
 import { frameDispatcher } from "../dispatchers/frameDispatcher";
 import { FileNodeAction } from "../types/FileNode";
 import { appConfig } from "../configs/configurator";
+import { messengerWindowConfig } from "../components/windowPages/messenger/MessengerPage";
+import { genericModalWindowConfig } from "../components/windowPages/genericModal/GenericModalPage";
 
 // Maps WindowTypesEnum to a default window config
 export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
@@ -26,6 +28,10 @@ export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
             return settingsWindowConfig;
         case WindowTypesEnum.RUN:
             return runWindowConfig
+        case WindowTypesEnum.MESSENGER:
+            return messengerWindowConfig;
+        case WindowTypesEnum.GENERIC_MODAL:
+            return genericModalWindowConfig;
         case WindowTypesEnum.FALLBACK:
             return fallbackWindowConfig
         default:
@@ -54,8 +60,14 @@ export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch) => 
         case DestinationActionTriggers.OPEN_SETTINGS:
             windowDispatcher.openWindow(dispatch, WindowTypesEnum.SETTINGS, action.param)
             break;
+        case DestinationActionTriggers.OPEN_MESSENGER:
+            windowDispatcher.openWindow(dispatch, WindowTypesEnum.MESSENGER)
+            break;
         case DestinationActionTriggers.OPEN_RUN:
             windowDispatcher.openWindow(dispatch, WindowTypesEnum.RUN)
+            break;
+        case DestinationActionTriggers.OPEN_GENERIC_MODAL:
+            windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, action.param)
             break;
         default:
             console.log("Unrecognized action: ", action, " \n Using Fallback Window")

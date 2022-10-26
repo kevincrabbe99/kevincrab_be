@@ -1,6 +1,6 @@
 import { Dispatch } from "redux"
 
-import { WindowTypesEnum } from "../reducers/windowReducer";
+import { WindowConfig, WindowTypesEnum } from "../reducers/windowReducer";
 
 import { getDefaultJsonFromWindowType } from "../util/helpers";
 
@@ -8,7 +8,7 @@ export const windowDispatcher = {
 
     // Creates a new Window Object
     openWindow: (dispatch: Dispatch, type: WindowTypesEnum, param?: string) => {
-        const defaultWindowConfig = getDefaultJsonFromWindowType(type);
+        const defaultWindowConfig: WindowConfig = getDefaultJsonFromWindowType(type);
         defaultWindowConfig.contentData = param;
         dispatch({ type: "ADD_WINDOW", payload: defaultWindowConfig })    
     },
