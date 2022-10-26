@@ -366,7 +366,7 @@
                                     },
                                     {
                                         "name": "Run",
-                                        "icon": "Run.ico",
+                                        "icon": "run.ico",
                                         "hoverText": "Open Run",
                                         "type": 1,
                                         "path": "C://Windows/Program Files/Run",
@@ -420,7 +420,8 @@
                                             "isExternal": false,
                                             "destination": "OPEN_DOCUMENT",
                                             "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
-                                        }
+                                        },
+                                        "scopes": ["RESUME", "PORTFOLIO", "PERSONAL_WEBSITE"]
                                     },
                                     {
                                         "name": "about",
