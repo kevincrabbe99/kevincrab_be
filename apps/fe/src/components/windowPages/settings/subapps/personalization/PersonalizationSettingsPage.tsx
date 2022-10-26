@@ -21,7 +21,8 @@ const JumpToScopeOptions = [
     { name: "Emulator", value: ScopesEnum.EMULATOR },
     { name: "Portfolio", value: ScopesEnum.PORTFOLIO },
     { name: "Personal Website", value: ScopesEnum.PERSONAL_WEBSITE },
-    { name: "Resume Website", value: ScopesEnum.RESUME }
+    { name: "Resume Website", value: ScopesEnum.RESUME },
+    { name: "Links", value: ScopesEnum.LINKS },
 ]
 
 export default function PersonalizationSettingsPage(props: any) {

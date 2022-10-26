@@ -42,6 +42,9 @@ export default function Desktop() {
     if (scopesState.scopes[0] === ScopesEnum.RESUME) {
       windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT, "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0")
     }
+    else if (scopesState.scopes[0] === ScopesEnum.LINKS) {
+      windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, "links")
+    }
 
     runCounter++;
   }, [])

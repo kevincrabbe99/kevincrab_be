@@ -8,6 +8,11 @@ import { mapScopeToLandingPage } from './util/mappers/mapScopeToLandingPage'
 import { mapSubdomainToScope } from './util/mappers/mapSubdomainToScope'
 import CrtFilter from './frames/crtFilter/CrtFilter'
 
+const hardRedirectScoeps = [
+    ScopesEnum.RESUME,
+    ScopesEnum.LINKS
+]
+
 export default function ScopeProxy() {
 
 
@@ -25,16 +30,14 @@ export default function ScopeProxy() {
         const scope: ScopesEnum[] = [mapSubdomainToScope(subdomain)] 
         scopeDispatcher.setScopes(dispatch, scope)
 
-        // if cookie 'FRAME_STATE' exists, dont jump to frame
-        if (cookieManager.getCookieFromKey('FRAME_STATE')) { return; }
-        
-        // returns the FrameStatesEnum that corresponds to the scope
+    }, [])
+
+    useEffect(() => {
         const jumpToFrame = mapScopeToLandingPage(scopeState.scopes[0])
         if (frameState.state == jumpToFrame) { return; }
 
         frameDispatcher.setState(dispatch, jumpToFrame)
-
-    }, [])
+    }, [scopeState])
 
     return ( 
         <>

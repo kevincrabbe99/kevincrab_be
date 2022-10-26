@@ -47,6 +47,7 @@ export enum ScopesEnum {
     EMULATOR = 'EMULATOR',
     PORTFOLIO = 'PORTFOLIO',
     RESUME = 'RESUME',
+    LINKS = 'LINKS',
 }
 
 export interface ScopeState {

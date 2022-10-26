@@ -10,10 +10,12 @@ export const mapSubdomainToScope = (subdomain: string) => {
         return ScopesEnum.EMULATOR
       case 'portfolio':
         return ScopesEnum.PORTFOLIO
-    case 'resume':
-        return ScopesEnum.RESUME
-    case 'me':
-        return ScopesEnum.PERSONAL_WEBSITE
+      case 'resume':
+          return ScopesEnum.RESUME
+      case 'me':
+          return ScopesEnum.PERSONAL_WEBSITE
+      case 'links':
+          return ScopesEnum.LINKS
       default:
         return ScopesEnum.NONE
     }
@@ -33,6 +35,8 @@ export const mapScopeToSubdomain = (scope: ScopesEnum) => {
         return 'resume'
     case ScopesEnum.PERSONAL_WEBSITE:
         return 'me'
+    case ScopesEnum.LINKS:
+        return 'links'
       default:
         return ''
     }  
