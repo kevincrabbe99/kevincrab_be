@@ -75,7 +75,7 @@ export default function FolderPage(props: any) {
     } else if (node.type === FileNodeType.INTERNAL) {
       handleIconAction(action, dispatch)
     } else if (node.type === FileNodeType.EXTERNAL) {
-      let url = action.param;
+      let url = action.destination;
       window.open(url, '_blank');
     }
   

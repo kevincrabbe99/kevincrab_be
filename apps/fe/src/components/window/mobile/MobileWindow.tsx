@@ -30,8 +30,8 @@ export default function Window(props: any) {
     }
 
     // window position vars
-    var windowStackerStartYPos = (document.documentElement.clientHeight / 8) 
-    var windowStackerBufferSpace = 20
+    var windowStackerStartYPos = (document.documentElement.clientHeight / 10) 
+    var windowStackerBufferSpace = 30
     var windowStackerCapacity = windowStackerStartYPos / windowStackerBufferSpace
 
     const [x, setX] = useState(windowConfig.position.x)

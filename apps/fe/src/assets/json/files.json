@@ -73,6 +73,25 @@
                                         "isHidden": false
                                     },
                                     {
+                                        "name": "Links",
+                                        "icon": "Folder.ico",
+                                        "hoverText": "Open My Documents",
+                                        "type": 0,
+                                        "isShortcut": true,
+                                        "path": "C://kcrabbe/Links",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "Links"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 1,
+                                            "y": 2
+                                        },
+                                        "isHidden": false
+                                    },
+                                    {
                                         "name": "Internet",
                                         "icon": "Earth_16.ico",
                                         "hoverText": "Open Internet",
@@ -104,7 +123,7 @@
                                         "position": {
                                             "alignment": 0,
                                             "x": 1,
-                                            "y": 2
+                                            "y": 3
                                         },
                                         "isHidden": false,
                                         "excludedScopes": ["RESUME"]
@@ -125,25 +144,26 @@
                                             "y": 3
                                         },
                                         "isHidden": false,
-                                        "scopes": ["PERSONAL_WEBSITE", "PORTFOLIO", "RESUME", "NONE"]
+                                        "scopes": ["LINKS", "PERSONAL_WEBSITE", "PORTFOLIO", "RESUME", "NONE"]
                                     },
                                     {
                                         "name": "Author's Website",
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open Kevins Website",
-                                        "type": 2,
+                                        "type": 1,
                                         "path": "https://me.kevincrab.be",
                                         "action": {
                                             "isExternal": true,
-                                            "destination": "https://me.kevincrab.be"
+                                            "destination": "OPEN_BROWSER",
+                                            "param": "https://me.kevincrab.be"
                                         },
                                         "position": {
                                             "alignment": 1,
                                             "x": 0,
-                                            "y": 3
+                                            "y": 4
                                         },
                                         "isHidden": false,
-                                        "excludedScopes": ["PERSONAL_WEBSITE", "PORTFOLIO"]
+                                        "excludedScopes": ["PERSONAL_WEBSITE", "PORTFOLIO", "RESUME"]
                                     },
                                     {
                                         "name": "Kevin Crabbe Resume",
@@ -153,7 +173,7 @@
                                         "isShortcut": true,
                                         "position": {
                                             "alignment": 1,
-                                            "x": 0,
+                                            "x": 1,
                                             "y": 2
                                         },
                                         "action": {
@@ -161,7 +181,7 @@
                                             "destination": "OPEN_DOCUMENT",
                                             "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
                                         },
-                                        "scopes": ["RESUME"]
+                                        "scopes": ["RESUME", "PERSONAL_WEBSITE"]
                                     },
                                     {
                                         "name": "Source Code",
@@ -171,7 +191,7 @@
                                         "path": "https://github.com/kevincrabbe99/kevincrab_be",
                                         "action": {
                                             "isExternal": true,
-                                            "destination": "https://github.com/kevincrabbe99/kevincrab_be"
+                                            "destination": "https://github.com/kevincrabbe99/kevincrab_be/tree/master/apps/fe"
                                         },
                                         "position": {
                                             "alignment": 1,
@@ -218,6 +238,62 @@
                                         "excludedScopes": ["EMULATOR"]
                                     },
                                     {
+                                        "name": "read me",
+                                        "icon": "WordPad_document.ico",
+                                        "hoverText": "Open Recycle Bin",
+                                        "type": 0,
+                                        "path": "C://Windows/Recycle Bin",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_DOCUMENT",
+                                            "param": "./documents/about.pdf#toolbar=0"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 1,
+                                            "y": 6
+                                        },
+                                        "isHidden": false,
+                                        "excludedScopes": ["EMULATOR"]
+                                    },
+                                    {
+                                        "name": "about",
+                                        "icon": "WordPad_document.ico",
+                                        "hoverText": "Open Recycle Bin",
+                                        "type": 0,
+                                        "path": "C://Windows/Recycle Bin",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_DOCUMENT",
+                                            "param": "./documents/about.pdf#toolbar=0"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 1,
+                                            "y": 6
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["EMULATOR"]
+                                    },
+                                    {
+                                        "name": "Portfolio",
+                                        "icon": "Folder.ico",
+                                        "hoverText": "Open Portfolio",
+                                        "type": 0,
+                                        "isShortcut": true,
+                                        "path": "C://Users/Kevin Crabbe/Documents/Portfolio",
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 1,
+                                            "y": 1
+                                        },
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "Portfolio"
+                                        }
+                                    },
+                                    {
                                         "name": "Recycle Bin",
                                         "icon": "trash_full.ico",
                                         "hoverText": "Open Recycle Bin",
@@ -247,6 +323,84 @@
                                                 }
                                             }
                                         ]
+                                    }, 
+                                    {
+                                        "name": "StatTimer - iOS App",
+                                        "icon": "Folder.ico",
+                                        "hoverText": "Open LinkedIn",
+                                        "type": 0,
+                                        "isShortcut": true,
+                                        "path": "https://www.linkedin.com/in/kevincrab-be/",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "StatTimer - iOS App"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 1,
+                                            "y": 2
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["PORTFOLIO", "RESUME"]
+                                    }, 
+                                    {
+                                        "name": "ReactJS Win95 Emulator",
+                                        "icon": "Folder.ico",
+                                        "hoverText": "Open LinkedIn",
+                                        "type": 0,
+                                        "isShortcut": true,
+                                        "path": "C://kcrabbe/Portfolio/ReactJS Win95 Emulator",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "OPEN_FOLDER",
+                                            "param": "ReactJS Win95 Emulator"
+                                        },
+                                        "position": {
+                                            "alignment": 1,
+                                            "x": 1,
+                                            "y": 3
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["PORTFOLIO", "RESUME"]
+                                    },
+                                    {
+                                        "name": "Run",
+                                        "icon": "Run.ico",
+                                        "hoverText": "Open Run",
+                                        "type": 1,
+                                        "path": "C://Windows/Program Files/Run",
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_RUN"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 0,
+                                            "y": 6
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["EMULATOR"]
+                                    },
+                                    {
+                                        "name": "Control Panel",
+                                        "icon": "Controls_Folder.ico",
+                                        "hoverText": "Open Control Panel",
+                                        "type": 0,
+                                        "path": "C://Windows/Program Files/Control Panel",
+                                        "isShortcut":true,
+                                        "action": {
+                                            "isExternal": false,
+                                            "destination": "OPEN_FOLDER",
+                                            "param":"Control Panel"
+                                        },
+                                        "position": {
+                                            "alignment": 0,
+                                            "x": 1,
+                                            "y": 6
+                                        },
+                                        "isHidden": false,
+                                        "scopes": ["EMULATOR"]
                                     }
                                 ]
                             },
@@ -269,29 +423,25 @@
                                         }
                                     },
                                     {
-                                        "name": "Personal Website",
-                                        "icon": "web_shortcut.ico",
-                                        "hoverText": "Open Personal Website",
+                                        "name": "about",
+                                        "icon": "WordPad_document.ico",
+                                        "hoverText": "Open about",
                                         "type": 1,
-                                        "path": "C://kcrabbe//Personal Website",
                                         "action": {
                                             "isExternal": false,
-                                            "destination": "OPEN_BROWSER",
-                                            "param": "https://kevincrab.be"
+                                            "destination": "OPEN_DOCUMENT",
+                                            "param": "./documents/about.pdf#toolbar=0"
                                         }
-                                    },
-                                    {
-                                        "name": "iOS App",
-                                        "icon": "web_shortcut.ico",
-                                        "hoverText": "Open Personal Website",
-                                        "type": 1,
-                                        "path": "C://kcrabbe//Personal Website",
-                                        "action": {
-                                            "isExternal": false,
-                                            "destination": "OPEN_BROWSER",
-                                            "param": "https://apple.co/39pU9Of"
-                                        }
-                                    },
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Links",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open Links",
+                                "type": 0,
+                                "path": "C://kcrabbe/Links",
+                                "children":[
                                     {
                                         "name": "Github",
                                         "icon": "web_shortcut.ico",
@@ -299,23 +449,54 @@
                                         "type": 2,
                                         "path": "C://kcrabbe/Github",
                                         "action": {
-                                            "isExternal": false,
-                                            "destination": "OPEN_BROWSER",
-                                            "param": "https://github.com/kevincrabbe99"
+                                            "isExternal": true,
+                                            "destination": "https://github.com/kevincrabbe99"
                                         }
                                     },
                                     {
                                         "name": "LinkedIn",
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open Kevins LinkedIn",
-                                        "type": 1,
+                                        "type": 2,
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://www.linkedin.com/in/kevincrab-be/"
+                                        }
+                                    },
+                                    {
+                                        "name": "Instagram",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins Instagram",
+                                        "type": 2,
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://www.instagram.com/kevincrab.be/"
+                                        },
+                                        "excludedScopes": ["PERSONAL_WEBSITE", "RESUME"]
+                                    },
+                                    {
+                                        "name": "Personal Website",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Personal Website",
+                                        "type": 2,
+                                        "path": "C://kcrabbe//Personal Website",
                                         "action": {
                                             "isExternal": false,
-                                            "destination": "OPEN_BROWSER",
-                                            "param": "https://www.linkedin.com/in/kevincrab-be/"
+                                            "destination": "https://me.kevincrab.be"
+                                        },
+                                        "excludedScopes": ["RESUME"]
+                                    },
+                                    {
+                                        "name": "iOS App",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Personal Website",
+                                        "type": 2,
+                                        "path": "C://kcrabbe//Personal Website",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://apple.co/39pU9Of"
                                         }
                                     }
-
                                 ]
                             },
                             {
@@ -331,6 +512,88 @@
                                 "hoverText": "Open My Photos",
                                 "type": 0,
                                 "path": "C://kcrabbe/My Photos"
+                            }, 
+                            {
+                                "name": "Portfolio",
+                                "icon": "Folder.ico",
+                                "hoverText": "Open Portfolio",
+                                "type": 0,
+                                "path": "C://kcrabbe/Portfolio",
+                                "children": [
+                                    {
+                                        "name": "Github",
+                                        "icon": "web_shortcut.ico",
+                                        "hoverText": "Open Kevins Github",
+                                        "type": 2,
+                                        "path": "C://kcrabbe/Github",
+                                        "action": {
+                                            "isExternal": true,
+                                            "destination": "https://github.com/kevincrabbe99"
+                                        }
+                                    },
+                                    {
+                                        "name": "StatTimer - iOS App",
+                                        "icon": "Folder.ico",
+                                        "hoverText": "Open StatTimer - iOS App",
+                                        "type": 0,
+                                        "path": "C://kcrabbe/Portfolio/StatTimer - iOS App",
+                                        "children": [
+                                            {
+                                                "name": "StatTimer - App Store",
+                                                "icon": "web_shortcut.ico",
+                                                "hoverText": "Open StatTimer - iOS App",
+                                                "type": 2,
+                                                "path": "C://kcrabbe/Portfolio/StatTime - iOS App",
+                                                "action": {
+                                                    "isExternal": true,
+                                                    "destination": "https://apple.co/39pU9Of"
+                                                }
+                                            },
+                                            {
+                                                "name": "StatTimer - Source Code",
+                                                "icon": "web_shortcut.ico",
+                                                "hoverText": "Github StatTimer - iOS App",
+                                                "type": 2,
+                                                "path": "C://kcrabbe/Portfolio/StatTimer - Source Code",
+                                                "action": {
+                                                    "isExternal": true,
+                                                    "destination": "https://github.com/kevincrabbe99/Cube-Timer"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "ReactJS Win95 Emulator",
+                                        "icon": "Folder.ico",
+                                        "hoverText": "Open ReactJS Win95 Emulator",
+                                        "type": 0,
+                                        "path": "C://kcrabbe/Portfolio/ReactJS Win95 Emulator",
+                                        "children": [
+                                            {
+                                                "name": "ReactJS Win95 Emulator",
+                                                "icon": "web_shortcut.ico",
+                                                "hoverText": "Open ReactJS Win95 Emulator",
+                                                "type": 2,
+                                                "path": "C://kcrabbe/Portfolio/ReactJS Win95 Emulator",
+                                                "action": {
+                                                    "isExternal": true,
+                                                    "destination": "https://emulator.kevincrab.be"
+                                                }
+                                            },
+                                            {
+                                                "name": "Emulator Source Code",
+                                                "icon": "web_shortcut.ico",
+                                                "hoverText": "Open ReactJS Win95 Emulator Source Code",
+                                                "type": 2,
+                                                "path": "C://kcrabbe/Portfolio/Win95 Source Code",
+                                                "action": {
+                                                    "isExternal": true,
+                                                    "destination": "https://github.com/kevincrabbe99/kevincrab_be/tree/master/apps/fe"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     },

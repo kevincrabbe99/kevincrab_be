@@ -20,6 +20,13 @@
     font-size: 0.7em;
 }
 
+// for mobile
+@media only screen and (max-width: 768px) {
+    .window-header {
+        height: 2.25em;
+    }
+}
+
 .window-header-listener {
     height: 100%;
     position: absolute;
@@ -31,13 +38,22 @@
 .window-header img {
     width: 1.5em;
     height: 1.5em;
-    margin: 0.1em;
+    margin-left: 0.5em;
 }
 
 .window-header-title {
     padding-left: 0.6em;
     padding-top: 0.2em;
     font-size: 0.9em;
+}
+
+// for mobile
+@media only screen and (max-width: 768px) {
+    .window-header-title {
+        padding-top: 0.4em;
+        position: relative;
+        top: 0.2em;
+    }
 }
 
 .window-header-options {
@@ -60,8 +76,19 @@
     border-left: 2px solid var(--gray-main);
     border-bottom: 2px solid var(--gray-dark);
     border-right: 2px solid var(--gray-dark); 
-    margin-left: 0.2em;
+    margin-left: 0.5em;
     color: #000;
+}
+
+// for mobile
+@media only screen and (max-width: 768px) {
+    .window-header-options button {
+        height: 1.2rem;
+        width: 1.2rem;
+        font-size: 0.8em !important;
+        position:relative;
+        top: 0.3em;
+    }
 }
 
 .window-header-options button:hover { 
@@ -76,6 +103,14 @@
     top: 1.5em;
     width: 100%;
     height: calc(100% - 1.8em);
+}
+
+// for mobile
+@media only screen and (max-width: 768px) {
+    .window-content {
+        top: 1.85em;
+        height: calc(100% - 1.85em);
+    }
 }
 
 .minimize_button {
