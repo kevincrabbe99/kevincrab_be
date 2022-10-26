@@ -1,0 +1,34 @@
+
+
+.genMessage-wrapper {
+    width: calc(100% - 2.2em);
+    height: calc(100% - 2.2em);
+    position: relative;
+    top: 1em;
+    left: 1em;
+    font-size: 0.6em;
+}
+
+.message-wrapper {
+    width: 100%;
+    height: 5em;
+    overflow: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2em;
+    display: grid;
+    justify-content: end;
+}
+
+.button-wrapper button {
+    font-size: 0.8em !important;
+}

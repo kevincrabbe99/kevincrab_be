@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher'
-import { WindowConfig } from '../../../reducers/windowReducer'
+import { WindowConfig, WindowTypesEnum } from '../../../reducers/windowReducer'
 
 import axios from 'axios'
 
@@ -44,6 +44,10 @@ export default function MessengerPage(props: any) {
 
     const sendEvent = () => {
 
+
+
+        // return;
+        
         const curURL = window.location.href
 
         const data = {
@@ -56,7 +60,7 @@ export default function MessengerPage(props: any) {
         // verify data.responseEmail is an email
         if (data.responseEmail.indexOf("@") === -1 &&
             data.responseEmail.indexOf(".") === -1) {
-            alert("Please enter a valid email address.")
+            windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, "Please enter a valid email address.")
             return;
         }
 
@@ -66,19 +70,21 @@ export default function MessengerPage(props: any) {
             return;   
         }        
 
+
         // make axios POST request to https://formspree.io/f/mnqrgjjz
         // with data
         axios.post("https://formspree.io/f/mnqrgjjz", data)
             .then((response) => {
-                console.log("Formspree response: ", response)
-                alert("Message sent!")
+                console.log("Formspree response: ", response)            
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, "Message sent! \nThanks for reaching out :)")
+
 
                 // close window
                 windowDispatcher.closeWindow(dispatch, windowConfig.id!)
 
             }).catch((error) => {
                 console.log("Formspree error: ", error)
-                alert("Error sending message. Please try again later.")
+                windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, "Error sending message. \nPlease try again later.")
             })
     }
 

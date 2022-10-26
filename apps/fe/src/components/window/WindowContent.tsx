@@ -7,6 +7,7 @@ import FallbackPage from "../windowPages/fallback/FallbackPage"
 import Run from "../windowPages/run/Run"
 import SettingsPage from "../windowPages/settings/SettingsPage"
 import MessengerPage from "../windowPages/messenger/MessengerPage"
+import GenericModalPage from "../windowPages/genericModal/GenericModalPage"
 
 export enum SettingsPageTypesEnum {
     DISPLAY = 0,
@@ -31,6 +32,8 @@ export const renderWindowContent = (windowConfig: WindowConfig) => {
             return <MessengerPage windowConfig={windowConfig} />
         case 9:
             return <FallbackPage windowConfig={windowConfig} />
+        case 11:
+            return <GenericModalPage contentData={windowConfig.contentData} windowConfig={windowConfig} />
         default:
             return <FallbackPage windowConfig={windowConfig} />
     }

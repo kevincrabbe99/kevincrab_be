@@ -15,7 +15,8 @@ export enum WindowTypesEnum {
     ABOUT = 7,
     MESSENGER=8,
     FALLBACK=9,
-    HELP=10
+    HELP=10,
+    GENERIC_MODAL=11,
 }  
 
 export type WindowPosition = {
