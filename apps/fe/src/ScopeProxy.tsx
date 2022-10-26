@@ -8,6 +8,7 @@ import { mapScopeToLandingPage } from './util/mappers/mapScopeToLandingPage'
 import { mapSubdomainToScope } from './util/mappers/mapSubdomainToScope'
 import CrtFilter from './frames/crtFilter/CrtFilter'
 
+// Add scopes here that you want to be excluded from save frame.state on reload
 const hardRedirectScoeps = [
     ScopesEnum.RESUME,
     ScopesEnum.LINKS
@@ -35,6 +36,11 @@ export default function ScopeProxy() {
     useEffect(() => {
         const jumpToFrame = mapScopeToLandingPage(scopeState.scopes[0])
         if (frameState.state == jumpToFrame) { return; }
+
+        if (!hardRedirectScoeps.includes(scopeState.scopes[0])) {
+            // hard redirect
+            return;
+        }
 
         frameDispatcher.setState(dispatch, jumpToFrame)
     }, [scopeState])
