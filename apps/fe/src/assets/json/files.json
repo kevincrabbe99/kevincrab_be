@@ -150,12 +150,11 @@
                                         "name": "Author's Website",
                                         "icon": "web_shortcut.ico",
                                         "hoverText": "Open Kevins Website",
-                                        "type": 1,
+                                        "type": 2,
                                         "path": "https://me.kevincrab.be",
                                         "action": {
                                             "isExternal": true,
-                                            "destination": "OPEN_BROWSER",
-                                            "param": "https://me.kevincrab.be"
+                                            "destination": "https://me.kevincrab.be"
                                         },
                                         "position": {
                                             "alignment": 1,
@@ -163,7 +162,7 @@
                                             "y": 4
                                         },
                                         "isHidden": false,
-                                        "excludedScopes": ["PERSONAL_WEBSITE", "PORTFOLIO", "RESUME"]
+                                        "excludedScopes": ["PERSONAL_WEBSITE", "PORTFOLIO", "RESUME", "NONE"]
                                     },
                                     {
                                         "name": "Kevin Crabbe Resume",
@@ -173,8 +172,8 @@
                                         "isShortcut": true,
                                         "position": {
                                             "alignment": 1,
-                                            "x": 1,
-                                            "y": 2
+                                            "x": 0,
+                                            "y": 1
                                         },
                                         "action": {
                                             "isExternal": false,
@@ -325,16 +324,16 @@
                                         ]
                                     }, 
                                     {
-                                        "name": "StatTimer - iOS App",
+                                        "name": "1st Place (MAD iOS Contst)",
                                         "icon": "Folder.ico",
                                         "hoverText": "Open LinkedIn",
                                         "type": 0,
                                         "isShortcut": true,
-                                        "path": "https://www.linkedin.com/in/kevincrab-be/",
+                                        "path": "C://kcrabbe/Portfolio/StatTimer",
                                         "action": {
                                             "isExternal": true,
                                             "destination": "OPEN_FOLDER",
-                                            "param": "StatTimer - iOS App"
+                                            "param": "1st Place (MAD iOS Contst)"
                                         },
                                         "position": {
                                             "alignment": 1,
@@ -533,16 +532,16 @@
                                         }
                                     },
                                     {
-                                        "name": "StatTimer - iOS App",
+                                        "name": "1st Place (MAD iOS Contst)",
                                         "icon": "Folder.ico",
-                                        "hoverText": "Open StatTimer - iOS App",
+                                        "hoverText": "Open 1st Place (MAD iOS Contst)",
                                         "type": 0,
-                                        "path": "C://kcrabbe/Portfolio/StatTimer - iOS App",
+                                        "path": "C://kcrabbe/Portfolio/1st Place (MAD iOS Contst)",
                                         "children": [
                                             {
                                                 "name": "StatTimer - App Store",
                                                 "icon": "web_shortcut.ico",
-                                                "hoverText": "Open StatTimer - iOS App",
+                                                "hoverText": "Open 1st Place (MAD iOS Contst)",
                                                 "type": 2,
                                                 "path": "C://kcrabbe/Portfolio/StatTime - iOS App",
                                                 "action": {
@@ -553,7 +552,7 @@
                                             {
                                                 "name": "StatTimer - Source Code",
                                                 "icon": "web_shortcut.ico",
-                                                "hoverText": "Github StatTimer - iOS App",
+                                                "hoverText": "Github 1st Place (MAD iOS Contst)",
                                                 "type": 2,
                                                 "path": "C://kcrabbe/Portfolio/StatTimer - Source Code",
                                                 "action": {
