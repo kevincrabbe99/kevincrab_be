@@ -68,31 +68,6 @@ export default function Window(props: any) {
         return windowConfigs
     }
 
-    // listen for window position to be declared maximized
-    useEffect(() => {
-        // if maximizedWindows includes this windowConfig.id
-        if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
-            // set window position to be maximized
-            setWindowStyle({
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "calc(100% - 1.8em)",
-            })
-            setIsMaximized(true)
-        } else {
-            if (isMaximized) {
-                setWindowStyle({
-                    top: y,
-                    left: 10,
-                    width: document.documentElement.clientWidth - 20,
-                    height: size.height,
-                })
-                setIsMaximized(false)
-            }
-        }
-    }, [windowState.maximizedWindows])
-
     // runs when reorder changes
     useEffect(() => {
         
@@ -127,6 +102,31 @@ export default function Window(props: any) {
         }
     }, [windowRef])
 
+
+    // listen for window position to be declared maximized
+    useEffect(() => {
+        // if maximizedWindows includes this windowConfig.id
+        if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
+            // set window position to be maximized
+            setWindowStyle({
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "calc(100% - 1.8em)",
+            })
+            setIsMaximized(true)
+        } else {
+            // if (isMaximized) {
+                setWindowStyle({
+                    top: y,
+                    left: 10,
+                    width: document.documentElement.clientWidth - 20,
+                    height: size.height,
+                })
+                setIsMaximized(false)
+            // }
+        }
+    }, [windowState.maximizedWindows])
     
     return (
         <div className="window-wrapper" style={windowStyle} ref={windowRef}>

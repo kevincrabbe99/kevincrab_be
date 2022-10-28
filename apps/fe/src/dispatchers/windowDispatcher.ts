@@ -28,6 +28,12 @@ export const windowDispatcher = {
         dispatch({ type: "MINIMIZE_WINDOW", payload: id })
     },
 
+    // maximize the top window
+    // used to auto maximize windows when created by scope routing
+    maximizeTopWindow: (dispatch: Dispatch) => {
+        dispatch({ type: "MAXIMIZE_TOP_WINDOW" })
+    },
+
     // remove a window from the maximized window state
     unmaximizeWindow: (dispatch: Dispatch, id: string) => {
         dispatch({ type: "UNMAXIMIZE_WINDOW", payload: id })
