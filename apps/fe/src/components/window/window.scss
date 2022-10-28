@@ -44,6 +44,9 @@
     float:right;
     position:relative;
     right: 0.2em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .window-header-options button {
@@ -61,6 +64,7 @@
     border-bottom: 2px solid var(--gray-dark);
     border-right: 2px solid var(--gray-dark); 
     margin-left: 0.2em;
+    margin-top: 0.3em;
 }
 
 .window-header-options button:hover { 
@@ -80,4 +84,54 @@
 .minimize_button {
     position:relative;
     top: -0.2em;
+}
+
+.maximize_button {
+    position: relative;
+    top: -0.1em;
+    left: -0.9em;
+    border: 1px solid #000;
+    border-top: 3px solid #000;
+    width: 1.6em;
+    /* height: 1.6em; */
+    display: block;
+}
+
+.maximize_button label {
+    opacity: 0;
+}
+
+.unmaximize_button_wrapper {
+    display: block;
+    position: relative;
+    left: 0.2em;
+    width: 1em;
+    height: 1em;
+    top: 0.6em;
+    margin-top: -1.6em;
+    margin-left: -1em;
+}
+
+.unmaximize_button_wrapper label {
+    opacity: 0;
+}
+
+.unmaximize_button_wrapper span {
+    border: 1px solid #000;
+    border-top: 2px solid #000;
+    width: 1em;
+    height: 1em;
+    display:block;
+}
+
+.unmaximize_button_1 {
+    position:absolute;
+    top: 0.1em;
+    left: 0.4em;
+}
+
+.unmaximize_button_2 {
+    position:absolute;
+    top: 0.65em;
+    left: 0.1em;
 }

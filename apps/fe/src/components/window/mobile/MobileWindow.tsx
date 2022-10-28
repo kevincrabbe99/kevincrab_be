@@ -17,6 +17,8 @@ export default function Window(props: any) {
     let windowPositions = props.windowPositions;
     let exitWindowHandler = props.exitWindowHandler;
     let minimizeWindowHandler = props.minimizeWindowHandler;
+    let maximizeWindowHandler = props.maximizeWindowHandler;
+    let unmaximizeWindowHandler = props.unmaximizeWindowHandler;
 
     const windowRef = useRef<HTMLDivElement>(null);
 
@@ -36,6 +38,7 @@ export default function Window(props: any) {
 
     const [x, setX] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
+    const [isMaximized, setIsMaximized] = useState<boolean>(false)
   
     const dispatch = useDispatch()
 
@@ -47,6 +50,14 @@ export default function Window(props: any) {
         minimizeWindowHandler(windowConfig.id!)
     }
 
+    const maximizeWindowEvent = (e: any) => {
+        maximizeWindowHandler(windowConfig.id!)
+    }
+
+    const unmaximizeWindowEvent = (e: any) => {
+        unmaximizeWindowHandler(windowConfig.id!)
+    }
+
     const getTaskbarWindowConfigs = () : WindowConfig[] => {
         let windowConfigs: WindowConfig[] = []
         for (let i = 0; i < windowState.windows.length; i++) {
@@ -56,6 +67,31 @@ export default function Window(props: any) {
         }
         return windowConfigs
     }
+
+    // listen for window position to be declared maximized
+    useEffect(() => {
+        // if maximizedWindows includes this windowConfig.id
+        if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
+            // set window position to be maximized
+            setWindowStyle({
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "calc(100% - 1.8em)",
+            })
+            setIsMaximized(true)
+        } else {
+            if (isMaximized) {
+                setWindowStyle({
+                    top: y,
+                    left: 10,
+                    width: document.documentElement.clientWidth - 20,
+                    height: size.height,
+                })
+                setIsMaximized(false)
+            }
+        }
+    }, [windowState.maximizedWindows])
 
     // runs when reorder changes
     useEffect(() => {
@@ -108,14 +144,36 @@ export default function Window(props: any) {
                         <button>?</button> : null
                     }
                     {
-                        windowConfig.minimizable != false ? <button onClick={minimizeWindowEvent}>
+                        windowConfig.minimizable != false ? 
+                        <button onClick={minimizeWindowEvent}>
                             <span className="minimize_button">
                                 _
                             </span>
                         </button> : null
                     }
                     {
-                        windowConfig.showXButton == false ? null : <button onClick={exitWindow}>X</button> 
+                        !windowConfig.maximizable ?
+                            !isMaximized ?
+                            <button onClick={maximizeWindowEvent}>
+                                <span className="maximize_button">
+                                    <label>+</label>    
+                                </span>
+                            </button> : 
+                            <button onClick={unmaximizeWindowEvent}>
+                                <span className="unmaximize_button_wrapper">
+                                    <span className="unmaximize_button_1">
+                                        <label>+</label>    
+                                    </span>
+                                    <span className="unmaximize_button_2">
+                                        <label>+</label>    
+                                    </span>
+                                </span>
+                            </button>
+                        : null
+                    }
+                    {
+                        windowConfig.showXButton == false ? null :
+                        <button onClick={exitWindow}>X</button> 
                     }
                 </div>
             </div>

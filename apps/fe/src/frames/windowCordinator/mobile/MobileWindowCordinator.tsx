@@ -21,6 +21,7 @@ export default function MobileWindowCordinator() {
 
     const [exitedWindowIds, setExitedWindowIds] = useState<string[]>([])
     const [minimizedWindowIds, setMinimizedWindowIds] = useState<string[]>([])
+    const [maximizedWindowIds, setMaximizedWindowIds] = useState<string[]>([])
     
     const exitWindowHadler = (id: string) => {
         setExitedWindowIds([...exitedWindowIds, id])
@@ -31,6 +32,16 @@ export default function MobileWindowCordinator() {
         setMinimizedWindowIds([...minimizedWindowIds, id])
         windowDispatcher.minimizeWindow(dispatch, id)
     }   
+
+    const maximizeWindowHandler = (id: string) => {
+        setMaximizedWindowIds([...maximizedWindowIds, id])
+        windowDispatcher.maximizeWindow(dispatch, id)
+    }
+
+    const unmaximizeWindowHandler = (id: string) => {
+        setMaximizedWindowIds(maximizedWindowIds.filter((windowId) => windowId !== id))
+        windowDispatcher.unmaximizeWindow(dispatch, id)
+    }
 
     useEffect(() => {
 
@@ -149,6 +160,8 @@ export default function MobileWindowCordinator() {
                                     <MobileWindow windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
                                         minimizeWindowHandler={minimizeWindowHandler}
+                                        maximizeWindowHandler={maximizeWindowHandler}
+                                        unmaximizeWindowHandler={unmaximizeWindowHandler}
                                         id={`window-id-${windowConfig.id!}`} 
                                         windowPositions={windowPositions}/> 
                                 
