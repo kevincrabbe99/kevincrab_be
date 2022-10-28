@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { WindowConfig, WindowState } from '../../../reducers/windowReducer';
+import { WindowConfig, WindowState, WindowTypesEnum } from '../../../reducers/windowReducer';
 import "./mobileWindow.scss"
 
 import {isMobile} from 'react-device-detect';
@@ -70,7 +70,7 @@ export default function Window(props: any) {
 
     // runs when reorder changes
     useEffect(() => {
-        
+
         // position of windowConfig.id in windowState.windows
         let windowConfigIndex = windowState.windows.filter(window => !window.exited).findIndex((windowConfig: WindowConfig) => windowConfig.id === props.windowConfig.id)
 
@@ -83,6 +83,7 @@ export default function Window(props: any) {
 
     // runs when setX or setY is called after initial position is set
     useEffect(() => {
+        console.log("setting login window style: ", windowConfig.type)
         if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
             // set window position to be maximized
             setWindowStyle({
@@ -103,6 +104,8 @@ export default function Window(props: any) {
         }
     }, [x, y, windowState.maximizedWindows])
 
+
+    
     // add click event listener to windowRef
     useEffect(() => {
         const windowSelectEvent = (e: any) => {

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { ScopesEnum } from '../../reducers/scopeReducer';
 import { frameDispatcher } from '../../dispatchers/frameDispatcher';
 import { FrameStatesEnum } from '../../reducers/frameReducer';
+import MobileWindow from '../../components/window/mobile/MobileWindow';
 
 const loginWindowWidth: number = (document.documentElement.clientWidth > 400) ? 400 : document.documentElement.clientWidth - 20
 const loginWindowX: number = (document.documentElement.clientWidth - loginWindowWidth) / 2
@@ -26,6 +27,7 @@ const loginWindow: WindowConfig = {
     "title": "Welcome to my Website!",
     "helpData": "This is the login window. You can login here.",
     "minimizable": false,
+    "maximizable": false,
     "showXButton": false
 };
 
@@ -89,8 +91,17 @@ export default function Login() {
                 <img src="./images/clouds.jpeg"></img>
             </div>
             <div className="login-page-content">
-
-                <Window windowConfig={loginWindow} />
+                {
+                    isMobile ?
+                    <MobileWindow 
+                                windowConfig={loginWindow}
+                                windowPositions = {[loginWindow]} />
+                    :
+                    <Window
+                        windowConfig={loginWindow}
+                    />
+                }
+                
             </div>
         </div>
     )
