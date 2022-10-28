@@ -4,9 +4,6 @@ import { useDispatch } from 'react-redux';
 import Window from '../../components/window/Window';
 import { WindowConfig, WindowState, WindowTypesEnum } from '../../reducers/windowReducer';
 import "./windowCordinator.scss"
-
-import {isMobile} from 'react-device-detect';
-import MobileWindow from '../../components/window/mobile/MobileWindow';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 
 export default function WindowCordinator() {
@@ -20,6 +17,7 @@ export default function WindowCordinator() {
 
     const [exitedWindowIds, setExitedWindowIds] = useState<string[]>([])
     const [minimizedWindowIds, setMinimizedWindowIds] = useState<string[]>([])
+    const [maximizedWindowIds, setMaximizedWindowIds] = useState<string[]>([])
     
     const exitWindowHadler = (id: string) => {
         setExitedWindowIds([...exitedWindowIds, id])
@@ -30,6 +28,16 @@ export default function WindowCordinator() {
         setMinimizedWindowIds([...minimizedWindowIds, id])
         windowDispatcher.minimizeWindow(dispatch, id)
     }   
+
+    const maximizeWindowHandler = (id: string) => {
+        setMaximizedWindowIds([...maximizedWindowIds, id])
+        windowDispatcher.maximizeWindow(dispatch, id)
+    }
+
+    const unmaximizeWindowHandler = (id: string) => {
+        setMaximizedWindowIds(maximizedWindowIds.filter((windowId) => windowId !== id))
+        windowDispatcher.unmaximizeWindow(dispatch, id)
+    }
 
     useEffect(() => {
 
@@ -93,6 +101,8 @@ export default function WindowCordinator() {
                                     <Window windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
                                         minimizeWindowHandler={minimizeWindowHandler}
+                                        maximizeWindowHandler={maximizeWindowHandler}
+                                        unmaximizeWindowHandler={unmaximizeWindowHandler}
                                         id={`window-id-${windowConfig.id!}`} /> 
                                 
                             </div>

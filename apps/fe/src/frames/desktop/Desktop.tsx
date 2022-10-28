@@ -14,6 +14,7 @@ export default function Desktop() {
 
   const dispatch = useDispatch()
   const scopesState = useSelector((state: any) => state.scopes)
+  const windowState = useSelector((state: any) => state.windows)
 
   const [isStartMenuOpen, setIsStartMenuOpen] = useState<boolean>(false)
   const [isVolumeSliderOpen, setIsVolumeSliderOpen] = useState<boolean>(false)
@@ -41,6 +42,9 @@ export default function Desktop() {
 
     if (scopesState.scopes[0] === ScopesEnum.RESUME) {
       windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT, "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0")
+      // maximize the resume
+      windowDispatcher.maximizeTopWindow(dispatch)
+      
     }
     else if (scopesState.scopes[0] === ScopesEnum.LINKS) {
       windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, "Links")

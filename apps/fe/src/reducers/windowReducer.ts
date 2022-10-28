@@ -39,6 +39,8 @@ export type WindowConfig = {
     showXButton?: boolean;
     minimized?: boolean;
     minimizable?: boolean;
+    maximized?: boolean;
+    maximizable?: boolean;
     exited?: boolean;
     contentData?: any;
     helpData?: any;
@@ -48,6 +50,7 @@ export interface WindowState {
     windows: WindowConfig[];
     showingWindows: WindowConfig[];
     minimizedWindows: WindowConfig[];
+    maximizedWindows: WindowConfig[];
     closedWindows: WindowConfig[];
     runningWindows: WindowConfig[];
     top?: string;
@@ -57,6 +60,7 @@ const initialState: WindowState = {
     windows: [], 
     showingWindows: [], 
     minimizedWindows: [], 
+    maximizedWindows: [],
     closedWindows: [], 
     runningWindows: [],
     top: undefined
@@ -252,6 +256,100 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 newMinimizedWindows: newMinimizedWindows2,
                 showingWindows: newShowingWindows2
             }
+        
+        case "MAXIMIZE_WINDOW":
+            // add to maximizedWindows
+            const mxmz_newMaximizedWindows = state.maximizedWindows.concat(state.windows.filter((window) => {
+                return window.id === action.payload && !window.maximized
+            }))
+
+            // remove from minimizedWindows 
+            // (just incase)
+            const mxmz_newMinimizedWindows = state.minimizedWindows.filter((window) => {
+                return window.id !== action.payload
+            })
+            
+            // set as top window
+            const mxmz_newTop = action.payload
+
+            // set maximized to true
+            const mxmz_newWindows = state.windows.map((window) => {
+                if (window.id === action.payload) {
+                    return {
+                        ...window,
+                        maximized: true
+                    }
+                } else {
+                    return window
+                }
+            })
+
+            return {
+                ...state,
+                top: mxmz_newTop,
+                minimizedWindows: mxmz_newMinimizedWindows,
+                maximizedWindows: mxmz_newMaximizedWindows,
+                windows: mxmz_newWindows
+            }
+
+        case "MAXIMIZE_TOP_WINDOW":
+            // add to maximizedWindows
+            const mxmzTW_newMaximizedWindows = state.maximizedWindows.concat(state.windows.filter((window) => {
+                return window.id === state.top && !window.maximized
+            }))
+
+            // remove from minimizedWindows
+            const mxmzTW_newMinimizedWindows = state.minimizedWindows.filter((window) => {
+                return window.id !== state.top
+            })
+
+            // set maximized to true
+            const mxmzTW_newWindows = state.windows.map((window) => {
+                if (window.id === state.top) {
+                    return {
+                        ...window,
+                        maximized: true
+                    }
+                } else {
+                    return window
+                }
+            })
+
+            return {
+                ...state,
+                minimizedWindows: mxmzTW_newMinimizedWindows,
+                maximizedWindows: mxmzTW_newMaximizedWindows,
+                windows: mxmzTW_newWindows
+            }
+
+        case "UNMAXIMIZE_WINDOW":
+            // remove from maximizedWindows
+            const unmzmz_newMaximizedWindows = state.maximizedWindows.filter((window) => {
+                return window.id !== action.payload
+            })
+
+            // set maximized to false
+            const unmzmz_newWindows = state.windows.map((window) => {
+                if (window.id === action.payload) {
+                    return {
+                        ...window,
+                        maximized: false
+                    }
+                } else {
+                    return window
+                }
+            })
+
+            // set as top window
+            const unmzmz_newTop = action.payload
+
+            return {
+                ...state,
+                top: unmzmz_newTop,
+                maximizedWindows: unmzmz_newMaximizedWindows,
+                windows: unmzmz_newWindows
+            }
+
         case "FOCUS_WINDOW":
             if (state.windows.length > 0) {
 
@@ -292,6 +390,7 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 ...state,
                 windows: [],
                 minimizedWindows: [],
+                maximizedWindows: [],
                 closedWindows: [],
                 showingWindows: [],
                 runningWindows: [],
