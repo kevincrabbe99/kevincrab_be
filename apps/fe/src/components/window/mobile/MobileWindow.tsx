@@ -83,13 +83,25 @@ export default function Window(props: any) {
 
     // runs when setX or setY is called after initial position is set
     useEffect(() => {
-        setWindowStyle({
-            height: size.height,
-            width: document.documentElement.clientWidth - 20,
-            top: y,
-            left: 10
-        })
-    }, [x, y])
+        if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
+            // set window position to be maximized
+            setWindowStyle({
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "calc(100% - 1.8em)",
+            })
+            setIsMaximized(true)
+        } else {
+            setWindowStyle({
+                height: size.height,
+                width: document.documentElement.clientWidth - 20,
+                top: y,
+                left: 10
+            })
+            setIsMaximized(false)
+        }
+    }, [x, y, windowState.maximizedWindows])
 
     // add click event listener to windowRef
     useEffect(() => {
@@ -101,32 +113,6 @@ export default function Window(props: any) {
             windowRef.current.addEventListener("mousedown", windowSelectEvent)
         }
     }, [windowRef])
-
-
-    // listen for window position to be declared maximized
-    useEffect(() => {
-        // if maximizedWindows includes this windowConfig.id
-        if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
-            // set window position to be maximized
-            setWindowStyle({
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "calc(100% - 1.8em)",
-            })
-            setIsMaximized(true)
-        } else {
-            // if (isMaximized) {
-                setWindowStyle({
-                    top: y,
-                    left: 10,
-                    width: document.documentElement.clientWidth - 20,
-                    height: size.height,
-                })
-                setIsMaximized(false)
-            // }
-        }
-    }, [windowState.maximizedWindows])
     
     return (
         <div className="window-wrapper" style={windowStyle} ref={windowRef}>
