@@ -7,16 +7,28 @@
 ## Available Scripts from within this directory
 In the project directory, you can run:
 
-### `npm start:local`
+### `npm run start:local`
 Open in browser: [http://localhost:3000](http://localhost:3000)\
 Runs the app in the local development mode.
 - Does not connect to Firebase 
 
+### `npm run start:dev`
+Open in browser: [http://localhost:3000](http://localhost:3000)\
+Runs the app in the local development mode.
+- DOES connect to Firebase (if secrets are set)
 
-### `npm run build:prod`
+### `npm run start:local-production`
+Open in browser: [http://localhost:3000](http://localhost:3000)\
+Runs the app as production, with firebase configs, (if set)
+
+### `npm run build:local-production`
+Build the application as it would to deploy (if secrets are set)\
+Use `serve -s build` to run whatever is in the build folder
+
+## Automation
+### `npm run build:prod --omit=dev`
 Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance. \
-(Firebase credentials will not be present)
+It correctly bundles React in production mode and optimizes the build 
 
 ### `serve -s build`
 Serves the build application on some random port.
