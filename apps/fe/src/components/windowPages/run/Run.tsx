@@ -20,7 +20,8 @@ export const runWindowConfig: WindowConfig = {
     },
     "title": "Run",
     "showXButton": true,
-    "icon": "run.ico"
+    "icon": "run.ico",
+    "maximizable": false,
   };
 
 

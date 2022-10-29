@@ -24,7 +24,8 @@ export const messengerWindowConfig = {
     },
     "title": "Messenger",
     "showXButton": true,
-    "icon": "Mail.ico"
+    "icon": "Mail.ico",
+    "maximizable": false,
 }
 
 export default function MessengerPage(props: any) {

@@ -20,6 +20,7 @@ export const fallbackWindowConfig: WindowConfig = {
     "showXButton": true,
     "icon": "Cross.ico",
     "minimizable": false,
+    "maximizable": false,
   };
 
 export default function FallbackPage(props: any) {

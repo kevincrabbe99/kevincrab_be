@@ -157,6 +157,7 @@ export default function Window(props: any) {
         }
     }, [windowRef])
 
+    // console.log("ALERT WINDOW CONFIG: ", windowConfig)
     
     return (
         <div className="window-wrapper" key={`window-wrapper-${windowConfig.id}`} style={windowStyle} ref={windowRef}>
@@ -174,30 +175,31 @@ export default function Window(props: any) {
                         <button>?</button> : null
                     }
                     {
-                        windowConfig.minimizable != false ? <button onClick={minimizeWindowEvent}>
+                        windowConfig.minimizable !== false &&
+                        <button onClick={minimizeWindowEvent}>
                             <span className="minimize_button">
                                 _
                             </span>
-                        </button> : null
+                        </button> //: <></>
                     }
                     {
-                        !windowConfig.maximizable ?
-                        !isMaximized ?
-                            <button onClick={maximizeWindowEvent}>
-                                <span className="maximize_button">
-                                    <label>+</label>    
-                                </span>
-                            </button> : 
-                            <button onClick={unmaximizeWindowEvent}>
-                                <span className="unmaximize_button_wrapper">
-                                    <span className="unmaximize_button_1">
+                        windowConfig.maximizable ?
+                            !isMaximized ?
+                                <button onClick={maximizeWindowEvent}>
+                                    <span className="maximize_button">
                                         <label>+</label>    
                                     </span>
-                                    <span className="unmaximize_button_2">
-                                        <label>+</label>    
+                                </button> : 
+                                <button onClick={unmaximizeWindowEvent}>
+                                    <span className="unmaximize_button_wrapper">
+                                        <span className="unmaximize_button_1">
+                                            <label>+</label>    
+                                        </span>
+                                        <span className="unmaximize_button_2">
+                                            <label>+</label>    
+                                        </span>
                                     </span>
-                                </span>
-                            </button>
+                                </button>
                         : null
                     }
                     {

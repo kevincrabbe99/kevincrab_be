@@ -23,7 +23,8 @@ export const documentWindowConfig: WindowConfig = {
   },
   "title": "Resume - Kevin Crabbe.pdf",
   "showXButton": true,
-  "icon": "WordPad_document.ico"
+  "icon": "WordPad_document.ico",
+  "maximizable": true
 };
 
 export default function DocumentPage(props: any) {

@@ -18,7 +18,8 @@ export const browserWindowConfig: WindowConfig = {
   },
   "title": "World Wide Web",
   "showXButton": true,
-  "icon": "internet.ico"
+  "icon": "internet.ico",
+  "maximizable": true
 };
 
 
