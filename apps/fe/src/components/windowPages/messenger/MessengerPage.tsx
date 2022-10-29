@@ -6,6 +6,8 @@ import { WindowConfig, WindowTypesEnum } from '../../../reducers/windowReducer'
 import axios from 'axios'
 
 import "./messengerPage.scss"
+import { getAnalytics } from 'firebase/analytics'
+import { ga4 } from '../../../util/ga4'
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -29,6 +31,8 @@ export const messengerWindowConfig = {
 }
 
 export default function MessengerPage(props: any) {
+
+    const analytics = getAnalytics()
 
     const windowConfig: WindowConfig = props.windowConfig;
 
@@ -61,13 +65,13 @@ export default function MessengerPage(props: any) {
         // verify data.responseEmail is an email
         if (data.responseEmail.indexOf("@") === -1 &&
             data.responseEmail.indexOf(".") === -1) {
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, "Please enter a valid email address.")
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.GENERIC_MODAL, "Please enter a valid email address.")
             return;
         }
 
         // verify that data.message is not empty
         if (data.message.length === 0) {
-            alert("Please enter a message.")
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.GENERIC_MODAL, "Please enter a message.")
             return;   
         }        
 
@@ -77,15 +81,20 @@ export default function MessengerPage(props: any) {
         axios.post("https://formspree.io/f/mnqrgjjz", data)
             .then((response) => {
                 console.log("Formspree response: ", response)            
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, "Message sent! \nThanks for reaching out :)")
-
+                windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.GENERIC_MODAL, "Message sent! \nThanks for reaching out :)")
+                
+                // make analytics
+                ga4.log(analytics, "SENT_MESSAGE", { messageData: data })
 
                 // close window
                 windowDispatcher.closeWindow(dispatch, windowConfig.id!)
 
             }).catch((error) => {
                 console.log("Formspree error: ", error)
-                windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, "Error sending message. \nPlease try again later.")
+
+                ga4.logError(analytics, "FORMSPREE_ERROR", { error: error, messageData: data })
+
+                windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.GENERIC_MODAL, "Error sending message. \nPlease try again later.")
             })
     }
 

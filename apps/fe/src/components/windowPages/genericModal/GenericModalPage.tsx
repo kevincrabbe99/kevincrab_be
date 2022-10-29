@@ -1,6 +1,8 @@
-import React from 'react'
+import { getAnalytics } from 'firebase/analytics'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher'
+import { ga4 } from '../../../util/ga4'
 
 import "./genericModalPage.scss"
 
@@ -29,6 +31,8 @@ export const genericModalWindowConfig = {
 
 export default function GenericModalPage(props: any) {
 
+    const analytics = getAnalytics()
+
     const windowConfig = props.windowConfig
     const contentData = props.contentData
 
@@ -38,6 +42,10 @@ export default function GenericModalPage(props: any) {
         windowDispatcher.closeWindow(dispatch, windowConfig.id!)
     }
 
+    // run on mount to explicitly log the generic modal message
+    useEffect(() => {
+        ga4.logWarning(analytics, "GENERIC_MESSAGE_MODAL", contentData)
+    }, [])
 
     return (
         <div className="genMessage-wrapper">

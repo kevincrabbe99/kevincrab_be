@@ -1,8 +1,10 @@
+import { getAnalytics } from 'firebase/analytics';
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 import { WindowConfig, WindowTypesEnum } from '../../../reducers/windowReducer';
+import { ga4 } from '../../../util/ga4';
 
 import "./run.scss"
 
@@ -31,6 +33,8 @@ export default function Run(props: any) {
 
     const dispatch = useDispatch()
 
+    const analytics = getAnalytics()
+
     var input_typeRef = useRef<HTMLInputElement>(null);
     var input_payloadRef = useRef<HTMLInputElement>(null);
 
@@ -38,6 +42,11 @@ export default function Run(props: any) {
         const type = input_typeRef.current!.value;
         const payload = input_payloadRef.current!.value;
         dispatch({type: type, payload: payload});
+
+        ga4.log(analytics, 'RAN_REDUX_RUN', {
+            type: type,
+            payload: payload
+        });
     }
 
     return (
@@ -63,7 +72,7 @@ export default function Run(props: any) {
             <div className="run-bottom">
                 <button onClick={runEvent}>OK</button>
                 <button onClick={() => windowDispatcher.closeWindow(dispatch, windowConfig.id)}>Cancel</button>
-                <button onClick={() => windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, "Programs") }>Browse...</button>
+                <button onClick={() => windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER, "Programs") }>Browse...</button>
             </div>
         </div>
     )

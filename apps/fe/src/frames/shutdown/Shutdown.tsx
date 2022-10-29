@@ -7,6 +7,7 @@ import { FrameStatesEnum } from '../../reducers/frameReducer';
 import { frameDispatcher } from '../../dispatchers/frameDispatcher';
 import { useSelector } from 'react-redux';
 import { ScopesEnum } from '../../reducers/scopeReducer';
+import { getAnalytics } from 'firebase/analytics';
 
 interface LogItem {
     text: string,
@@ -18,6 +19,7 @@ const exitAfterLogTimeSec = 11;
 
 export default function Shutdown() {
 
+    const analytics = getAnalytics()
 
     const dispatch = useDispatch()
     const scopeState = useSelector((state: any) => state.scopes)
@@ -31,7 +33,7 @@ export default function Shutdown() {
         if (!scopeState) { return;}
         switch(scopeState.scopes[0]) {
             case ScopesEnum.RESUME:
-                frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+                frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
         }
     }, [])
@@ -39,7 +41,7 @@ export default function Shutdown() {
     // listen for any key press
     useEffect(() => {
         const handleKeyPress = (e: any) => {
-            frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)
+            frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
         }
         window.addEventListener("keydown", handleKeyPress)
         return () => {
@@ -54,14 +56,14 @@ export default function Shutdown() {
         }, 250);
 
         if (logPosition > exitAfterLogTimeSec * 4) {
-            frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)
+            frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
         }
 
         return () => clearInterval(interval);
     }, [logPosition]);
 
     return (
-        <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, FrameStatesEnum.LOGIN)}>
+        <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)}>
             <div className="shutdown-wrapper-vertical"> 
                 <div className="shutdown-cli-output">
                     <ul>

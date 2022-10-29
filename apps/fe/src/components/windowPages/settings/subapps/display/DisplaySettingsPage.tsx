@@ -4,6 +4,7 @@ import { frameDispatcher } from '../../../../../dispatchers/frameDispatcher'
 import { WindowSize } from '../../../../../reducers/windowReducer'
 import "./displaySettingsPage.scss"
 import "../defaultSettingsTable.scss"
+import { getAnalytics } from 'firebase/analytics'
 
 export const OverrideSettingsDisplaySize: WindowSize = {
     width: 275,
@@ -11,6 +12,8 @@ export const OverrideSettingsDisplaySize: WindowSize = {
 }
 
 export default function DisplaySettingsPage(props: any) {
+
+    const analytics = getAnalytics()
 
     const dispatch = useDispatch()
     
@@ -21,7 +24,7 @@ export default function DisplaySettingsPage(props: any) {
     const setCrtToggleEvent = (e:boolean) => {
         const newState = e
         setCrtToggle(newState)
-        frameDispatcher.setUseCrt(dispatch, newState)
+        frameDispatcher.setUseCrt(dispatch, analytics, newState)
     }
 
     return (

@@ -1,3 +1,4 @@
+import { getAnalytics } from 'firebase/analytics';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
@@ -6,14 +7,16 @@ import "./loginWindowPage.scss"
 
 export default function LoginWindowPage() {
 
+    const analytics = getAnalytics()
+
     const dispatch = useDispatch();
 
     const loginSubmit = (e: any) => {
-        frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+        frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
     }
 
     const loginCancel = (e: any) => {
-        frameDispatcher.setState(dispatch, FrameStatesEnum.SHUTDOWN)
+        frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.SHUTDOWN)
     }
 
     return (

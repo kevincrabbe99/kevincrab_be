@@ -1,8 +1,10 @@
-import React from 'react'
+import { getAnalytics } from 'firebase/analytics';
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 import { WindowConfig } from '../../../reducers/windowReducer';
+import { ga4 } from '../../../util/ga4';
 
 import "./fallbackPage.scss"
 
@@ -25,14 +27,22 @@ export const fallbackWindowConfig: WindowConfig = {
 
 export default function FallbackPage(props: any) {
 
+    const analytics = getAnalytics()
+
     const windowConfig = props.windowConfig
     const windowState: WindowConfig[] = useSelector((state: any) => state.windowState);
+    const scopeState = useSelector((state: any) => state.scopeState);
 
     const dispatch = useDispatch()
 
     const okayEvent = () => {
         windowDispatcher.closeWindow(dispatch, windowConfig.id)
     }
+
+    // run on mount to log an error in firebase
+    useEffect(() => {
+        ga4.logError(analytics, "FALLBACK_MODAL", { windowConfig: windowConfig, windowState: windowState, scopes: scopeState.scopes })
+    }, [])  
 
     return (
         <div className="fallback-wrapper">

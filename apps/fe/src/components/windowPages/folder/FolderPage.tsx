@@ -18,6 +18,7 @@ import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { handleIconAction } from '../../../util/helpers';
 import { useSelector } from 'react-redux';
+import { getAnalytics } from 'firebase/analytics';
 
 const WINDOW_HEIGHT = 400
 const WINDOW_WIDTH = WINDOW_HEIGHT
@@ -42,6 +43,8 @@ export const folderWindowConfig: WindowConfig = {
 };
 
 export default function FolderPage(props: any) {
+
+  const analytics = getAnalytics()
 
   const dispatch = useDispatch();
   const scopesState = useSelector((state: any) => state.scopes)
@@ -72,9 +75,9 @@ export default function FolderPage(props: any) {
 
     let action = node.action!;
     if (node.type === FileNodeType.FOLDER) {
-      windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, node.name)
+      windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER, node.name)
     } else if (node.type === FileNodeType.INTERNAL) {
-      handleIconAction(action, dispatch)
+      handleIconAction(action, dispatch, analytics)
     } else if (node.type === FileNodeType.EXTERNAL) {
       let url = action.destination;
       window.open(url, '_blank');

@@ -14,6 +14,7 @@ import { FileNodeAction } from "../types/FileNode";
 import { appConfig } from "../configs/configurator";
 import { messengerWindowConfig } from "../components/windowPages/messenger/MessengerPage";
 import { genericModalWindowConfig } from "../components/windowPages/genericModal/GenericModalPage";
+import { Analytics } from "firebase/analytics";
 
 // Maps WindowTypesEnum to a default window config
 export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
@@ -42,36 +43,36 @@ export const getDefaultJsonFromWindowType = (type: WindowTypesEnum) => {
 
 
 // Handles FileNodeAction for icons, start menu & folderPage
-export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch) => {
+export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch, analytics: Analytics) => {
     switch(action.destination) {
         case DestinationActionTriggers.SHUTDOWN:
             windowDispatcher.deleteAllWindows(dispatch)
-            frameDispatcher.shutdown(dispatch)
+            frameDispatcher.shutdown(dispatch, analytics)
             break;
         case DestinationActionTriggers.OPEN_BROWSER:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.BROWSER ,action.param)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.BROWSER ,action.param)
             break;
         case DestinationActionTriggers.OPEN_FOLDER:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER ,action.param)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER ,action.param)
             break;
         case DestinationActionTriggers.OPEN_DOCUMENT:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT ,action.param)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.DOCUMENT ,action.param)
             break;
         case DestinationActionTriggers.OPEN_SETTINGS:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.SETTINGS, action.param)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.SETTINGS, action.param)
             break;
         case DestinationActionTriggers.OPEN_MESSENGER:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.MESSENGER)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.MESSENGER)
             break;
         case DestinationActionTriggers.OPEN_RUN:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.RUN)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.RUN)
             break;
         case DestinationActionTriggers.OPEN_GENERIC_MODAL:
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.GENERIC_MODAL, action.param)
-            break;
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.GENERIC_MODAL, action.param)
+            break
         default:
             console.log("Unrecognized action: ", action, " \n Using Fallback Window")
-            windowDispatcher.openWindow(dispatch, WindowTypesEnum.FALLBACK)
+            windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FALLBACK)
             break;
     }
 }
