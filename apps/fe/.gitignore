@@ -2,5 +2,5 @@
 /node_modules
 
 
-/envs/.env.development
-/envs/.env.local-production
+.env
+.env.local-production
