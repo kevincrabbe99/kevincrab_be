@@ -1,3 +1,4 @@
+import { getAnalytics } from 'firebase/analytics'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -15,6 +16,8 @@ export default function Desktop() {
   const dispatch = useDispatch()
   const scopesState = useSelector((state: any) => state.scopes)
   const windowState = useSelector((state: any) => state.windows)
+
+  const analytics = getAnalytics()
 
   const [isStartMenuOpen, setIsStartMenuOpen] = useState<boolean>(false)
   const [isVolumeSliderOpen, setIsVolumeSliderOpen] = useState<boolean>(false)
@@ -41,13 +44,13 @@ export default function Desktop() {
     if (runCounter > 0) { return; }
 
     if (scopesState.scopes[0] === ScopesEnum.RESUME) {
-      windowDispatcher.openWindow(dispatch, WindowTypesEnum.DOCUMENT, "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0")
+      windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.DOCUMENT, "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0")
       // maximize the resume
       windowDispatcher.maximizeTopWindow(dispatch)
       
     }
     else if (scopesState.scopes[0] === ScopesEnum.LINKS) {
-      windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, "Links")
+      windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER, "Links")
     }
 
     runCounter++;

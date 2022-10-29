@@ -83,7 +83,6 @@ export default function Window(props: any) {
 
     // runs when setX or setY is called after initial position is set
     useEffect(() => {
-        console.log("setting login window style: ", windowConfig.type)
         if (windowState.maximizedWindows.map((windowConfig: WindowConfig) => windowConfig.id).includes(windowConfig.id)) {
             // set window position to be maximized
             setWindowStyle({
@@ -117,10 +116,6 @@ export default function Window(props: any) {
         }
     }, [windowRef])
 
-    useEffect(() => {
-        console.log("windowConfig: ", windowConfig)
-    })
-    
     return (
         <div className="window-wrapper" style={windowStyle} ref={windowRef}>
             <div className="window-header" >

@@ -17,6 +17,7 @@ import { frameDispatcher } from '../../dispatchers/frameDispatcher'
 import { WindowTypesEnum } from '../../reducers/windowReducer'
 import { handleIconAction } from '../../util/helpers'
 import { ScopesEnum } from '../../reducers/scopeReducer'
+import { getAnalytics } from 'firebase/analytics'
 
 
 
@@ -27,15 +28,17 @@ export default function StartMenu(props: any) {
   const dispatch = useDispatch();
   const scopesState = useSelector((state: any) => state.scopes)
 
+  const analytics = getAnalytics()
+
   const [selectedSubmenu, setSelectedSubmenu] = useState<string | null>(null)
 
   const handleDestinationAction = (item: FileNode) => {
     
     if (item.type === FileNodeType.FOLDER) {
-        windowDispatcher.openWindow(dispatch, WindowTypesEnum.FOLDER, item.name)
+        windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER, item.name)
     } else {
         const action = item.action!
-        handleIconAction(action, dispatch)
+        handleIconAction(action, dispatch, analytics)
     }
 
     setIsStartMenuOpen(false)

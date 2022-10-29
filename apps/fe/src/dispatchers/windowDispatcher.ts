@@ -1,16 +1,24 @@
+import { Analytics } from "firebase/analytics";
 import { Dispatch } from "redux"
 
 import { WindowConfig, WindowTypesEnum } from "../reducers/windowReducer";
+import { ga4, EventActionTypes } from "../util/ga4";
 
 import { getDefaultJsonFromWindowType } from "../util/helpers";
 
 export const windowDispatcher = {
 
     // Creates a new Window Object
-    openWindow: (dispatch: Dispatch, type: WindowTypesEnum, param?: string) => {
+    openWindow: (dispatch: Dispatch,  analytics: Analytics, type: WindowTypesEnum, param?: string) => {
         const defaultWindowConfig: WindowConfig = getDefaultJsonFromWindowType(type);
         defaultWindowConfig.contentData = param;
         dispatch({ type: "ADD_WINDOW", payload: defaultWindowConfig })    
+
+        // Log Event
+        ga4.log(analytics, "ADD_WINDOW", { 
+            windowConfig: defaultWindowConfig,
+            param: param
+        }) 
     },
 
     // bring the window to the front & unminimize

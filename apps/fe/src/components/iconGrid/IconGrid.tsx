@@ -17,6 +17,7 @@ import { handleIconAction } from '../../util/helpers';
 import { useSelector } from 'react-redux';
 import { ScopesEnum } from '../../reducers/scopeReducer';
 import { fileManager } from '../../util/fileManager';
+import { getAnalytics } from 'firebase/analytics';
 
 
 const MAX_ROWS = 8;
@@ -26,11 +27,13 @@ const MAX_COLS = 2;
 
 export default function IconGrid() {
 
+    const analytics = getAnalytics()
+
     const dispatch = useDispatch();
     const scopesState = useSelector((state: any) => state.scopes);
 
     const handleDestinationAction = (action: FileNodeAction) => {
-        handleIconAction(action, dispatch)
+        handleIconAction(action, dispatch, analytics)
     }
 
   return (

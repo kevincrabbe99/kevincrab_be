@@ -8,6 +8,7 @@ function App() {
   console.log("App()")
   console.log("App Config: ", appConfig)
 
+
   return (
     <div className="App" data-theme="dark">
       <ScopeProxy />

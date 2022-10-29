@@ -10,6 +10,7 @@ import { ScopesEnum } from '../../reducers/scopeReducer';
 import { frameDispatcher } from '../../dispatchers/frameDispatcher';
 import { FrameStatesEnum } from '../../reducers/frameReducer';
 import MobileWindow from '../../components/window/mobile/MobileWindow';
+import { getAnalytics } from 'firebase/analytics';
 
 const loginWindowWidth: number = (document.documentElement.clientWidth > 400) ? 400 : document.documentElement.clientWidth - 20
 const loginWindowX: number = (document.documentElement.clientWidth - loginWindowWidth) / 2
@@ -35,6 +36,8 @@ const loginWindow: WindowConfig = {
 
 export default function Login() {
 
+    const analytics = getAnalytics()
+
     const dispatch = useDispatch()
     const scopeState = useSelector((state: any) => state.scopes)
 
@@ -49,10 +52,10 @@ export default function Login() {
         if (!scopeState) { return;}
         switch(scopeState.scopes[0]) {
             case ScopesEnum.RESUME:
-                frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+                frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
             case ScopesEnum.PERSONAL_WEBSITE:
-                frameDispatcher.setState(dispatch, FrameStatesEnum.DESKTOP)
+                frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
             default: break;
         }
