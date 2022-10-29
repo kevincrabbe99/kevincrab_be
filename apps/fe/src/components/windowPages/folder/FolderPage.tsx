@@ -37,7 +37,8 @@ export const folderWindowConfig: WindowConfig = {
     },
     "title": "Exploring",
     "showXButton": true,
-    "icon": "Folder.ico"
+    "icon": "Folder.ico",
+    "maximizable": true,
 };
 
 export default function FolderPage(props: any) {

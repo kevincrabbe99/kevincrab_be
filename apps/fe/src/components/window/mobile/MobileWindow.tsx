@@ -116,6 +116,10 @@ export default function Window(props: any) {
             windowRef.current.addEventListener("mousedown", windowSelectEvent)
         }
     }, [windowRef])
+
+    useEffect(() => {
+        console.log("windowConfig: ", windowConfig)
+    })
     
     return (
         <div className="window-wrapper" style={windowStyle} ref={windowRef}>
@@ -141,7 +145,7 @@ export default function Window(props: any) {
                         </button> : null
                     }
                     {
-                        !windowConfig.maximizable ?
+                        windowConfig.maximizable ?
                             !isMaximized ?
                             <button onClick={maximizeWindowEvent}>
                                 <span className="maximize_button">

@@ -21,8 +21,9 @@ export const genericModalWindowConfig = {
     },
     "title": "Alert",
     "showXButton": true,
-    "minimizeable": false,
-    // "icon": "Folder.ico"
+    "minimizable": false,
+    "maximizable": false,
+    "icon": "Dialog.ico"
 }
 
 
@@ -41,6 +42,9 @@ export default function GenericModalPage(props: any) {
     return (
         <div className="genMessage-wrapper">
             <div className="message-wrapper">
+                <div className="message-icon">
+                    <img src={require(`../../../../public/icons/${windowConfig.icon}`)} alt="dialog icon" />
+                </div>
                 <p>
                     {
                         contentData
