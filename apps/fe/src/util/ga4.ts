@@ -61,7 +61,9 @@ const logEventWithMetadata = (analytics: Analytics, action: EventActionTypes | "
         screen: window.screen.width + "x" + window.screen.height,
         timestamp: new Date().toISOString()
     }
-    logEvent(analytics, action, paramsWithMetadata)
+    if (shouldExportAnalytics()) {
+        logEvent(analytics, action, paramsWithMetadata)
+    }
 
     console.log("LOGGING EVENT ("+action+")", paramsWithMetadata)
 }
@@ -77,7 +79,9 @@ const logScreenViewWithMetadata = (analytics: Analytics, screenData: ScreenDataT
        timestamp: new Date().toISOString()
     }
     
-    logEvent(analytics, "screen_view", screenDataWithMetadata)
+    if (shouldExportAnalytics()) {
+        logEvent(analytics, "screen_view", screenDataWithMetadata)
+    }
 
     console.log("LOGGING SCREEN VIEW", screenDataWithMetadata)
 }
@@ -92,7 +96,14 @@ const setUserPropertiesWithMetadata = (analytics: Analytics, properties: any) =>
         screen: window.screen.width + "x" + window.screen.height,
         timestamp: new Date().toISOString()
     }
+
+    if (shouldExportAnalytics()) {
     setUserProperties(analytics, userPropertiesWithMetadata)
+    }
 
     console.log("SETTING USER PROPERTY", userPropertiesWithMetadata)
+}
+
+const shouldExportAnalytics = () => {
+    return process.env.NODE_ENV === "production"
 }
