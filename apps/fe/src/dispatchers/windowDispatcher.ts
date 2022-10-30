@@ -17,7 +17,9 @@ export const windowDispatcher = {
         // Log Event
         ga4.log(analytics, "ADD_WINDOW", { 
             windowConfig: defaultWindowConfig,
-            param: param
+            param: param,
+            window_type: WindowTypesEnum[defaultWindowConfig.type],
+            window_title: defaultWindowConfig.title
         }) 
     },
 
