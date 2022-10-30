@@ -4,3 +4,4 @@
 
 .env
 .env.local-production
+.env.local-development

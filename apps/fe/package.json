@@ -24,6 +24,7 @@
     "react-bootstrap": "^2.5.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-dotenv": "^0.1.3",
     "react-redux": "^8.0.4",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
@@ -33,16 +34,16 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:local":  "env-cmd -f ./envs/.env.local       react-scripts start",
-    "start:local-production":  "env-cmd -f ./envs/.env.local.production react-scripts start",
-    "start:dev":    "env-cmd -f .env react-scripts start",
-    "start:prod":   "env-cmd -f .env.prod        react-scripts start",
-    "build:local":  "env-cmd -f ./envs/.env.local       react-scripts build",
-    "build:local-production":  "env-cmd -f ./envs/.env.local-production react-scripts build",
-    "build:prod":   "env-cmd -f .env.prod        react-scripts build",
-    "test:local":   "env-cmd -f ./envs/.env.local       react-scripts test",
-    "test:prod":    "env-cmd -f ./envs/.env.prod        react-scripts test",
-    "eject":        "react-scripts eject"
+    "start:local": "env-cmd -f ./envs/.env.local       react-scripts start",
+    "start:local-production": "env-cmd -f ./envs/.env.local.production react-scripts start",
+    "start:dev": "env-cmd -f .env.local-development  react-scripts start",
+    "start:prod": "env-cmd -f .env.prod        react-scripts start",
+    "build:local": "env-cmd -f ./envs/.env.local       react-scripts build",
+    "build:local-production": "env-cmd -f ./envs/.env.local-production react-scripts build",
+    "build:prod": "env-cmd -f .env.prod        react-scripts build",
+    "test:local": "env-cmd -f ./envs/.env.local       react-scripts test",
+    "test:prod": "env-cmd -f ./envs/.env.prod        react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
