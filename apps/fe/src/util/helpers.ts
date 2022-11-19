@@ -69,7 +69,11 @@ export const handleIconAction = (action: FileNodeAction, dispatch: Dispatch, ana
             break;
         case DestinationActionTriggers.OPEN_GENERIC_MODAL:
             windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.GENERIC_MODAL, action.param)
-            break
+            break;
+        case DestinationActionTriggers.OFF:
+            windowDispatcher.deleteAllWindows(dispatch)
+            frameDispatcher.turnOff(dispatch, analytics)
+            break;
         default:
             console.log("Unrecognized action: ", action, " \n Using Fallback Window")
             windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FALLBACK)
