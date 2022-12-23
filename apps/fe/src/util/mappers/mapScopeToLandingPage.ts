@@ -18,6 +18,6 @@ export const mapScopeToLandingPage = (scope: ScopesEnum): FrameStatesEnum => {
         case ScopesEnum.LINKS:
             return FrameStatesEnum.DESKTOP;
         default:
-            return FrameStatesEnum.LOGIN;
+            return FrameStatesEnum.SHUTDOWN;
     }
 }

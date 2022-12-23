@@ -49,12 +49,19 @@ export default function Login() {
     // run once
     // jump to page depending on scope
     useEffect(() => {
+        console.log("SCOPE: ", scopeState)
         if (!scopeState) { return;}
         switch(scopeState.scopes[0]) {
             case ScopesEnum.RESUME:
                 frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
             case ScopesEnum.PERSONAL_WEBSITE:
+                frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
+                break;
+            case ScopesEnum.NONE:
+                frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
+                break;
+            case null:
                 frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
             default: break;

@@ -195,7 +195,7 @@
                                         "position": {
                                             "alignment": 1,
                                             "x": 0,
-                                            "y": 6
+                                            "y": 5
                                         },
                                         "isHidden": false,
                                         "scopes": ["EMULATOR", "PERSONAL_WEBSITE", "PORTFOLIO", "NONE"]
@@ -250,7 +250,7 @@
                                         "position": {
                                             "alignment": 1,
                                             "x": 1,
-                                            "y": 6
+                                            "y": 5
                                         },
                                         "isHidden": false,
                                         "excludedScopes": ["EMULATOR"]
@@ -269,7 +269,7 @@
                                         "position": {
                                             "alignment": 1,
                                             "x": 1,
-                                            "y": 6
+                                            "y": 5
                                         },
                                         "isHidden": false,
                                         "scopes": ["EMULATOR"]
@@ -376,7 +376,7 @@
                                         "position": {
                                             "alignment": 0,
                                             "x": 0,
-                                            "y": 6
+                                            "y": 5
                                         },
                                         "isHidden": false,
                                         "scopes": ["EMULATOR"]
@@ -396,7 +396,7 @@
                                         "position": {
                                             "alignment": 0,
                                             "x": 1,
-                                            "y": 6
+                                            "y": 5
                                         },
                                         "isHidden": false,
                                         "scopes": ["EMULATOR"]
