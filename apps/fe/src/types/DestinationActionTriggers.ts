@@ -1,6 +1,5 @@
 export enum DestinationActionTriggers {
     SHUTDOWN = 'SHUTDOWN',
-    OFF = 'OFF',
     STARTUP = 'STARTUP',
     OPEN_DOCUMENT = 'OPEN_DOCUMENT',
     OPEN_FOLDER = 'OPEN_FOLDER',

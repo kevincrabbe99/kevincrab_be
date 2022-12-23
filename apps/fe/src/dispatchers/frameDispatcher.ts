@@ -10,13 +10,6 @@ export const frameDispatcher = {
         dispatch({type: "SET_STATE", payload: FrameStatesEnum.SHUTDOWN})
         ga4.logScreenView(analytics, FrameStatesEnum.SHUTDOWN)
     },
-
-    turnOff: (dispatch: Dispatch, analytics: Analytics) => {
-        dispatch({type: "SET_STATE", payload: FrameStatesEnum.OFF})
-        dispatch({type: "SET_USE_CRT", payload: false})
-        ga4.logScreenView(analytics, FrameStatesEnum.OFF)
-    },
-
     setState: (dispatch: Dispatch, analytics: Analytics, state: FrameStatesEnum) => {
         dispatch({type: "SET_STATE", payload: state})
         ga4.logScreenView(analytics, state)

@@ -43,7 +43,6 @@ export enum FrameStatesEnum {
     DESKTOP = 3,
     FULLSCREEN_WINDOW = 4,
     ERROR = 5,
-    OFF = 6,
 }       
 
 export interface FrameState {
