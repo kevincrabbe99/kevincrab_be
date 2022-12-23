@@ -724,7 +724,7 @@
                                         "path": "C://Windows/Program Files/Internet",
                                         "action": {
                                             "isExternal": false,
-                                            "destination": "OFF"
+                                            "destination": "SHUTDOWN"
                                         },
                                         "isHidden": false
                                     }

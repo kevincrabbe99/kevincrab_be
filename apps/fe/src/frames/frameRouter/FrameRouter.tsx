@@ -8,7 +8,6 @@ import MobileWindowCordinator from '../windowCordinator/mobile/MobileWindowCordi
 import WindowCordinator from '../windowCordinator/WindowCordinator';
 
 import {isMobile} from 'react-device-detect';
-import Off from '../off/Off';
 
 export default function FrameRouter() {
 
@@ -36,10 +35,6 @@ export default function FrameRouter() {
         {/* SHUTDOWN View */}
         {
             frame.state == FrameStatesEnum.SHUTDOWN ? <Shutdown /> : null
-        }
-        {/* OFF */}
-        {
-            frame.state == FrameStatesEnum.OFF ? <Off /> : null
         }
 
         </>
