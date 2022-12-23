@@ -14,7 +14,8 @@ import { Analytics, getAnalytics } from 'firebase/analytics'
 // Add scopes here that you want to be excluded from save frame.state on reload
 const hardRedirectScoeps = [
     ScopesEnum.RESUME,
-    ScopesEnum.LINKS
+    ScopesEnum.LINKS,
+    ScopesEnum.NONE
 ]
 
 export default function ScopeProxy() {
@@ -44,7 +45,7 @@ export default function ScopeProxy() {
     useEffect(() => {
         const jumpToFrame = mapScopeToLandingPage(scopeState.scopes[0])
         if (frameState.state == jumpToFrame) { return; }
-
+ 
         if (!hardRedirectScoeps.includes(scopeState.scopes[0])) {
             // hard redirect
             return;
