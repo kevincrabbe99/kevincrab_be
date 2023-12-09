@@ -34,6 +34,7 @@ if (process.env.NODE_ENV === 'development') {
   firebaseApp = initializeApp(firebaseConfig);
   ga4 = getAnalytics(firebaseApp);
 } else if (process.env.NODE_ENV === 'production') {
+  
   firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
