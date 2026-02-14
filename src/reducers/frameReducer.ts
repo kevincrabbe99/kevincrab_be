@@ -10,14 +10,14 @@ export enum FrameStatesEnum {
     ERROR = 5,
 }
 
-const getStateFromCookie = () => {
+const getStateFromCookie = (): FrameStatesEnum => {
     const cookie = document.cookie;
     const cookieParts = cookie.split(";");
     for (let i = 0; i < cookieParts.length; i++) {
         const cookiePart = cookieParts[i];
         const cookiePartParts = cookiePart.split("=");
         if (cookiePartParts[0].trim() === "FRAME_STATE") {
-            return cookiePartParts[1].trim();
+            return parseInt(cookiePartParts[1].trim(), 10) as FrameStatesEnum;
         }
     }
     return FrameStatesEnum.LOGIN;
@@ -51,7 +51,7 @@ export interface FrameState {
 }
 
 const initialState: FrameState = {
-    state: getStateFromCookie() as number,
+    state: getStateFromCookie(),
     useCrt: getIsUsingCrtFromCookie()
 };
 

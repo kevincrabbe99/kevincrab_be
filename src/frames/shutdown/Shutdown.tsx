@@ -62,14 +62,21 @@ export default function Shutdown() {
         return () => clearInterval(interval);
     }, [dispatch, analytics, logPosition]);
 
+    const handleClick = () => {
+        frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
+    }
+
     return (
-        <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)}>
+        <div className="shutdown-wrapper" onClick={handleClick}>
             <div className="shutdown-wrapper-vertical"> 
                 <div className="shutdown-cli-output">
                     <ul>
                     {
                             logJson.map((item: LogItem, index: number) => 
-                                renderCliItem(item, index, logPosition)
+                                <li key={`cli-o-${index}`} style={{
+                                    paddingTop: (item.paddingTop ? item.paddingTop : 0) + "em",
+                                    display: (item.time * 4) < logPosition ? 'block' : 'none'
+                                }} >{item.text}</li>
                             )
                     }
                     </ul>
@@ -89,16 +96,4 @@ export default function Shutdown() {
             </div>
         </div>
     )
-}
-
-const renderCliItem = (item: LogItem, index: number, logPosition: number) => {
-    return <>
-        {
-            //  multiply time by 4 because log position updates every 250ms
-          (item.time * 4) < logPosition ?
-            <li key={`cli-o-${index}}`} style={{
-                paddingTop: (item.paddingTop ? item.paddingTop : 0) + "em"
-            }} >{item.text}</li> : null
-        }
-    </>
 }
