@@ -9,6 +9,8 @@
 
 This is the source code for my personal website, featuring a retro Windows 95 desktop interface built with modern web technologies.
 
+> **Note:** This project was built before the era of AI vibe coding. The architecture, design decisions, and implementation were intentionally crafted without AI-generated code.
+
 ## 🌐 Live URLs
 
 | URL | Description |
@@ -33,7 +35,7 @@ This is the source code for my personal website, featuring a retro Windows 95 de
 - **State Management:** Redux Toolkit
 - **Styling:** SCSS + CSS Modules
 - **Build Tool:** Create React App
-- **Hosting:** Firebase Hosting
+- **Hosting:** Vercel (with Cloudflare CDN)
 - **CI/CD:** GitHub Actions
 
 ## 🚀 Getting Started
@@ -41,7 +43,7 @@ This is the source code for my personal website, featuring a retro Windows 95 de
 ### Prerequisites
 
 - Node.js 18+ and npm
-- Firebase CLI (optional, for deployment)
+- Vercel CLI (optional, for deployment)
 
 ### Installation
 
@@ -106,7 +108,7 @@ Production deployments are automated via GitHub Actions on pushes to `master`.
 Manual deployment:
 ```bash
 npm run build:prod
-firebase deploy
+vercel --prod
 ```
 
 ## 📝 License
