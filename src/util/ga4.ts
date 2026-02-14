@@ -1,5 +1,5 @@
 
-import { Analytics, getAnalytics, logEvent, setUserProperties } from "firebase/analytics"
+import { Analytics, logEvent, setUserProperties } from "firebase/analytics"
 import { FrameStatesEnum } from "../reducers/frameReducer"
 
 

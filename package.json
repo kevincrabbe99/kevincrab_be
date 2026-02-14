@@ -42,7 +42,7 @@
     "start:prod": "env-cmd -f ./envs/.env.prod        react-scripts start",
     "build:local": "env-cmd -f ./envs/.env.local       react-scripts build",
     "build:local-production": "env-cmd -f ./envs/.env.local-production react-scripts build",
-    "build:prod": "CI=false env-cmd -f ./envs/.env.prod        react-scripts build",
+    "build:prod": "env-cmd -f ./envs/.env.prod        react-scripts build",
     "test:local": "env-cmd -f ./envs/.env.local       react-scripts test",
     "test:prod": "env-cmd -f ./envs/.env.prod        react-scripts test",
     "eject": "react-scripts eject"
@@ -55,7 +55,9 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.5%",
+      "last 2 versions",
+      "Firefox ESR",
       "not dead",
       "not op_mini all"
     ],

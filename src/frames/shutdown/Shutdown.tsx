@@ -36,6 +36,7 @@ export default function Shutdown() {
                 frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // listen for any key press
@@ -47,29 +48,40 @@ export default function Shutdown() {
         return () => {
             window.removeEventListener("keydown", handleKeyPress)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // increase log position every [log.time]
     useEffect(() => {
         const interval = setInterval(() => {
-            setLogPosition(logPosition + 1)
+            setLogPosition(prev => prev + 1)
         }, 250);
 
+        return () => clearInterval(interval);
+    }, []);
+
+    // check if we should exit
+    useEffect(() => {
         if (logPosition > exitAfterLogTimeSec * 4) {
             frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
         }
+    }, [logPosition, dispatch, analytics]);
 
-        return () => clearInterval(interval);
-    }, [logPosition]);
+    const handleClick = () => {
+        frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
+    }
 
     return (
-        <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)}>
+        <div className="shutdown-wrapper" onClick={handleClick}>
             <div className="shutdown-wrapper-vertical"> 
                 <div className="shutdown-cli-output">
                     <ul>
                     {
                             logJson.map((item: LogItem, index: number) => 
-                                renderCliItem(item, index, logPosition)
+                                <li key={`cli-o-${index}`} style={{
+                                    paddingTop: (item.paddingTop ? item.paddingTop : 0) + "em",
+                                    display: (item.time * 4) < logPosition ? 'block' : 'none'
+                                }} >{item.text}</li>
                             )
                     }
                     </ul>
@@ -89,16 +101,4 @@ export default function Shutdown() {
             </div>
         </div>
     )
-}
-
-const renderCliItem = (item: LogItem, index: number, logPosition: number) => {
-    return <>
-        {
-            //  multiply time by 4 because log position updates every 250ms
-          (item.time * 4) < logPosition ?
-            <li key={`cli-o-${index}}`} style={{
-                paddingTop: (item.paddingTop ? item.paddingTop : 0) + "em"
-            }} >{item.text}</li> : null
-        }
-    </>
 }

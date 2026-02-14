@@ -28,7 +28,7 @@ export default function BrowserPage(props: any) {
   const contentData: string = props.contentData
 
   const [selectedToolbarSubmenu, setSelectedToolbarSubmenu] = useState<number | null>(null);
-  const [toolbarSubmenuHardSelected, setToolbarSubmenuHardSelected] = useState<boolean>(false);
+  const [toolbarSubmenuHardSelected] = useState<boolean>(false);
 
   const hoverToolbarEvent = (event: any, index: number) => {
     if (!toolbarSubmenuHardSelected) {
@@ -82,7 +82,7 @@ export default function BrowserPage(props: any) {
       </div>
       <div className="browserPage-content">
         <div className="browserPage-doc-wrapper">
-          <iframe src={contentData}></iframe>
+          <iframe src={contentData} title="Browser Content"></iframe>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ const renderSubmenu = (item: ToolbarConfig, index: number, selectedToolbarPositi
   return (
     <>
     {
-      selectedToolbarPosition == index ?
+      selectedToolbarPosition === index ?
       <div className="browserPage-submenu">
         <ul>
           {

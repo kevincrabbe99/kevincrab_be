@@ -1,8 +1,6 @@
-
 import React, { useEffect } from 'react'
 import "./clockBox.scss"
 import {appConfig} from "../../../../configs/configurator"
-import VolumeSlider from '../volumeSlider/VolumeSlider'
 
 export default function ClockBox(props:any) {
 
@@ -35,7 +33,7 @@ export default function ClockBox(props:any) {
     return (
         <div className="taskbar-right-box" onClick={toggleVolumeSlider}>
             <div className="taskbar-volume">
-                <img src="./icons/Volume.ico"></img>
+                <img src="./icons/Volume.ico" alt="Volume"></img>
             </div>
             <div className="taskbar-clock">
                 <label>{ time }</label> 

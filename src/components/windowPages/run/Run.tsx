@@ -1,7 +1,6 @@
 import { getAnalytics } from 'firebase/analytics';
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux';
-import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 import { WindowConfig, WindowTypesEnum } from '../../../reducers/windowReducer';
 import { ga4 } from '../../../util/ga4';
@@ -53,7 +52,7 @@ export default function Run(props: any) {
         <div className="run-wrapper">
             <div className="run-top">
                 <div className="run-top-left">
-                    <img src="./icons/run.ico" />
+                    <img src="./icons/run.ico" alt="Run" />
                 </div>
                 <div className="run-top-right">
                     <p>Enter the reducer type and payload, and Redux will run it for you.</p>

@@ -49,8 +49,8 @@ export const fileManager = {
 
         // check if any scopes are included in file.excludedScopes
         if (file.excludedScopes) {
-            for (var i = 0; i < file.excludedScopes.length; i++) {
-                if (scopes.includes(file.excludedScopes[i] as ScopesEnum)) {
+            for (var j = 0; j < file.excludedScopes.length; j++) {
+                if (scopes.includes(file.excludedScopes[j] as ScopesEnum)) {
                     return false;
                 }
             }
@@ -60,8 +60,8 @@ export const fileManager = {
 
         // check if a scopes matches
         if (file.scopes) {
-            for (var i = 0; i < file.scopes.length; i++) {
-                if (scopes.includes(file.scopes[i] as ScopesEnum)) {
+            for (var k = 0; k < file.scopes.length; k++) {
+                if (scopes.includes(file.scopes[k] as ScopesEnum)) {
                     return true;
                 }
             }

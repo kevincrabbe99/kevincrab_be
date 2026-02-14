@@ -9,7 +9,6 @@ import "./taskbar.scss"
 
 
 
-
 export default function Taskbar( props: any ) {
 
     var toggleStartMenu = props.toggleStartMenu
@@ -28,12 +27,6 @@ export default function Taskbar( props: any ) {
     const selectTaskbarPillEvent = (id: string): void => {
         windowDispatcher.focusWindow(dispatch, id)
         //  windowDispatcher.minimizeWindow(dispatch, id)
-    }
-
-    const isSelected = (window: WindowConfig) : boolean => {
-        if (window.exited) { return false }
-        if (window.minimized) { return false }
-        return false
     }
 
     // used to keep track of the taskbar items count
@@ -56,7 +49,7 @@ export default function Taskbar( props: any ) {
         // console.log("taskbar item count: " + taskBarItemCount)
         // console.log("taskbar start index: ", taskBarItemsStartIndex)
         // console.log("taskbar item capacity: " + taskBarItemCapacity)
-    }, [windowState])
+    }, [windowState, taskBarItemCapacity, taskBarItemCount, taskBarItemsStartIndex, viewPortWindowWidth])
 
     return (
     <div className="wrapper-taskbar">
@@ -66,13 +59,13 @@ export default function Taskbar( props: any ) {
                     <tr>
                         <td id="td-pill-start">
                             <div className="startButton" onClick={() => toggleStartMenu()}>
-                                <img src="./icons/windows.png"></img>
+                                <img src="./icons/windows.png" alt="Start"></img>
                                 <label>Start</label>
                             </div>
                         </td>
                         
                         {
-                            taskBarItemsStartIndex > taskBarItemCapacity &&
+                            taskBarItemsStartIndex > 0 &&
                             <td key="tb-pill-left-move">
                                 <div className="taskbar-moveLeft tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex - 1)}>
                                 <label>
@@ -86,16 +79,16 @@ export default function Taskbar( props: any ) {
                         {
                             taskBarItemsStartIndex >= 0 &&
                             windowState.runningWindows &&
-                            windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity + 1).map((window: WindowConfig) => {
+                            windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity).map((window: WindowConfig) => {
                             //  .map((window: WindowConfig, index: number) => {
                                 return (
-                                    window.exited != true &&
+                                    window.exited !== true &&
                                     // index >= taskBarItemsStartIndex && 
                                     // index < taskBarItemsStartIndex + taskBarItemCapacity ?
                                     <td key={`tb-pill-${window.id}`}>
                                         <div className={`application_placeholder-wrapper ${window.id === windowState.top ? 'tb-selected' : ''}`}
                                                 onClick={() => selectTaskbarPillEvent(window.id!)}>
-                                            <img src={`./icons/${window.icon}`}></img>
+                                            <img src={`./icons/${window.icon}`} alt={window.title || ''}></img>
                                             <label>{window.title}</label>
                                         </div>
                                     </td>

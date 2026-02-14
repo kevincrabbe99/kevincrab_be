@@ -45,7 +45,7 @@ export default function GenericModalPage(props: any) {
     // run on mount to explicitly log the generic modal message
     useEffect(() => {
         ga4.logWarning(analytics, "GENERIC_MESSAGE_MODAL", contentData)
-    }, [])
+    }, [analytics, contentData])
 
     return (
         <div className="genMessage-wrapper">

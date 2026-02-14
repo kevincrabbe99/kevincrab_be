@@ -2,7 +2,7 @@ import { Analytics } from "firebase/analytics";
 import { Dispatch } from "redux"
 
 import { WindowConfig, WindowTypesEnum } from "../reducers/windowReducer";
-import { ga4, EventActionTypes } from "../util/ga4";
+import { ga4 } from "../util/ga4";
 
 import { getDefaultJsonFromWindowType } from "../util/helpers";
 

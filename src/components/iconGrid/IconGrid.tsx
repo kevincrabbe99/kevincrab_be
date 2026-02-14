@@ -2,22 +2,16 @@ import React from 'react'
 import "./iconGrid.scss"
 
 // import iconJson from '../../assets/json/icons.json'
-import { Alignment, Icon, IconActionType, IconGridPosition } from '../../types/Icon'
-import { DestinationActionTriggers } from '../../types/DestinationActionTriggers';
+import { Alignment, Icon } from '../../types/Icon';
 import { useDispatch } from 'react-redux';
 
-import { folderWindowConfig } from '../windowPages/folder/FolderPage';
-import { browserWindowConfig } from '../windowPages/browser/BrowserPage';
-import { documentWindowConfig } from '../windowPages/document/DocumentPage';
 import { mapContentDataToFolderData } from '../../util/mappers/mapContentDataToFolderData';
 import { FileNode, FileNodeAction, FileNodeType } from '../../types/FileNode';
-import { windowDispatcher } from '../../dispatchers/windowDispatcher';
-import { WindowTypesEnum } from '../../reducers/windowReducer';
-import { handleIconAction } from '../../util/helpers';
 import { useSelector } from 'react-redux';
 import { ScopesEnum } from '../../reducers/scopeReducer';
 import { fileManager } from '../../util/fileManager';
 import { getAnalytics } from 'firebase/analytics';
+import { handleIconAction } from '../../util/helpers';
 
 
 const MAX_ROWS = 8;
@@ -89,7 +83,7 @@ function IconGridRow(props: any) {
     let alignment: Alignment = props.alignment;
     return  <tr key={`dk-ic-y${y}-a${alignment}`} >
         { [...Array(MAX_COLS)].map((elx, x) => (
-            <RenderIconAtPosition_Proxy 
+            <RenderIconAtPositionProxy 
                 key={`ic-proxy-a${props.alignment}-y${y}-x${x}`} 
                 x={x} y={y} alignment={alignment} 
                 handleDestinationAction={props.handleDestinationAction} 
@@ -98,7 +92,7 @@ function IconGridRow(props: any) {
     </tr>
 }
 
-function RenderIconAtPosition_Proxy(props: any) { 
+function RenderIconAtPositionProxy(props: any) { 
     let x = props.x; let y = props.y;
     let scopes = props.scopes;
     let alignment = props.alignment;     
@@ -118,10 +112,10 @@ function RenderIconWithExternalAction(props: any) {
     const icon: Icon = props.icon;
     return (
         <td key={`ic-tr-${props.id}`}>
-            <a href={icon.action.destination} target="_blank">
+            <a href={icon.action.destination} target="_blank" rel="noreferrer">
                 <div className="icon-wrapper">
                     <div className="icon-img-wrapper">
-                        <img src={`./icons/${icon?.icon}`}></img>
+                        <img src={`./icons/${icon?.icon}`} alt={icon?.name || ''}></img>
                     </div>
                     <label>{icon?.name}</label>
                 </div>
@@ -137,7 +131,7 @@ function RenderIconWithInternalAction(props: any) {
         <td>
             <div className="icon-wrapper" onClick={()=>handleDestinationAction(icon.action)}>
                 <div className="icon-img-wrapper">
-                    <img src={`./icons/${icon?.icon}`}></img>
+                    <img src={`./icons/${icon?.icon}`} alt={icon?.name || ''}></img>
                 </div>
                 <label>{icon?.name}</label>
             </div>
@@ -147,7 +141,7 @@ function RenderIconWithInternalAction(props: any) {
 
 function GetIconAtPosition(x: number, y: number, alignment: Alignment, scopes: ScopesEnum[]) : FileNode | undefined {
     // align from right 
-    if (alignment == Alignment.RIGHT) {
+    if (alignment === Alignment.RIGHT) {
         x = (MAX_COLS - 1) - x
     }
     
@@ -156,7 +150,7 @@ function GetIconAtPosition(x: number, y: number, alignment: Alignment, scopes: S
     // search for icon
     for (var i = 0; i < iconJson.length; i++) {
         let curIconPos = iconJson[i].position!;
-        if (curIconPos.x == x && curIconPos.y == y && curIconPos.alignment == alignment) {
+        if (curIconPos.x === x && curIconPos.y === y && curIconPos.alignment === alignment) {
             if (fileManager.isScoped(scopes, iconJson[i].name)) {
                 return iconJson[i];
             }

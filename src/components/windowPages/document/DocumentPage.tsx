@@ -32,7 +32,7 @@ export default function DocumentPage(props: any) {
   const contentData: string = props.contentData
 
   const [selectedToolbarSubmenu, setSelectedToolbarSubmenu] = useState<number | null>(null);
-  const [toolbarSubmenuHardSelected, setToolbarSubmenuHardSelected] = useState<boolean>(false);
+  const [toolbarSubmenuHardSelected] = useState<boolean>(false);
 
   const hoverToolbarEvent = (event: any, index: number) => {
     if (!toolbarSubmenuHardSelected) {
@@ -80,7 +80,7 @@ export default function DocumentPage(props: any) {
         <div className="docPage-doc-wrapper">
           {
             contentData ? 
-              <iframe src={contentData}></iframe>
+              <iframe src={contentData} title="Document Content"></iframe>
             : <div className="docPage-def-textarea">
                 <textarea></textarea>
               </div>
@@ -96,7 +96,7 @@ const renderSubmenu = (item: ToolbarConfig, index: number, selectedToolbarPositi
   return (
     <>
     {
-      selectedToolbarPosition == index ?
+      selectedToolbarPosition === index ?
       <div className="docPage-submenu">
         <ul>
           {

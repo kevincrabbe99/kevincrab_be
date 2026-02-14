@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { frameDispatcher } from './dispatchers/frameDispatcher'
 import { scopeDispatcher } from './dispatchers/scopeDispatcher'
 import { ScopesEnum } from './reducers/scopeReducer'
-import { cookieManager } from './util/cookieManager'
 import { mapScopeToLandingPage } from './util/mappers/mapScopeToLandingPage'
 import { mapSubdomainToScope } from './util/mappers/mapSubdomainToScope'
 import CrtFilter from './frames/crtFilter/CrtFilter'
@@ -40,19 +39,27 @@ export default function ScopeProxy() {
 
         ga4.log(analytics, "land", { scope: scope[0], url: url })
 
-    }, [])
+    }, [dispatch, analytics])
 
+    // Only run redirect once on initial mount to avoid fighting user-initiated state changes
+    const hasRedirected = useRef(false)
     useEffect(() => {
+        if (hasRedirected.current) { return; }
+        
         const jumpToFrame = mapScopeToLandingPage(scopeState.scopes[0])
-        if (frameState.state == jumpToFrame) { return; }
+        if (frameState.state === jumpToFrame) { 
+            hasRedirected.current = true
+            return; 
+        }
  
         if (!hardRedirectScoeps.includes(scopeState.scopes[0])) {
-            // hard redirect
+            hasRedirected.current = true
             return;
         }
 
         frameDispatcher.setState(dispatch, analytics, jumpToFrame)
-    }, [scopeState])
+        hasRedirected.current = true
+    }, [scopeState, frameState.state, dispatch, analytics])
 
     return ( 
         <>

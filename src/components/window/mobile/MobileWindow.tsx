@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { WindowConfig, WindowState, WindowTypesEnum } from '../../../reducers/windowReducer';
+import { WindowConfig, WindowState } from '../../../reducers/windowReducer';
 import "./mobileWindow.scss"
 
-import {isMobile} from 'react-device-detect';
 import { renderWindowContent } from '../WindowContent';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 
@@ -22,21 +21,15 @@ export default function Window(props: any) {
 
     const windowRef = useRef<HTMLDivElement>(null);
 
-    const [size, setSize] = useState(windowConfig.size)
+    const [size] = useState(windowConfig.size)
 
     const [windowStyle, setWindowStyle] = useState<any | null>()
-
-    type MousePosition = {
-        x: number;
-        y: number;
-    }
 
     // window position vars
     var windowStackerStartYPos = (document.documentElement.clientHeight / 10) 
     var windowStackerBufferSpace = 30
-    var windowStackerCapacity = windowStackerStartYPos / windowStackerBufferSpace
 
-    const [x, setX] = useState(windowConfig.position.x)
+    const [x] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
     const [isMaximized, setIsMaximized] = useState<boolean>(false)
   
@@ -58,16 +51,6 @@ export default function Window(props: any) {
         unmaximizeWindowHandler(windowConfig.id!)
     }
 
-    const getTaskbarWindowConfigs = () : WindowConfig[] => {
-        let windowConfigs: WindowConfig[] = []
-        for (let i = 0; i < windowState.windows.length; i++) {
-            if (!windowState.windows[i].exited) {
-                windowConfigs.push(windowState.windows[i])
-            }
-        }
-        return windowConfigs
-    }
-
     // runs when reorder changes
     useEffect(() => {
 
@@ -79,7 +62,7 @@ export default function Window(props: any) {
 
         setY(windowStackerStartYPos - (windowPositionIndex * windowStackerBufferSpace))
 
-    }, [windowPositions])
+    }, [windowPositions, props.windowConfig.id, windowStackerBufferSpace, windowStackerStartYPos, windowState.windows])
 
     // runs when setX or setY is called after initial position is set
     useEffect(() => {
@@ -101,7 +84,7 @@ export default function Window(props: any) {
             })
             setIsMaximized(false)
         }
-    }, [x, y, windowState.maximizedWindows])
+    }, [x, y, windowState.maximizedWindows, size, windowConfig.id])
 
 
     
@@ -114,7 +97,7 @@ export default function Window(props: any) {
         if (windowRef.current) {
             windowRef.current.addEventListener("mousedown", windowSelectEvent)
         }
-    }, [windowRef])
+    }, [windowRef, dispatch, windowConfig.id])
 
     return (
         <div className="window-wrapper" style={windowStyle} ref={windowRef}>
@@ -122,7 +105,7 @@ export default function Window(props: any) {
                 <div className="window-header-listener"  > 
 
                 </div>
-                {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }
+                {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} alt={windowConfig.title || ''} /> : null }
                 <label className="window-header-title">
                     {windowConfig.title}
                 </label>
@@ -132,7 +115,7 @@ export default function Window(props: any) {
                         <button>?</button> : null
                     }
                     {
-                        windowConfig.minimizable != false ? 
+                        windowConfig.minimizable !== false ? 
                         <button onClick={minimizeWindowEvent}>
                             <span className="minimize_button">
                                 _
@@ -160,7 +143,7 @@ export default function Window(props: any) {
                         : null
                     }
                     {
-                        windowConfig.showXButton == false ? null :
+                        windowConfig.showXButton === false ? null :
                         <button onClick={exitWindow}>X</button> 
                     }
                 </div>

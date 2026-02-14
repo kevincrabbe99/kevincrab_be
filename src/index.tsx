@@ -4,25 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
 
-
-import firebase, { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
-
-var firebaseApp;
-var ga4;
-var firebaseConfig
 
 console.log("process.env.NODE_ENV", process.env.NODE_ENV)
 console.log("process.env.REACT_APP_NODE_ENV", process.env.REACT_APP_NODE_ENV)
 
 if (process.env.NODE_ENV === 'development') {
-  firebaseConfig = {
+  const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
     projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
@@ -31,11 +25,11 @@ if (process.env.NODE_ENV === 'development') {
     appId: process.env.REACT_APP_FIREBASE_APPID,
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
   };
-  firebaseApp = initializeApp(firebaseConfig);
-  ga4 = getAnalytics(firebaseApp);
+  const firebaseApp = initializeApp(firebaseConfig);
+  getAnalytics(firebaseApp);
 } else if (process.env.NODE_ENV === 'production') {
   
-  firebaseConfig = {
+  const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
     projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
@@ -44,8 +38,8 @@ if (process.env.NODE_ENV === 'development') {
     appId: process.env.REACT_APP_FIREBASE_APPID,
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
   };
-  firebaseApp = initializeApp(firebaseConfig);
-  ga4 = getAnalytics(firebaseApp);
+  const firebaseApp = initializeApp(firebaseConfig);
+  getAnalytics(firebaseApp);
 }
 
 
