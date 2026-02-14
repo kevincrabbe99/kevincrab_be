@@ -1,10 +1,7 @@
-
 import React, { useEffect, useState } from 'react'
 import "./volumeSlider.scss"
 
 export default function VolumeSlider(props:any) {
-
-    const toggleVolumeSlider = props.toggleVolumeSlider
 
     const [y, setY] = useState<number>(0)
     const [initY, setInitY] = useState<number>(0)

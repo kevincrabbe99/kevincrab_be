@@ -4,7 +4,6 @@ import { fromEvent, map } from 'rxjs';
 import { WindowConfig } from '../../reducers/windowReducer';
 import "./window.scss"
 
-import {isMobile} from 'react-device-detect';
 import { renderWindowContent } from './WindowContent';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 import { useSelector } from 'react-redux';
@@ -21,16 +20,10 @@ export default function Window(props: any) {
 
     const windowRef = useRef<HTMLDivElement>(null);
 
-    const [size, setSize] = useState(windowConfig.size)
-    const [position, setPosition] = useState(windowConfig.position)
+    const [size] = useState(windowConfig.size)
 
     const [windowStyle, setWindowStyle] = useState<any | null>()
     
-    type MousePosition = {
-        x: number;
-        y: number;
-    }
-    var originalMousePosition: MousePosition | null = null; 
     const [isMouseMovingWindow, setIsMouseMovingWindow] = useState<boolean>(false)
 
     const [x, setX] = useState(windowConfig.position.x)
@@ -81,15 +74,7 @@ export default function Window(props: any) {
 
     // start mo
     const mouseDownEvent = (e: any) => {
-        originalMousePosition = {
-            x: e.clientX,
-            y: e.clientY
-        };
         setIsMouseMovingWindow(true)
-    }
-
-    const mouseUpEvent = (e: any) => {
-        setIsMouseMovingWindow(false)    
     }
 
     useEffect(() => {
@@ -102,16 +87,15 @@ export default function Window(props: any) {
         if (isMouseMovingWindow) {
             setWindowStyle(newStyle)
             // update parent windowConfig object
-            var newWindowConfig = {
+            windowConfig = {
                 ...windowConfig,
                 position: {
                     x: x - (size.width / 2),
                     y: y - 10
                 }
             }
-            windowConfig = newWindowConfig
         }
-    }, [size, x, y, isMouseMovingWindow])
+    }, [size, x, y, isMouseMovingWindow, windowConfig])
     
     // use effect that only runs onces on component mount
     useEffect(() => {
@@ -121,7 +105,7 @@ export default function Window(props: any) {
             left:x,
             top:y 
         })
-    }, [])
+    }, [size, x, y])
 
     // listen for window position to be declared maximized
     useEffect(() => {
@@ -144,7 +128,7 @@ export default function Window(props: any) {
             })
             setIsMaximized(false)
         }
-    }, [windowState.maximizedWindows])
+    }, [windowState.maximizedWindows, size, windowConfig.id, windowConfig.position])
 
     // add click event listener to windowRef
     useEffect(() => {
@@ -155,7 +139,7 @@ export default function Window(props: any) {
         if (windowRef.current) {
             windowRef.current.addEventListener("mousedown", windowSelectEvent)
         }
-    }, [windowRef])
+    }, [windowRef, dispatch, windowConfig.id])
 
     // console.log("ALERT WINDOW CONFIG: ", windowConfig)
     
@@ -165,7 +149,7 @@ export default function Window(props: any) {
                 <div className="window-header-listener" onMouseDown={mouseDownEvent} > 
 
                 </div>
-                {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} /> : null }
+                {windowConfig.icon ? <img src={`./icons/${windowConfig.icon}`} alt={windowConfig.title || ''} /> : null }
                 <label className="window-header-title">
                     {windowConfig.title}
                 </label>
@@ -203,7 +187,7 @@ export default function Window(props: any) {
                         : null
                     }
                     {
-                        windowConfig.showXButton == false ? null : 
+                        windowConfig.showXButton === false ? null : 
                         <button onClick={exitWindow}>X</button> 
                     }
                 </div>

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { frameDispatcher } from './dispatchers/frameDispatcher'
 import { scopeDispatcher } from './dispatchers/scopeDispatcher'
 import { ScopesEnum } from './reducers/scopeReducer'
-import { cookieManager } from './util/cookieManager'
 import { mapScopeToLandingPage } from './util/mappers/mapScopeToLandingPage'
 import { mapSubdomainToScope } from './util/mappers/mapSubdomainToScope'
 import CrtFilter from './frames/crtFilter/CrtFilter'
@@ -40,11 +39,11 @@ export default function ScopeProxy() {
 
         ga4.log(analytics, "land", { scope: scope[0], url: url })
 
-    }, [])
+    }, [dispatch, analytics])
 
     useEffect(() => {
         const jumpToFrame = mapScopeToLandingPage(scopeState.scopes[0])
-        if (frameState.state == jumpToFrame) { return; }
+        if (frameState.state === jumpToFrame) { return; }
  
         if (!hardRedirectScoeps.includes(scopeState.scopes[0])) {
             // hard redirect
@@ -52,7 +51,7 @@ export default function ScopeProxy() {
         }
 
         frameDispatcher.setState(dispatch, analytics, jumpToFrame)
-    }, [scopeState])
+    }, [scopeState, frameState.state, dispatch, analytics])
 
     return ( 
         <>
