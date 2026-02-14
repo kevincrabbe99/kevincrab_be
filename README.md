@@ -1,69 +1,120 @@
-**REPO FOR my personal website
-[kevincrab.be](https://kevincrab.be)**
-===
+# kevincrab.be
 
-## Accessable at...
-### [https://kevincrab.be](https://kevincrab.be)
-Main url used as a personal website.
-### [https://me.kevincrab.be](https://me.kevincrab.be)
-Alias for kevincrab.be\
-Also used as a personal website, but with some minor accessibility improvements.
-### [https://links.kevincrab.be](https://links.kevincrab.be)
-Alias for kevincrab.be\
-Automatically redirects to the desktop and opens up the links window.
-### [https://emulator.kevincrab.be](https://emulator.kevincrab.be)
-Highlights the Win95 features of this website.
-Does not include as many personal links as the main website.
+[![Website](https://img.shields.io/badge/website-kevincrab.be-blue)](https://kevincrab.be)
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Redux](https://img.shields.io/badge/Redux-Toolkit-764ABC?logo=redux)](https://redux-toolkit.js.org/)
 
+> A Windows 95-themed personal portfolio website
 
-# [kevincrab.be](https://kevincrab.be) frontend
+This is the source code for my personal website, featuring a retro Windows 95 desktop interface built with modern web technologies.
 
-## This project was bootstrapped with... 
-### ReactJS \ Typescript \ @Redux \ SCSS
+> **Note:** This project was built before the era of AI vibe coding. The architecture, design decisions, and implementation were intentionally crafted without AI-generated code.
+
+## 🌐 Live URLs
+
+| URL | Description |
+|-----|-------------|
+| [kevincrab.be](https://kevincrab.be) | Main personal website |
+| [me.kevincrab.be](https://me.kevincrab.be) | Accessible version with readability improvements |
+| [links.kevincrab.be](https://links.kevincrab.be) | Opens directly to the links window |
+| [emulator.kevincrab.be](https://emulator.kevincrab.be) | Win95 emulator highlight mode |
+
+## ✨ Features
+
+- 🪟 **Windows 95 Desktop Interface** — Authentic retro UI with draggable windows, taskbar, and start menu
+- 📁 **File Explorer** — Browse projects and content through a familiar file system metaphor
+- 🔗 **Links Window** — Quick access to social profiles and external links
+- 🎮 **Emulator Mode** — Dedicated view highlighting the Win95 aesthetic
+- 📱 **Responsive Design** — Works on desktop and mobile devices
+- ⚡ **Fast Performance** — Optimized React build with code splitting
+
+## 🛠 Tech Stack
+
+- **Frontend:** React 18 + TypeScript
+- **State Management:** Redux Toolkit
+- **Styling:** SCSS + CSS Modules
+- **Build Tool:** Create React App
+- **Hosting:** Vercel (with Cloudflare CDN)
+- **CI/CD:** GitHub Actions
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- Vercel CLI (optional, for deployment)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/kevincrabbe99/kevincrab_be.git
+cd kevincrab_be
+
+# Install dependencies
+npm install
+
+# Set up environment variables (optional)
+cp .env.example .env.local
+# Edit .env.local with your Firebase config
+```
+
+### Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run start:local` | Development mode without Firebase |
+| `npm run start:dev` | Development mode with Firebase (requires secrets) |
+| `npm run start:local-production` | Production build locally (requires secrets) |
+| `npm run build:local-production` | Build for local production testing |
+| `npm run build:prod` | Build for production deployment |
+| `npm test` | Run test suite in watch mode |
+| `npm run eject` | Eject from Create React App (⚠️ one-way) |
+
+### Development Workflow
+
+```bash
+# Start local development server
+npm run start:local
+
+# Build for production
+npm run build:prod
+
+# Serve production build locally
+npx serve -s build
+```
+
+## 📁 Project Structure
+
+```
+kevincrab_be/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # React components
+│   ├── windows/         # Window-specific components
+│   ├── state/           # Redux store and slices
+│   ├── styles/          # SCSS stylesheets
+│   ├── types/           # TypeScript type definitions
+│   └── utils/           # Utility functions
+├── .github/workflows/   # CI/CD pipelines
+└── README.md
+```
+
+## 🚢 Deployment
+
+Production deployments are automated via GitHub Actions on pushes to `master`.
+
+Manual deployment:
+```bash
+npm run build:prod
+vercel --prod
+```
+
+## 📝 License
+
+MIT License — feel free to use this as inspiration for your own portfolio!
 
 ---
-## Available Scripts from within this directory
-In the project directory, you can run:
 
-### `npm run start:local`
-Open in browser: [http://localhost:3000](http://localhost:3000)\
-Runs the app in the local development mode.
-- Does not connect to Firebase 
-
-### `npm run start:dev`
-Open in browser: [http://localhost:3000](http://localhost:3000)\
-Runs the app in the local development mode.
-- DOES connect to Firebase (if secrets are set)
-
-### `npm run start:local-production`
-Open in browser: [http://localhost:3000](http://localhost:3000)\
-Runs the app as production, with firebase configs, (if set)
-
-### `npm run build:local-production`
-Build the application as it would to deploy (if secrets are set)\
-Use `serve -s build` to run whatever is in the build folder
-
-## Automation
-### `npm run build:prod --omit=dev`
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build 
-
-### `serve -s build`
-Serves the build application on some random port.
-
-### `npm test`
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-To learn React, check out the [React documentation](https://reactjs.org/).
+Built with 💾 and ☕ by [Kevin Crabbe](https://kevincrab.be)
