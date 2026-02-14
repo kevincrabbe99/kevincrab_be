@@ -63,7 +63,7 @@ describe('ScopeProxy Component', () => {
                 },
                 scopes: {
                     scopes: [ScopesEnum.NONE],
-                    lastUpdated: Date.now()
+                    lastUpdated: Date.now().toString()
                 }
             }
         });

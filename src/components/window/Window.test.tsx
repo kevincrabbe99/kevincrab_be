@@ -74,7 +74,7 @@ describe('Window Component', () => {
             </Provider>
         );
 
-        const windowElement = container.querySelector('.window-wrapper');
+        const windowElement = container.querySelector('.window-wrapper') as HTMLElement;
         const initialLeft = windowElement?.style.left;
         const initialTop = windowElement?.style.top;
 
@@ -83,8 +83,8 @@ describe('Window Component', () => {
 
         // Wait a bit for any state updates
         await waitFor(() => {
-            const currentLeft = windowElement?.style.left;
-            const currentTop = windowElement?.style.top;
+            const currentLeft = (windowElement as HTMLElement)?.style.left;
+            const currentTop = (windowElement as HTMLElement)?.style.top;
             expect(currentLeft).toBe(initialLeft);
             expect(currentTop).toBe(initialTop);
         });
