@@ -1,5 +1,5 @@
 import { getAnalytics } from 'firebase/analytics'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import IconGrid from '../../components/iconGrid/IconGrid'
@@ -37,11 +37,12 @@ export default function Desktop() {
 
   // run once at mount
   // is scopeState.scopes[0] === ScopesEnum.RESUME, then open resume
-  var runCounter = 0;
+  const hasRun = useRef(false);
   useEffect(() => {
 
     // prevent from running twice
-    if (runCounter > 0) { return; }
+    if (hasRun.current) { return; }
+    hasRun.current = true;
 
     if (scopesState.scopes[0] === ScopesEnum.RESUME) {
       windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.DOCUMENT, "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0")
@@ -53,7 +54,6 @@ export default function Desktop() {
       windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER, "Links")
     }
 
-    runCounter++;
   }, [])
 
   return (

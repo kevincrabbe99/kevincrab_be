@@ -52,15 +52,18 @@ export default function Shutdown() {
     // increase log position every [log.time]
     useEffect(() => {
         const interval = setInterval(() => {
-            setLogPosition(logPosition + 1)
+            setLogPosition(prev => prev + 1)
         }, 250);
 
+        return () => clearInterval(interval);
+    }, []);
+
+    // check if we should exit
+    useEffect(() => {
         if (logPosition > exitAfterLogTimeSec * 4) {
             frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
         }
-
-        return () => clearInterval(interval);
-    }, [logPosition]);
+    }, [logPosition, dispatch, analytics]);
 
     return (
         <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)}>
