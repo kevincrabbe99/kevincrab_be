@@ -72,7 +72,7 @@ export default function Taskbar( props: any ) {
                         </td>
                         
                         {
-                            taskBarItemsStartIndex > taskBarItemCapacity &&
+                            taskBarItemsStartIndex > 0 &&
                             <td key="tb-pill-left-move">
                                 <div className="taskbar-moveLeft tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex - 1)}>
                                 <label>
@@ -86,7 +86,7 @@ export default function Taskbar( props: any ) {
                         {
                             taskBarItemsStartIndex >= 0 &&
                             windowState.runningWindows &&
-                            windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity + 1).map((window: WindowConfig) => {
+                            windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity).map((window: WindowConfig) => {
                             //  .map((window: WindowConfig, index: number) => {
                                 return (
                                     window.exited != true &&
