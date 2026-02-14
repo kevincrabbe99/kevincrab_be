@@ -25,6 +25,12 @@ export default function Window(props: any) {
     const [windowStyle, setWindowStyle] = useState<any | null>()
     
     const [isMouseMovingWindow, setIsMouseMovingWindow] = useState<boolean>(false)
+    const isMouseMovingWindowRef = useRef(isMouseMovingWindow)
+    
+    // Keep ref in sync with state
+    useEffect(() => {
+        isMouseMovingWindowRef.current = isMouseMovingWindow
+    }, [isMouseMovingWindow])
 
     const [x, setX] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
@@ -50,12 +56,14 @@ export default function Window(props: any) {
     }   
 
     useEffect(() => {
-        // Subscribe to the mousemove event
+        // Subscribe to the mousemove event - only update x/y when actually dragging
         const subMove = fromEvent(document, 'mousemove')
             .pipe(map(event => [(event as any).clientX, (event as any).clientY]))
             .subscribe(([newX, newY]) => {
+                if (isMouseMovingWindowRef.current) {
                     setX(newX)
                     setY(newY)
+                }
             })
         
         // Subscribe to the mouseup event
