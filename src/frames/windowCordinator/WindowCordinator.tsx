@@ -1,8 +1,8 @@
-import React, { createRef, useEffect, useMemo, useRef, useState } from 'react'
+import React, { createRef, useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Window from '../../components/window/Window';
-import { WindowConfig, WindowState, WindowTypesEnum } from '../../reducers/windowReducer';
+import { WindowConfig, WindowState } from '../../reducers/windowReducer';
 import "./windowCordinator.scss"
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 
@@ -60,9 +60,9 @@ export default function WindowCordinator() {
         // unsed as listener from unminimize from taskbar.tsx
         for (let i = 0; i < windowState.windows.length; i++) {
             const currentWindow = windowState.windows[i]
-            if (currentWindow.minimized != true) {
+            if (currentWindow.minimized !== true) {
                 if (minimizedWindowIds.includes(currentWindow.id!)) {
-                    setMinimizedWindowIds(minimizedWindowIds.filter(id => id != currentWindow.id))
+                    setMinimizedWindowIds(minimizedWindowIds.filter(id => id !== currentWindow.id))
                 }
             } else {
                 if (!minimizedWindowIds.includes(currentWindow.id!)) {
@@ -70,7 +70,7 @@ export default function WindowCordinator() {
                 }
             }
         }
-    }, [windowState])
+    }, [windowState, minimizedWindowIds])
 
 
     // hide minimized and exited windows
@@ -86,7 +86,7 @@ export default function WindowCordinator() {
                 currentWindowRef!.style.display = "block"
             }
         }
-    }, [minimizedWindowIds, exitedWindowIds])
+    }, [minimizedWindowIds, exitedWindowIds, windowRefs])
     
 
     return (

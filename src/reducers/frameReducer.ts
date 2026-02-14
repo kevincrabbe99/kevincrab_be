@@ -1,6 +1,14 @@
 import produce from "immer";
 import { cookieManager } from "../util/cookieManager";
 
+export enum FrameStatesEnum {
+    SHUTDOWN = 0,
+    LOADING = 1,
+    LOGIN = 2,
+    DESKTOP = 3,
+    FULLSCREEN_WINDOW = 4,
+    ERROR = 5,
+}
 
 const getStateFromCookie = () => {
     const cookie = document.cookie;
@@ -35,15 +43,6 @@ const getIsUsingCrtFromCookie = (): boolean => {
 const setCrtCookie = (useCrt: boolean) => {
     cookieManager.setCookie("USE_CRT", useCrt);
 }
-
-export enum FrameStatesEnum {
-    SHUTDOWN = 0,
-    LOADING = 1,
-    LOGIN = 2,
-    DESKTOP = 3,
-    FULLSCREEN_WINDOW = 4,
-    ERROR = 5,
-}       
 
 export interface FrameState {
     state: number;

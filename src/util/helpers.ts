@@ -5,7 +5,6 @@ import { WindowTypesEnum } from "../reducers/windowReducer";
 import { fallbackWindowConfig } from "../components/windowPages/fallback/FallbackPage";
 import { runWindowConfig } from "../components/windowPages/run/Run";
 import { settingsWindowConfig } from "../components/windowPages/settings/SettingsPage";
-import { IconActionType } from "../types/Icon";
 import { Dispatch } from "redux";
 import { DestinationActionTriggers } from "../types/DestinationActionTriggers";
 import { windowDispatcher } from "../dispatchers/windowDispatcher";

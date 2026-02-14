@@ -7,15 +7,10 @@ import "./folderPage.scss"
 import FolderIconList from './components/folderIconList/FolderIconList';
 import FolderIconGrid from './components/folderIconGrid/FolderIconGrid';
 
-import MyComputerJson from "../../../assets/json/folderFillers/My_Computer.json"
-import C_DRIVEJson from "../../../assets/json/folderFillers/C_DRIVE.json"
-import { FileNode, FileNodeAction, FileNodeType } from '../../../types/FileNode';
+import { FileNode, FileNodeType } from '../../../types/FileNode';
 import { useDispatch } from 'react-redux';
 import { mapContentDataToFolderData } from '../../../util/mappers/mapContentDataToFolderData';
-import { DestinationActionTriggers } from '../../../types/DestinationActionTriggers';
-import { FrameStatesEnum } from '../../../reducers/frameReducer';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
-import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { handleIconAction } from '../../../util/helpers';
 import { useSelector } from 'react-redux';
 import { getAnalytics } from 'firebase/analytics';
@@ -52,10 +47,10 @@ export default function FolderPage(props: any) {
   const contentData: string = props.contentData
 
   const [selectedToolbarSubmenu, setSelectedToolbarSubmenu] = useState<number | null>(null);
-  const [toolbarSubmenuHardSelected, setToolbarSubmenuHardSelected] = useState<boolean>(false);
+  const [toolbarSubmenuHardSelected] = useState<boolean>(false);
 
   // view modes
-  const [viewMode, setViewMode] = useState<number>(1);
+  const [viewMode] = useState<number>(1);
   enum ViewMode {
     LIST = 0,
     GRID = 1
@@ -138,7 +133,7 @@ const renderSubmenu = (item: ToolbarConfig, index: number, selectedToolbarPositi
   return (
     <>
     {
-      selectedToolbarPosition == index ?
+      selectedToolbarPosition === index ?
       <div className="folderPage-submenu">
         <ul>
           {

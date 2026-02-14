@@ -1,6 +1,5 @@
 import { FileNode } from "../../types/FileNode";
 import { fileManager } from "../fileManager";
-import filesJson from "../../assets/json/files.json" 
 import { ScopesEnum } from "../../reducers/scopeReducer";
 
 

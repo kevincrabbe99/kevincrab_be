@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FrameState, FrameStatesEnum } from '../../reducers/frameReducer';
 import Desktop from '../desktop/Desktop'
 import Login from '../login/Login';
@@ -19,22 +19,22 @@ export default function FrameRouter() {
 
         {/* Window View */}
         {
-            frame.state == FrameStatesEnum.DESKTOP ? 
+            frame.state === FrameStatesEnum.DESKTOP ? 
               (isMobile ? <MobileWindowCordinator /> : <WindowCordinator /> )
             : null
         }
 
         {/* LOGIN Page */}
         { 
-            frame.state == FrameStatesEnum.LOGIN ? <Login /> : null
+            frame.state === FrameStatesEnum.LOGIN ? <Login /> : null
         }
         {/* Desktop View */}
         {
-            frame.state == FrameStatesEnum.DESKTOP ? <Desktop /> : null
+            frame.state === FrameStatesEnum.DESKTOP ? <Desktop /> : null
         }
         {/* SHUTDOWN View */}
         {
-            frame.state == FrameStatesEnum.SHUTDOWN ? <Shutdown /> : null
+            frame.state === FrameStatesEnum.SHUTDOWN ? <Shutdown /> : null
         }
 
         </>

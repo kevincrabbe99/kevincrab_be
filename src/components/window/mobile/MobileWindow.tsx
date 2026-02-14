@@ -29,7 +29,7 @@ export default function Window(props: any) {
     var windowStackerStartYPos = (document.documentElement.clientHeight / 10) 
     var windowStackerBufferSpace = 30
 
-    const [x, setX] = useState(windowConfig.position.x)
+    const [x] = useState(windowConfig.position.x)
     const [y, setY] = useState(windowConfig.position.y)
     const [isMaximized, setIsMaximized] = useState<boolean>(false)
   

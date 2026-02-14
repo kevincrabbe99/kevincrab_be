@@ -36,7 +36,7 @@ export default function Shutdown() {
                 frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
         }
-    }, [])
+    }, [dispatch, analytics, scopeState])
 
     // listen for any key press
     useEffect(() => {
@@ -47,7 +47,7 @@ export default function Shutdown() {
         return () => {
             window.removeEventListener("keydown", handleKeyPress)
         }
-    }, [])
+    }, [dispatch, analytics])
 
     // increase log position every [log.time]
     useEffect(() => {
@@ -60,7 +60,7 @@ export default function Shutdown() {
         }
 
         return () => clearInterval(interval);
-    }, [logPosition]);
+    }, [dispatch, analytics, logPosition]);
 
     return (
         <div className="shutdown-wrapper" onClick={() => frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)}>

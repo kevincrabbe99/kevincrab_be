@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { frameReducer, FrameState } from './reducers/frameReducer';
+import { frameReducer } from './reducers/frameReducer';
 import { scopeReducer } from './reducers/scopeReducer';
 import { windowReducer } from './reducers/windowReducer';
 

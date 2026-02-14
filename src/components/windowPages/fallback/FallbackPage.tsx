@@ -42,7 +42,7 @@ export default function FallbackPage(props: any) {
     // run on mount to log an error in firebase
     useEffect(() => {
         ga4.logError(analytics, "FALLBACK_MODAL", { windowConfig: windowConfig, windowState: windowState, scopes: scopeState.scopes })
-    }, [])  
+    }, [analytics, windowConfig, windowState, scopeState.scopes])
 
     return (
         <div className="fallback-wrapper">

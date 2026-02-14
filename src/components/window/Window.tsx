@@ -82,20 +82,12 @@ export default function Window(props: any) {
             height:size.height,
             width:size.width,
             left:x - (size.width / 2),
-            top:y - 10 
+            top:y - 10
         }
         if (isMouseMovingWindow) {
             setWindowStyle(newStyle)
-            // update parent windowConfig object
-            windowConfig = {
-                ...windowConfig,
-                position: {
-                    x: x - (size.width / 2),
-                    y: y - 10
-                }
-            }
         }
-    }, [size, x, y, isMouseMovingWindow, windowConfig])
+    }, [size, x, y, isMouseMovingWindow])
     
     // use effect that only runs onces on component mount
     useEffect(() => {

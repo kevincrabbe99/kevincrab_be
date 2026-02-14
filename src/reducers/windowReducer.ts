@@ -1,5 +1,4 @@
 import produce from "immer";
-import { SettingsPageTypesEnum } from "../components/window/WindowContent";
 import { SettingsWindowTypesEnum } from "../components/windowPages/settings/SettingsPage";
 import { OverrideSettingsDisplaySize } from "../components/windowPages/settings/subapps/display/DisplaySettingsPage";
 import { OverrideSettingsPersonalizationSize } from "../components/windowPages/settings/subapps/personalization/PersonalizationSettingsPage";
@@ -17,7 +16,7 @@ export enum WindowTypesEnum {
     FALLBACK=9,
     HELP=10,
     GENERIC_MODAL=11,
-}  
+}
 
 export type WindowPosition = {
     x: number;
@@ -57,11 +56,11 @@ export interface WindowState {
 }
 
 const initialState: WindowState = {
-    windows: [], 
-    showingWindows: [], 
-    minimizedWindows: [], 
+    windows: [],
+    showingWindows: [],
+    minimizedWindows: [],
     maximizedWindows: [],
-    closedWindows: [], 
+    closedWindows: [],
     runningWindows: [],
     top: undefined
 };
@@ -93,12 +92,12 @@ export const windowReducer = produce((state: WindowState = initialState, action:
             const setWindowInitPosition = (editingWindowConfig: WindowConfig): WindowConfig => {
                 var windowInSamePosExists = state.windows.find((window) => {
                     return (window.exited === undefined || window.exited === false)
-                    && window.position.x === editingWindowConfig.position!.x 
-                    && window.position.y === editingWindowConfig.position!.y 
+                    && window.position.x === editingWindowConfig.position!.x
+                    && window.position.y === editingWindowConfig.position!.y
 
                 });
                 if (windowInSamePosExists) {
-                    
+
                     let justEditedWindowConfig = {
                         ...editingWindowConfig,
                         position: {
@@ -106,8 +105,8 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                             y: editingWindowConfig.position!.y + 20
                         }
                     }
-                    return setWindowInitPosition(justEditedWindowConfig);    
-                    
+                    return setWindowInitPosition(justEditedWindowConfig);
+
                     // setWindowInitPosition();
                 } else {
                     return editingWindowConfig
@@ -161,14 +160,13 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 return window.id !== action.payload
             })
 
-            var newTop: WindowConfig | undefined = undefined;
             // get new top
-            var newTop: WindowConfig | undefined = state.showingWindows.find((window) => {
+            let nextTop: WindowConfig | undefined = state.showingWindows.find((window) => {
                 return window.id !== action.payload
             })
             // if no windows are open then set top to undefined
             if (state.showingWindows.length === 0) {
-                newTop = undefined 
+                nextTop = undefined
             }
 
             // if no windows exist, return initial state
@@ -183,7 +181,7 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 closedWindows: newClosedWindows,
                 minimizedWindows: newMinimizedWindows,
                 runningWindows: newRunningWindows,
-                top: newTop?.id
+                top: nextTop?.id
             }
         case "MINIMIZE_WINDOW":
             const isMinimizing = !state.minimizedWindows.find((window) => {
@@ -193,28 +191,28 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 if (window.id === action.payload) {
                     return {
                         ...window,
-                        minimized: !window.minimized 
+                        minimized: !window.minimized
                     }
                 } else {
                     return window
                 }
             })
 
-            var newTop: WindowConfig | undefined = undefined;
+            let topWindow: WindowConfig | undefined = undefined;
             if(isMinimizing) {
                 // get new top
-                var newTop: WindowConfig | undefined = state.showingWindows.find((window) => {
+                topWindow = state.showingWindows.find((window) => {
                     return window.id !== action.payload
                 })
                 // if no windows are open then set top to undefined
                 if (state.showingWindows.length === 0) {
-                    newTop = undefined 
+                    topWindow = undefined
                 }
             } else {
-                var newTop = action.payload
+                topWindow = action.payload
             }
 
-            
+
 
             const shouldToggleMinimize = state.windows.find((window) => {
                 return window.id === action.payload && (
@@ -231,7 +229,7 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 newMinimizedWindows2 = state.minimizedWindows.concat(state.windows.filter((window) => {
                     return window.id === action.payload && window.minimized === false
                 }))
-    
+
                 // remove from showingWindows
                 newShowingWindows2 = state.showingWindows.filter((window) => {
                     return window.id !== action.payload
@@ -241,34 +239,34 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 newMinimizedWindows2 = state.minimizedWindows.filter((window) => {
                     return window.id !== action.payload
                 })
-    
+
                 // add to showingWindows
                 newShowingWindows2 = state.showingWindows.concat(state.windows.filter((window) => {
                     return window.id === action.payload && window.minimized === true
                 }))
             }
-            
+
 
             return {
                 ...state,
-                top: newTop && newTop!.id,
+                top: topWindow && topWindow!.id,
                 windows: shouldToggleMinimize ? newWindowsWithMinimized : state.windows,
                 newMinimizedWindows: newMinimizedWindows2,
                 showingWindows: newShowingWindows2
             }
-        
+
         case "MAXIMIZE_WINDOW":
             // add to maximizedWindows
             const mxmz_newMaximizedWindows = state.maximizedWindows.concat(state.windows.filter((window) => {
                 return window.id === action.payload && !window.maximized
             }))
 
-            // remove from minimizedWindows 
+            // remove from minimizedWindows
             // (just incase)
             const mxmz_newMinimizedWindows = state.minimizedWindows.filter((window) => {
                 return window.id !== action.payload
             })
-            
+
             // set as top window
             const mxmz_newTop = action.payload
 
@@ -374,7 +372,7 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 const newShowingWindows3 = state.showingWindows.concat(state.windows.filter((window) => {
                     return window.id === action.payload && window.minimized === true
                 }))
-                
+
                 return {
                     ...state,
                     windows: newWindowsWithNewFocus,
@@ -397,15 +395,14 @@ export const windowReducer = produce((state: WindowState = initialState, action:
                 top: null
             }
 
-            break;
         default:
             return state;
-    }   
-                   
+    }
+
 })
 
 
-// Helper function to return a modified title based on the config 
+// Helper function to return a modified title based on the config
 const getModifiedWindowTitle = (windowConfig: WindowConfig): string => {
     var newTitle = "";
     switch(windowConfig.type) {
@@ -443,7 +440,7 @@ const getModifiedWindowTitle = (windowConfig: WindowConfig): string => {
 
 const getModifiedWindowSize = (windowConfig: WindowConfig): WindowSize => {
     var newWindowSize: WindowSize = windowConfig.size;
-    
+
     // check window type
     switch(windowConfig.type) {
         case WindowTypesEnum.SETTINGS:

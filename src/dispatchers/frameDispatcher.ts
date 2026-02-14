@@ -1,5 +1,4 @@
 import { Analytics } from "firebase/analytics"
-import { useDispatch } from "react-redux"
 import { Dispatch } from "redux"
 import { FrameStatesEnum } from "../reducers/frameReducer"
 import { ga4 } from "../util/ga4"

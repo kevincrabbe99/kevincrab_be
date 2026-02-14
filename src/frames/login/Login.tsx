@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Window from '../../components/window/Window'
 import { WindowConfig } from '../../reducers/windowReducer';
 import "./login.scss"
@@ -43,7 +43,6 @@ export default function Login() {
 
     // listen for document.documentElement.clientWidth changes
     const [windowHeight, setWindowHeight] = useState(document.documentElement.clientHeight)
-    const [nudgerStyle, setNudgerStyle] = useState<CSSProperties>({top: 0})
     const initialWindowHeight = useRef(document.documentElement.clientHeight)
 
     // run once
@@ -66,7 +65,7 @@ export default function Login() {
                 break;
             default: break;
         }
-    }, [])
+    }, [dispatch, analytics, scopeState])
     
     useEffect(() => {
         const handleResize = () => {
@@ -98,7 +97,7 @@ export default function Login() {
     return (
         <div className="login-wrapper">
             <div className="login-background-wrapper">
-                <img src="./images/clouds.jpeg"></img>
+                <img src="./images/clouds.jpeg" alt="Clouds Background"></img>
             </div>
             <div className="login-page-content">
                 {

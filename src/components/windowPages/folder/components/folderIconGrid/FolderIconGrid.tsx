@@ -1,6 +1,6 @@
 import React from 'react'
 import "./folderIconGird.scss"
-import { FileNode, FileNodeAction } from '../../../../../types/FileNode';
+import { FileNode } from '../../../../../types/FileNode';
 
 export default function FolderIconGrid(props: any) {
 
@@ -19,7 +19,7 @@ export default function FolderIconGrid(props: any) {
                     return (
                         <div key={`${item.name}-${index}`} className="folderIconGrid-item" onClick={() => fileNodeActionEvent( (e:any)=> e, item) }>
                             <div className="folderIconGrid-item-icon">
-                                <img src={`./icons/${item.icon}`} />
+                                <img src={`./icons/${item.icon}`} alt={item.name || ''} />
                             </div>
                             <div className="folderIconGrid-item-label">
                                 {item.name}

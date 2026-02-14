@@ -24,7 +24,7 @@ export default function LoginWindowPage() {
             <div className="login-wpage-top">
                 <div className="login-wpage-top-wrapper">
                     <div className="login-wpage-icon">
-                        <img src="./icons/login_key.ico"></img>
+                        <img src="./icons/login_key.ico" alt="Login"></img>
                     </div>
                     <div className="login-wpage-prompts">
                         <p>Type a user name and password to log on to Windows.</p>

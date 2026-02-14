@@ -15,7 +15,7 @@ export default function FolderIconList(props: any) {
                             <li key={`${item.name}-${index}`}>
                                 <div className="folderIconList-item">
                                     <div className="folderIconList-item-icon">
-                                        <img src={`./icons/${item.icon}`} />
+                                        <img src={`./icons/${item.icon}`} alt={item.name || ''} />
                                     </div>
                                     <div className="folderIconList-item-label">
                                         {item.name}

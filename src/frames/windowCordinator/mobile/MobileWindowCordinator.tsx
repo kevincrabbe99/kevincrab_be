@@ -4,10 +4,7 @@ import { useDispatch } from 'react-redux';
 import { WindowConfig, WindowState } from '../../../reducers/windowReducer';
 import "./mobileWindowCordinator.scss"
 
-import {isMobile} from 'react-device-detect';
 import MobileWindow from '../../../components/window/mobile/MobileWindow';
-import { frameReducer } from '../../../reducers/frameReducer';
-import { frameDispatcher } from '../../../dispatchers/frameDispatcher';
 import { windowDispatcher } from '../../../dispatchers/windowDispatcher';
 
 export default function MobileWindowCordinator() {
@@ -64,13 +61,13 @@ export default function MobileWindowCordinator() {
         // unsed as listener from unminimize from taskbar.tsx
         for (let i = 0; i < windowState.windows.length; i++) {
             const currentWindow = windowState.windows[i]
-            if (currentWindow.minimized != true) {
+            if (currentWindow.minimized !== true) {
                 if (minimizedWindowIds.includes(currentWindow.id!)) {
-                    setMinimizedWindowIds(minimizedWindowIds.filter(id => id != currentWindow.id))
+                    setMinimizedWindowIds(minimizedWindowIds.filter(id => id !== currentWindow.id))
                 }
             }
         }
-    }, [windowState])
+    }, [windowState, minimizedWindowIds])
 
 
     // used to set window position for mobile
@@ -89,7 +86,7 @@ export default function MobileWindowCordinator() {
         // loop through windowState.windows with !window.exited
         windowState.windows.filter(window => !window.exited && !window.minimized).forEach((window, index) => {
             // if index is not topWindowIndex
-            if (index != topWindowIndex) {
+            if (index !== topWindowIndex) {
                 // set windowPositionsTemp[index] to index
                 windowPositionsTemp[index] = index
             }
@@ -114,12 +111,12 @@ export default function MobileWindowCordinator() {
                 currentWindowRef!.style.display = "block"
             }
         }
-    }, [minimizedWindowIds, exitedWindowIds])
+    }, [minimizedWindowIds, exitedWindowIds, windowRefs])
     
 
     // listen for document.documentElement.clientWidth changes
     const [windowHeight, setWindowHeight] = useState(document.documentElement.clientHeight)
-    const [nudgerStyle, setNudgerStyle] = useState<CSSProperties>({top: 0})
+    const [nudgerStyle] = useState<CSSProperties>({top: 0})
     const initialWindowHeight = useRef(document.documentElement.clientHeight)
     useEffect(() => {
         const handleResize = () => {
@@ -156,7 +153,7 @@ export default function MobileWindowCordinator() {
                     // if (windowConfig.type === WindowTypesEnum.DOCUMENT) {
                         return (
                             <div className="windowZPlacement" key={`wczpl-${windowConfig.id}`} id={windowConfig.id!} style={{zIndex: (100 - index).toString() }} ref={windowRefs[index]}>
-                         
+                          
                                     <MobileWindow windowConfig={windowConfig} 
                                         exitWindowHandler={exitWindowHadler} 
                                         minimizeWindowHandler={minimizeWindowHandler}
