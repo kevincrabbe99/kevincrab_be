@@ -97,7 +97,8 @@ export default function Window(props: any) {
             left:x,
             top:y 
         })
-    }, [size, x, y])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // listen for window position to be declared maximized
     useEffect(() => {
