@@ -26,6 +26,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
+    - name: Check env file exists
+      run: cat envs/.env.prod
+    
     - name: Build project
       run: npm run build:prod
       env:
