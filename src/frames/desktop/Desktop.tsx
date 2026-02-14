@@ -36,11 +36,12 @@ export default function Desktop() {
 
   // run once at mount
   // is scopeState.scopes[0] === ScopesEnum.RESUME, then open resume
-  const runCounter = useRef(0);
+  const hasRun = useRef(false);
   useEffect(() => {
 
     // prevent from running twice
-    if (runCounter.current > 0) { return; }
+    if (hasRun.current) { return; }
+    hasRun.current = true;
 
     if (scopesState.scopes[0] === ScopesEnum.RESUME) {
       windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.DOCUMENT, "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0")
@@ -52,8 +53,8 @@ export default function Desktop() {
       windowDispatcher.openWindow(dispatch, analytics, WindowTypesEnum.FOLDER, "Links")
     }
 
-    runCounter.current++;
-  }, [dispatch, analytics, scopesState.scopes])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="desktop-wrapper">

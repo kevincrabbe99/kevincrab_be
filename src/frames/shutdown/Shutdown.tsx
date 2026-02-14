@@ -36,7 +36,8 @@ export default function Shutdown() {
                 frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.DESKTOP)
                 break;
         }
-    }, [dispatch, analytics, scopeState])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // listen for any key press
     useEffect(() => {
@@ -47,20 +48,24 @@ export default function Shutdown() {
         return () => {
             window.removeEventListener("keydown", handleKeyPress)
         }
-    }, [dispatch, analytics])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // increase log position every [log.time]
     useEffect(() => {
         const interval = setInterval(() => {
-            setLogPosition(logPosition + 1)
+            setLogPosition(prev => prev + 1)
         }, 250);
 
+        return () => clearInterval(interval);
+    }, []);
+
+    // check if we should exit
+    useEffect(() => {
         if (logPosition > exitAfterLogTimeSec * 4) {
             frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
         }
-
-        return () => clearInterval(interval);
-    }, [dispatch, analytics, logPosition]);
+    }, [logPosition, dispatch, analytics]);
 
     const handleClick = () => {
         frameDispatcher.setState(dispatch, analytics, FrameStatesEnum.LOGIN)
