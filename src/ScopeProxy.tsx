@@ -51,7 +51,7 @@ export default function ScopeProxy() {
         }
 
         frameDispatcher.setState(dispatch, analytics, jumpToFrame)
-    }, [scopeState, frameState.state, dispatch, analytics])
+    }, [scopeState, dispatch, analytics])
 
     return ( 
         <>
