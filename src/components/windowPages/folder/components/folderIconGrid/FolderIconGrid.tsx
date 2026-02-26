@@ -17,7 +17,7 @@ export default function FolderIconGrid(props: any) {
                 content && 
                 content.map((item: FileNode, index: number) => {
                     return (
-                        <div key={`${item.name}-${index}`} className="folderIconGrid-item" onClick={() => fileNodeActionEvent( (e:any)=> e, item) }>
+                        <div key={`${item.name}-${index}`} className="folderIconGrid-item" onClick={(e) => fileNodeActionEvent(e, item)}>
                             <div className="folderIconGrid-item-icon">
                                 <img src={`./icons/${item.icon}`} alt={item.name || ''} />
                             </div>
