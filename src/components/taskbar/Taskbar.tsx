@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { windowDispatcher } from '../../dispatchers/windowDispatcher';
 import { WindowConfig, WindowState } from '../../reducers/windowReducer';
 import ClockBox from './components/clockBox/ClockBox';
 import "./taskbar.scss"
-
 
 
 
@@ -15,23 +14,25 @@ export default function Taskbar( props: any ) {
     var toggleVolumeSlider = props.toggleVolumeSlider
 
     const dispatch = useDispatch()
-    
+
     const windowState: WindowState = useSelector((state: any) => state.windows);
 
     const [taskBarItemsStartIndex, setTaskBarItemsStartIndex] = useState<number>(0)
     const [taskBarItemCount, setTaskBarItemCount] = useState<number>(0)
     const taskBarItemWidth = 150
     const viewPortWindowWidth = (window.innerWidth * 0.8) - 80 - 70
-    const taskBarItemCapacity = viewPortWindowWidth / taskBarItemWidth
+    // Guard against negative/zero capacity on very small viewports (e.g. 320px)
+    const taskBarItemCapacity = Math.max(1, Math.floor(viewPortWindowWidth / taskBarItemWidth))
+
+    // Track the previously focused window to detect real focus changes vs re-renders
+    const prevTopId = useRef<string | null | undefined>(undefined)
 
     const selectTaskbarPillEvent = (id: string): void => {
         windowDispatcher.focusWindow(dispatch, id)
-        //  windowDispatcher.minimizeWindow(dispatch, id)
     }
 
-    // used to keep track of the taskbar items count
+    // Keep item count up-to-date and auto-scroll only when the focused window changes
     useEffect(() => {
-        // count the number of taskbar items
         let count = 0
         let lastSelectedIndex = 0
         for (let i = 0; i < windowState.windows.length; i++) {
@@ -39,17 +40,16 @@ export default function Taskbar( props: any ) {
             if (!currentWindow.exited) { count++ }
             if (currentWindow.id === windowState.top) { lastSelectedIndex = i }
         }
-        setTaskBarItemCount(count)       
-        
-        var jumpToindex = lastSelectedIndex - taskBarItemCapacity + 1
-        setTaskBarItemsStartIndex(jumpToindex > 0 ? jumpToindex : 0)
-        
-        // Used to calculate where the taskbar next page should show
-        // console.log("viewport width: " + viewPortWindowWidth)
-        // console.log("taskbar item count: " + taskBarItemCount)
-        // console.log("taskbar start index: ", taskBarItemsStartIndex)
-        // console.log("taskbar item capacity: " + taskBarItemCapacity)
-    }, [windowState, taskBarItemCapacity, taskBarItemCount, taskBarItemsStartIndex, viewPortWindowWidth])
+        setTaskBarItemCount(count)
+
+        // Only reposition the viewport when the focused window actually changes.
+        // This prevents arrow-click navigation from being immediately overridden.
+        if (windowState.top !== prevTopId.current) {
+            prevTopId.current = windowState.top
+            const jumpToIndex = lastSelectedIndex - taskBarItemCapacity + 1
+            setTaskBarItemsStartIndex(jumpToIndex > 0 ? jumpToIndex : 0)
+        }
+    }, [windowState, taskBarItemCapacity])
 
     return (
     <div className="wrapper-taskbar">
@@ -63,7 +63,7 @@ export default function Taskbar( props: any ) {
                                 <label>Start</label>
                             </div>
                         </td>
-                        
+
                         {
                             taskBarItemsStartIndex > 0 &&
                             <td key="tb-pill-left-move">
@@ -74,17 +74,14 @@ export default function Taskbar( props: any ) {
                                 </div>
                             </td>
                         }
-                        
-                        
+
+
                         {
                             taskBarItemsStartIndex >= 0 &&
                             windowState.runningWindows &&
                             windowState.runningWindows.filter((window: WindowConfig) => !window.exited).slice(taskBarItemsStartIndex, taskBarItemsStartIndex + taskBarItemCapacity).map((window: WindowConfig) => {
-                            //  .map((window: WindowConfig, index: number) => {
                                 return (
                                     window.exited !== true &&
-                                    // index >= taskBarItemsStartIndex && 
-                                    // index < taskBarItemsStartIndex + taskBarItemCapacity ?
                                     <td key={`tb-pill-${window.id}`}>
                                         <div className={`application_placeholder-wrapper ${window.id === windowState.top ? 'tb-selected' : ''}`}
                                                 onClick={() => selectTaskbarPillEvent(window.id!)}>
@@ -92,9 +89,8 @@ export default function Taskbar( props: any ) {
                                             <label>{window.title}</label>
                                         </div>
                                     </td>
-                                    // : null
                                 )
-                            })                        
+                            })
                         }
                     </tr>
                 </tbody>
@@ -104,7 +100,7 @@ export default function Taskbar( props: any ) {
         <ClockBox toggleVolumeSlider={toggleVolumeSlider}/>
 
         {
-            (taskBarItemCount - taskBarItemsStartIndex) + 1 > taskBarItemCapacity &&
+            taskBarItemCount > taskBarItemsStartIndex + taskBarItemCapacity &&
             <div className="taskbar-moveRight tb-move-button" onClick={() => setTaskBarItemsStartIndex(taskBarItemsStartIndex + 1)}>
                 <label>
                 &#9654;
