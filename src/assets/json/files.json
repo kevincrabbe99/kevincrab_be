@@ -180,7 +180,7 @@
                                             "destination": "OPEN_DOCUMENT",
                                             "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
                                         },
-                                        "scopes": ["RESUME", "PERSONAL_WEBSITE"]
+                                        "scopes": ["RESUME", "PERSONAL_WEBSITE", "NONE"]
                                     },
                                     {
                                         "name": "Source Code",
@@ -420,7 +420,7 @@
                                             "destination": "OPEN_DOCUMENT",
                                             "param": "./documents/Kevin_Crabbe_Resume.pdf#toolbar=0"
                                         },
-                                        "scopes": ["RESUME", "PORTFOLIO", "PERSONAL_WEBSITE"]
+                                        "scopes": ["RESUME", "PORTFOLIO", "PERSONAL_WEBSITE", "NONE"]
                                     },
                                     {
                                         "name": "about",
